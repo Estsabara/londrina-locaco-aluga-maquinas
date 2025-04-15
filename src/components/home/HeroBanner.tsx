@@ -32,7 +32,7 @@ export function HeroBanner() {
           <div className={`${isMobile ? 'mt-4' : 'lg:ml-auto'}`}>
             <div className="relative h-[200px] sm:h-[250px] md:h-[300px] lg:h-[400px] w-full overflow-hidden rounded-xl bg-muted">
               <img 
-                src="/lovable-uploads/3b4fefb8-58db-4d89-81e6-00d74836ab68.png" 
+                src="/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png" 
                 alt="Equipamentos de construção" 
                 className="object-cover w-full h-full"
               />
