@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ShoppingCart, Menu, X, Search, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,10 +30,14 @@ export function Navbar() {
         <div className="container flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src="/lovable-uploads/03dd052f-50cd-4207-8539-e9ed491b9d51.png" 
+              src="/lovable-uploads/3b4fefb8-58db-4d89-81e6-00d74836ab68.png" 
               alt="Londrina Locações" 
               className="h-12 w-auto object-contain"
             />
+            <span className="text-lg font-bold ml-2">
+              LONDRINA
+              <div className="text-xs text-muted-foreground">43 3372-3860</div>
+            </span>
           </Link>
           
           {/* Campo de busca */}
