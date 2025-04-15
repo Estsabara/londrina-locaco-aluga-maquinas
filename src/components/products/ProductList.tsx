@@ -33,7 +33,7 @@ export function ProductList({ products, categories }: ProductListProps) {
             placeholder="Buscar equipamentos..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
+            className="pl-10 rounded-full"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -42,6 +42,7 @@ export function ProductList({ products, categories }: ProductListProps) {
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
               size="sm"
+              className={`${selectedCategory === category ? 'bg-primary text-primary-foreground' : ''}`}
               onClick={() => setSelectedCategory(category)}
             >
               {category}

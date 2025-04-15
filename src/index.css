@@ -5,84 +5,66 @@
 
 @layer base {
   :root {
-    /* Orange theme based on the construction helmet logo */
+    /* Cores baseadas na imagem de referência - tom roxo escuro e amarelo */
     --background: 0 0% 100%;
-    --foreground: 24 9% 10%;
+    --foreground: 280 45% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 24 9% 10%;
+    --card-foreground: 280 45% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 24 9% 10%;
+    --popover-foreground: 280 45% 15%;
 
-    --primary: 16 100% 50%; /* Orange */
-    --primary-foreground: 0 0% 100%;
+    --primary: 280 80% 15%; /* Roxo escuro */
+    --primary-foreground: 50 100% 50%; /* Amarelo */
 
-    --secondary: 16 30% 95%;
-    --secondary-foreground: 24 9% 10%;
+    --secondary: 280 80% 96%;
+    --secondary-foreground: 280 45% 15%;
 
-    --muted: 16 30% 95%;
-    --muted-foreground: 24 5% 45%;
+    --muted: 280 10% 95%;
+    --muted-foreground: 280 10% 45%;
 
-    --accent: 16 100% 50%; /* Orange */
-    --accent-foreground: 0 0% 100%;
+    --accent: 50 100% 50%; /* Amarelo */
+    --accent-foreground: 280 80% 15%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 16 30% 90%;
-    --input: 16 30% 90%;
-    --ring: 16 100% 50%; /* Orange */
+    --border: 280 10% 90%;
+    --input: 280 10% 90%;
+    --ring: 50 100% 50%; /* Amarelo */
 
     --radius: 0.5rem;
-
-    --sidebar-background: 16 30% 98%;
-    --sidebar-foreground: 24 9% 15%;
-    --sidebar-primary: 16 100% 50%; /* Orange */
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 16 30% 96%;
-    --sidebar-accent-foreground: 24 9% 10%;
-    --sidebar-border: 16 30% 90%;
-    --sidebar-ring: 16 100% 50%; /* Orange */
   }
 
   .dark {
-    --background: 0 0% 10%;
+    --background: 280 80% 10%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 10%;
+    --card: 280 80% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 10%;
+    --popover: 280 80% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 16 100% 50%; /* Orange */
-    --primary-foreground: 0 0% 100%;
+    --primary: 280 80% 15%; /* Roxo escuro */
+    --primary-foreground: 50 100% 50%; /* Amarelo */
 
-    --secondary: 0 0% 15%;
+    --secondary: 280 40% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 280 40% 15%;
+    --muted-foreground: 280 10% 65%;
 
-    --accent: 16 100% 50%; /* Orange */
-    --accent-foreground: 0 0% 100%;
+    --accent: 50 100% 50%; /* Amarelo */
+    --accent-foreground: 280 80% 15%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 16 100% 50%; /* Orange */
-
-    --sidebar-background: 0 0% 15%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 16 100% 50%; /* Orange */
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 16 100% 50%; /* Orange */
+    --border: 280 40% 20%;
+    --input: 280 40% 20%;
+    --ring: 50 100% 50%; /* Amarelo */
   }
 }
 
@@ -94,4 +76,25 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Estilos personalizados para categoria cards */
+.category-card {
+  @apply flex flex-col items-center justify-center p-4 rounded-xl transition-all;
+}
+
+.category-card:hover {
+  @apply transform scale-105;
+}
+
+.category-card-icon {
+  @apply p-4 rounded-full mb-3;
+}
+
+.category-tab {
+  @apply py-3 px-6 text-center border-b-2 border-transparent hover:text-primary hover:border-primary cursor-pointer;
+}
+
+.category-tab.active {
+  @apply text-primary border-primary font-semibold;
 }

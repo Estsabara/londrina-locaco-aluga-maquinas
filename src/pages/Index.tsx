@@ -5,10 +5,24 @@ import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Button } from "@/components/ui/button";
 import { products, categories } from "@/data/products";
-import { ArrowRight, Drill, ShieldCheck, Truck, Clock, Construction, Hammer, Ruler, Zap } from "lucide-react";
 import { useState } from "react";
+import { 
+  ArrowRight, 
+  Construction, 
+  Drill, 
+  Truck, 
+  Search,
+  Hammer, 
+  Ruler, 
+  Zap, 
+  ShieldCheck, 
+  Forklift,
+  ConstructionBarrier,
+  LucideIcon
+} from "lucide-react";
 
 export default function Index() {
+  const [selectedTab, setSelectedTab] = useState("Mais alugados");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   
   // Get featured products
@@ -16,51 +30,77 @@ export default function Index() {
     ? products.slice(0, 6) // Show first 6 products if "Todos" is selected
     : products.filter(product => product.category === selectedCategory).slice(0, 6); // Show up to 6 products from selected category
   
-  // Get category icons
-  const getCategoryIcon = (category: string) => {
-    switch(category) {
-      case "Concretagem e Mistura": return <Construction className="h-6 w-6" />;
-      case "Compactação de Solo": return <Hammer className="h-6 w-6" />;
-      case "Andaimes e Acessórios": return <Construction className="h-6 w-6" />;
-      case "Escoramento": return <Construction className="h-6 w-6" />;
-      case "Perfuração e Demolição": return <Drill className="h-6 w-6" />;
-      case "Corte e Acabamento": return <Hammer className="h-6 w-6" />;
-      case "Soldagem e Fixação": return <Zap className="h-6 w-6" />;
-      case "Medição e Níveis": return <Ruler className="h-6 w-6" />;
-      case "Limpeza": return <Truck className="h-6 w-6" />;
-      case "Movimentação e Elevação": return <Truck className="h-6 w-6" />;
-      case "Segurança": return <ShieldCheck className="h-6 w-6" />;
-      case "Energia": return <Zap className="h-6 w-6" />;
-      case "Equipamentos Diversos": return <Hammer className="h-6 w-6" />;
-      default: return <Construction className="h-6 w-6" />;
+  // Define category icons and colors
+  const categoryCards = [
+    { 
+      name: "Andaimes",
+      icon: ConstructionBarrier,
+      color: "bg-primary text-primary-foreground",
+      category: "Andaimes e Acessórios"
+    },
+    { 
+      name: "Compactação",
+      icon: Hammer,
+      color: "bg-primary text-primary-foreground",
+      category: "Compactação de Solo"
+    },
+    { 
+      name: "Concretagem",
+      icon: Construction,
+      color: "bg-primary text-primary-foreground",
+      category: "Concretagem e Mistura"
+    },
+    { 
+      name: "Ferramentas elétricas",
+      icon: Drill,
+      color: "bg-primary text-primary-foreground",
+      category: "Perfuração e Demolição"
+    },
+    { 
+      name: "Furação e demolição",
+      icon: Drill,
+      color: "bg-primary text-primary-foreground",
+      category: "Perfuração e Demolição"
+    },
+    { 
+      name: "Acesso e elevação",
+      icon: Forklift,
+      color: "bg-primary text-primary-foreground",
+      category: "Movimentação e Elevação"
+    },
+    { 
+      name: "Limpeza",
+      icon: Truck,
+      color: "bg-primary text-primary-foreground",
+      category: "Equipamentos de Limpeza"
+    },
+    { 
+      name: "Outros",
+      icon: Construction,
+      color: "bg-primary text-primary-foreground",
+      category: "Equipamentos Diversos"
     }
-  };
-  
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
       
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-b from-primary/20 to-background py-16 md:py-24">
+        <section className="bg-primary py-8 md:py-16">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-                  Alugue Equipamentos para Construção
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-accent">
+                  +70 tipos de equipamentos
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground">
-                  A Londrina Locações oferece as melhores máquinas e equipamentos para sua obra com preços competitivos e flexibilidade de locação.
+                <p className="text-lg md:text-xl text-white">
+                  para todas as fases da obra
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg">
+                  <Button asChild size="lg" className="bg-white text-primary hover:bg-accent hover:text-primary">
                     <Link to="/produtos">
-                      Ver Equipamentos
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link to="/contato">
-                      Solicitar Orçamento
+                      Alugue já!
                     </Link>
                   </Button>
                 </div>
@@ -78,89 +118,46 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Categories Section */}
-        <section className="py-12 md:py-16 bg-secondary">
+        {/* Seção Principal de Categorias */}
+        <section className="py-12">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tight text-center mb-8">
-              Categorias de Equipamentos
+            <h2 className="text-3xl font-bold mb-8 text-center">
+              Equipamentos e ferramentas para locação
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {categories.filter(cat => cat !== "Todos").map((category) => (
-                <Button 
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  className="h-auto py-4 flex flex-col gap-2"
-                  onClick={() => setSelectedCategory(category)}
+            
+            {/* Tabs */}
+            <div className="flex border-b mb-8 overflow-x-auto">
+              {["Mais alugados", "Fases da obra", "Tipo de trabalho"].map((tab) => (
+                <div 
+                  key={tab}
+                  className={`category-tab ${selectedTab === tab ? 'active' : ''}`}
+                  onClick={() => setSelectedTab(tab)}
                 >
-                  <div className={`p-2 rounded-full ${selectedCategory === category ? 'bg-primary-foreground' : 'bg-muted'}`}>
-                    {getCategoryIcon(category)}
-                  </div>
-                  <span className="text-center text-sm">{category}</span>
-                </Button>
+                  {tab}
+                </div>
               ))}
-              <Button 
-                variant={selectedCategory === "Todos" ? "default" : "outline"}
-                className="h-auto py-4 flex flex-col gap-2"
-                onClick={() => setSelectedCategory("Todos")}
-              >
-                <div className={`p-2 rounded-full ${selectedCategory === "Todos" ? 'bg-primary-foreground' : 'bg-muted'}`}>
-                  <Hammer className="h-6 w-6" />
-                </div>
-                <span className="text-center text-sm">Todos</span>
-              </Button>
             </div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-12 md:py-16">
-          <div className="container px-4 md:px-6 text-center">
-            <h2 className="text-3xl font-bold tracking-tight mb-8">
-              Por que escolher a Londrina Locações?
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="flex flex-col items-center p-4">
-                <div className="p-3 bg-primary rounded-full mb-4">
-                  <Drill className="h-6 w-6 text-primary-foreground" />
+            
+            {/* Grid de Categorias */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {categoryCards.map((card, index) => (
+                <div 
+                  key={index}
+                  className="category-card bg-primary rounded-2xl cursor-pointer"
+                  onClick={() => setSelectedCategory(card.category)}
+                >
+                  <div className="category-card-icon bg-accent">
+                    <card.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <span className="text-center text-white text-sm font-medium">{card.name}</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Equipamentos de Qualidade</h3>
-                <p className="text-muted-foreground">
-                  Máquinas e ferramentas das melhores marcas do mercado, sempre em perfeito estado.
-                </p>
-              </div>
-              <div className="flex flex-col items-center p-4">
-                <div className="p-3 bg-primary rounded-full mb-4">
-                  <Clock className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Flexibilidade de Locação</h3>
-                <p className="text-muted-foreground">
-                  Alugue pelo período que precisar, de dias a meses, com condições especiais.
-                </p>
-              </div>
-              <div className="flex flex-col items-center p-4">
-                <div className="p-3 bg-primary rounded-full mb-4">
-                  <Truck className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Entrega e Retirada</h3>
-                <p className="text-muted-foreground">
-                  Disponibilizamos serviço de entrega e retirada para sua comodidade.
-                </p>
-              </div>
-              <div className="flex flex-col items-center p-4">
-                <div className="p-3 bg-primary rounded-full mb-4">
-                  <ShieldCheck className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Manutenção Garantida</h3>
-                <p className="text-muted-foreground">
-                  Suporte técnico e manutenção inclusos durante todo o período de locação.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Featured Products */}
-        <section className="py-12 md:py-16 bg-secondary/50">
+        <section className="py-12 bg-secondary/50">
           <div className="container px-4 md:px-6">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-3xl font-bold tracking-tight">
@@ -193,6 +190,64 @@ export default function Index() {
                   Ver todos os equipamentos
                 </Link>
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Categorias em Cards Grandes */}
+        <section className="py-12">
+          <div className="container px-4 md:px-6">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <Link to="/produtos?category=Concretagem e Mistura" className="block">
+                <div className="bg-red-600 rounded-lg p-4 h-48 flex items-center justify-center relative overflow-hidden">
+                  <h3 className="text-xl font-bold text-white text-center z-10">construção</h3>
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Construção" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
+                </div>
+              </Link>
+              <Link to="/produtos?category=Jardinagem" className="block">
+                <div className="bg-green-600 rounded-lg p-4 h-48 flex items-center justify-center relative overflow-hidden">
+                  <h3 className="text-xl font-bold text-white text-center z-10">jardinagem</h3>
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Jardinagem" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
+                </div>
+              </Link>
+              <Link to="/produtos?category=Limpeza" className="block">
+                <div className="bg-teal-600 rounded-lg p-4 h-48 flex items-center justify-center relative overflow-hidden">
+                  <h3 className="text-xl font-bold text-white text-center z-10">limpeza</h3>
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Limpeza" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
+                </div>
+              </Link>
+              <Link to="/produtos?category=Pintura" className="block">
+                <div className="bg-orange-600 rounded-lg p-4 h-48 flex items-center justify-center relative overflow-hidden">
+                  <h3 className="text-xl font-bold text-white text-center z-10">pintura</h3>
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Pintura" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
+                </div>
+              </Link>
+              <Link to="/produtos?category=Equipamentos Diversos" className="block">
+                <div className="bg-purple-600 rounded-lg p-4 h-48 flex items-center justify-center relative overflow-hidden">
+                  <h3 className="text-xl font-bold text-white text-center z-10">outros</h3>
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Outros" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
+                </div>
+              </Link>
             </div>
           </div>
         </section>
