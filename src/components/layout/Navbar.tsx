@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Shield } from "lucide-react";
@@ -51,22 +52,25 @@ const Navbar = () => {
   
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="container mx-auto px-4 flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center text-primary font-bold text-xl">
-          <ShoppingCart className="mr-2" />
-          Londrina Locações
+      <div className="container mx-auto px-4 flex items-center justify-between h-20">
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/lovable-uploads/a318feda-ccf9-4034-8132-160b1fd158c6.png" 
+            alt="Londrina Locações" 
+            className="h-12"
+          />
         </Link>
         
         <nav className="hidden md:flex space-x-8">
           <Link
             to="/"
-            className="text-gray-700 hover:text-primary transition-colors"
+            className="text-gray-700 hover:text-primary transition-colors font-medium"
           >
             Início
           </Link>
           <Link
             to="/produtos"
-            className="text-gray-700 hover:text-primary transition-colors"
+            className="text-gray-700 hover:text-primary transition-colors font-medium"
           >
             Produtos
           </Link>
@@ -74,18 +78,18 @@ const Navbar = () => {
         
         <div className="flex items-center space-x-4">
           <Button 
-            variant="ghost" 
-            className="flex items-center gap-2"
+            variant="outline" 
+            className="flex items-center gap-2 border-2 border-primary hover:bg-primary/10 hover:text-primary text-primary font-medium shadow-sm"
             onClick={() => setIsLoginOpen(true)}
           >
             <Shield className="h-5 w-5" />
             <span className="hidden sm:inline">Administrativo</span>
           </Button>
           
-          <Link to="/carrinho" className="relative hover:text-primary transition-colors">
-            <ShoppingCart className="h-6 w-6" />
+          <Link to="/carrinho" className="relative p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors group">
+            <ShoppingCart className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
             {cartQuantity > 0 && (
-              <span className="absolute top-[-6px] right-[-6px] bg-primary text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+              <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-semibold px-2 py-0.5 rounded-full min-w-[20px] flex items-center justify-center">
                 {cartQuantity}
               </span>
             )}

@@ -22,7 +22,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-30 border-b bg-background">
-        <div className="container flex h-16 items-center justify-between py-4">
+        <div className="container flex h-20 items-center justify-between py-4">
           <div className="flex items-center gap-2">
             <BarChart3 className="h-6 w-6 text-primary" />
             <span className="text-lg font-bold">Admin Londrina Locações</span>
@@ -30,9 +30,11 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           
           <div className="flex items-center gap-4">
             <Link to="/">
-              <Button variant="ghost">Voltar ao site</Button>
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
+                Voltar ao site
+              </Button>
             </Link>
-            <Button variant="outline" size="sm" onClick={handleLogout}>
+            <Button variant="outline" size="sm" onClick={handleLogout} className="border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600">
               <LogOut className="mr-2 h-4 w-4" />
               Sair
             </Button>
@@ -45,7 +47,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       <footer className="border-t py-4">
         <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm text-muted-foreground md:text-left">
-            &copy; {new Date().getFullYear()} Maq Locação. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} Londrina Locações. Todos os direitos reservados.
           </p>
         </div>
       </footer>
