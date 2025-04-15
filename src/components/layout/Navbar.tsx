@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Shield } from "lucide-react";
@@ -55,7 +54,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center text-primary font-bold text-xl">
           <ShoppingCart className="mr-2" />
-          MaqLoc
+          Londrina Locações
         </Link>
         
         <nav className="hidden md:flex space-x-8">
