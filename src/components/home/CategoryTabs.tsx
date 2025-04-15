@@ -23,7 +23,7 @@ import {
   Square,
   Trash2,
   Truck,
-  Water,
+  Droplets,  // Changed from Water to Droplets
   Zap,
   Wrench,
   LucideIcon
@@ -81,7 +81,7 @@ export function CategoryTabs({ onCategorySelect }: CategoryTabsProps) {
     },
     { 
       name: "Bombear água ou lama",
-      icon: Water,
+      icon: Droplets,  // Changed from Water to Droplets
       color: "bg-primary",
       category: "Equipamentos de Bombeamento"
     },
