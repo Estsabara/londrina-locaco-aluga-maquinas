@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "@/components/layout/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,8 @@ export default function Checkout() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   
-  const [customer, setCustomer] = useState<Customer>({
+  // Fixed customer state initialization to include required fields
+  const [customer, setCustomer] = useState<Partial<Customer>>({
     name: '',
     email: '',
     phone: '',
