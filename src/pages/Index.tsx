@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -17,7 +16,7 @@ import {
   Zap, 
   ShieldCheck, 
   Forklift,
-  ConstructionBarrier,
+  Layers,
   LucideIcon
 } from "lucide-react";
 
@@ -25,16 +24,14 @@ export default function Index() {
   const [selectedTab, setSelectedTab] = useState("Mais alugados");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   
-  // Get featured products
   const filteredProducts = selectedCategory === "Todos" 
-    ? products.slice(0, 6) // Show first 6 products if "Todos" is selected
-    : products.filter(product => product.category === selectedCategory).slice(0, 6); // Show up to 6 products from selected category
-  
-  // Define category icons and colors
+    ? products.slice(0, 6) 
+    : products.filter(product => product.category === selectedCategory).slice(0, 6);
+
   const categoryCards = [
     { 
       name: "Andaimes",
-      icon: ConstructionBarrier,
+      icon: Layers,
       color: "bg-primary text-primary-foreground",
       category: "Andaimes e Acessórios"
     },
@@ -118,14 +115,12 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Seção Principal de Categorias */}
         <section className="py-12">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold mb-8 text-center">
               Equipamentos e ferramentas para locação
             </h2>
             
-            {/* Tabs */}
             <div className="flex border-b mb-8 overflow-x-auto">
               {["Mais alugados", "Fases da obra", "Tipo de trabalho"].map((tab) => (
                 <div 
@@ -138,7 +133,6 @@ export default function Index() {
               ))}
             </div>
             
-            {/* Grid de Categorias */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {categoryCards.map((card, index) => (
                 <div 
@@ -156,7 +150,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Featured Products */}
         <section className="py-12 bg-secondary/50">
           <div className="container px-4 md:px-6">
             <div className="flex justify-between items-center mb-8">
@@ -194,7 +187,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Categorias em Cards Grandes */}
         <section className="py-12">
           <div className="container px-4 md:px-6">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -252,7 +244,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-12 md:py-16 bg-primary/10">
           <div className="container px-4 md:px-6 text-center">
             <div className="max-w-2xl mx-auto space-y-4">
