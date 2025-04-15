@@ -1,33 +1,16 @@
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/CartContext";
 import { CartItem } from "@/components/cart/CartItem";
-import { formatCurrency } from "@/lib/date-utils";
 import { ShoppingCart, ArrowRight, ArrowLeft } from "lucide-react";
+import { CartSummary } from "@/components/cart/CartSummary";
 
 export default function Cart() {
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const { cartItems, getCartTotal, clearCart } = useCart();
+  const { cartItems } = useCart();
   
-  const handleCheckout = () => {
-    setIsCheckingOut(true);
-    
-    // Simulate a checkout process
-    setTimeout(() => {
-      clearCart();
-      setIsCheckingOut(false);
-      
-      // Redirect to success page or show success message
-      alert("Locação efetuada com sucesso! O pagamento será feito na retirada dos equipamentos.");
-    }, 1500);
-  };
-  
-  const cartTotal = getCartTotal();
   const isEmpty = cartItems.length === 0;
   
   return (
@@ -72,41 +55,19 @@ export default function Cart() {
               
               <div className="lg:col-span-1">
                 <div className="bg-secondary rounded-lg p-6 sticky top-20">
-                  <h2 className="text-xl font-semibold mb-4">Resumo da Locação</h2>
+                  <CartSummary />
                   
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span>Subtotal</span>
-                      <span>{formatCurrency(cartTotal)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Taxa de serviço</span>
-                      <span>{formatCurrency(0)}</span>
-                    </div>
-                    
-                    <Separator />
-                    
-                    <div className="flex justify-between font-semibold text-lg">
-                      <span>Total</span>
-                      <span>{formatCurrency(cartTotal)}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-6 space-y-4">
+                  <div className="mt-6">
                     <Button 
+                      asChild
                       className="w-full" 
                       size="lg"
-                      onClick={handleCheckout}
-                      disabled={isCheckingOut}
                     >
-                      {isCheckingOut ? "Processando..." : "Finalizar Locação"}
-                      {!isCheckingOut && <ArrowRight className="ml-2 h-4 w-4" />}
+                      <Link to="/checkout">
+                        Prosseguir para Checkout
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
-                    
-                    <div className="text-sm text-muted-foreground">
-                      <p>Pagamento será feito na retirada do equipamento.</p>
-                      <p>Documentação e caução serão solicitados.</p>
-                    </div>
                   </div>
                 </div>
               </div>

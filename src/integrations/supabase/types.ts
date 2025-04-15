@@ -105,6 +105,39 @@ export type Database = {
           },
         ]
       }
+      customers: {
+        Row: {
+          address: string | null
+          created_at: string
+          document_number: string | null
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          document_number?: string | null
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          document_number?: string | null
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       fb_items: {
         Row: {
           available: boolean | null
@@ -692,6 +725,50 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      rental_contracts: {
+        Row: {
+          agreed_at: string | null
+          cart_data: Json
+          contract_text: string
+          created_at: string
+          customer_id: string
+          id: string
+          status: string
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          agreed_at?: string | null
+          cart_data: Json
+          contract_text: string
+          created_at?: string
+          customer_id: string
+          id?: string
+          status?: string
+          total_amount: number
+          updated_at?: string
+        }
+        Update: {
+          agreed_at?: string | null
+          cart_data?: Json
+          contract_text?: string
+          created_at?: string
+          customer_id?: string
+          id?: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rental_contracts_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       reservations: {
         Row: {
