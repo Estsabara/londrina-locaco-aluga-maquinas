@@ -4,45 +4,45 @@
 
 @layer base {
   :root {
-    /* Construction theme: yellow, black, dark gray */
+    /* Blue theme based on the logo */
     --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    --foreground: 214 60% 21%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 214 60% 21%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 214 60% 21%;
 
-    --primary: 42 100% 50%; /* Yellow */
-    --primary-foreground: 0 0% 10%;
+    --primary: 214 75% 46%; /* Blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 213 27% 92%;
+    --secondary-foreground: 214 60% 21%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 213 27% 92%;
+    --muted-foreground: 214 20% 46%;
 
-    --accent: 42 100% 50%; /* Yellow */
-    --accent-foreground: 0 0% 10%;
+    --accent: 214 75% 46%; /* Blue */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 42 100% 50%; /* Yellow */
+    --border: 213 27% 90%;
+    --input: 213 27% 90%;
+    --ring: 214 75% 46%; /* Blue */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 26%;
-    --sidebar-primary: 42 100% 50%; /* Yellow */
-    --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 42 100% 50%; /* Yellow */
+    --sidebar-background: 213 27% 98%;
+    --sidebar-foreground: 214 60% 26%;
+    --sidebar-primary: 214 75% 46%; /* Blue */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 213 27% 96%;
+    --sidebar-accent-foreground: 214 60% 21%;
+    --sidebar-border: 213 27% 90%;
+    --sidebar-ring: 214 75% 46%; /* Blue */
   }
 
   .dark {

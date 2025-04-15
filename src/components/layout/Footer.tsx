@@ -7,7 +7,13 @@ export function Footer() {
       <div className="container py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">Londrina Locações</h3>
+            <div className="flex items-center gap-2 mb-4">
+              <img 
+                src="/londrina-logo.png" 
+                alt="Londrina Locações" 
+                className="h-10 w-auto"
+              />
+            </div>
             <p className="text-muted-foreground mb-4">
               Aluguel de equipamentos e máquinas para construção civil com os melhores preços e condições.
             </p>

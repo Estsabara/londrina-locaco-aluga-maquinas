@@ -17,9 +17,12 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-bold text-xl text-foreground">
-          <span className="bg-primary text-primary-foreground px-1 py-0.5 rounded">Londrina</span>
-          <span>Locações</span>
+        <Link to="/" className="flex items-center gap-2">
+          <img 
+            src="/londrina-logo.png" 
+            alt="Londrina Locações" 
+            className="h-10 w-auto"
+          />
         </Link>
         
         {/* Desktop Navigation */}
