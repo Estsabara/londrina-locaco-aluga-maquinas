@@ -18,7 +18,11 @@ export function HeroBanner() {
               mais de 70 tipos de equipamentos à sua disposição
             </p>
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
-              <Button asChild size={isMobile ? "default" : "lg"} className="bg-secondary text-white hover:bg-secondary/80">
+              <Button 
+                asChild 
+                size={isMobile ? "default" : "lg"} 
+                className="bg-white text-primary hover:bg-white/90 font-bold text-lg shadow-md"
+              >
                 <Link to="/produtos">
                   Alugue já!
                 </Link>

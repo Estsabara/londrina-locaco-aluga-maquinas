@@ -64,7 +64,7 @@ export function ProductCard({ product }: ProductCardProps) {
             onClick={(e) => openWhatsApp(e, product.name)}
           >
             <MessageCircle className="mr-2 h-4 w-4" />
-            Consultar loja
+            Alugar pelo WhatsApp
           </Button>
         </CardFooter>
       </Card>

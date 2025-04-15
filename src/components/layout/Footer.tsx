@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img 
-                src="/lovable-uploads/fd844232-ed4e-417c-9466-26ce847d8051.png" 
+                src="/lovable-uploads/3b4fefb8-58db-4d89-81e6-00d74836ab68.png" 
                 alt="Londrina Locações" 
                 className="h-14 w-auto"
               />
@@ -33,16 +33,6 @@ export function Footer() {
               <li>
                 <Link to="/produtos" className="text-muted-foreground hover:text-primary transition-colors">
                   Equipamentos
-                </Link>
-              </li>
-              <li>
-                <Link to="/sobre" className="text-muted-foreground hover:text-primary transition-colors">
-                  Sobre Nós
-                </Link>
-              </li>
-              <li>
-                <Link to="/contato" className="text-muted-foreground hover:text-primary transition-colors">
-                  Contato
                 </Link>
               </li>
               <li>

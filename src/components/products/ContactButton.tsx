@@ -23,7 +23,7 @@ export function ContactButton({ productName }: ContactButtonProps) {
       onClick={openWhatsApp}
     >
       <MessageCircle className="mr-2 h-5 w-5" />
-      Consultar loja
+      Alugar pelo WhatsApp
     </Button>
   );
 }
