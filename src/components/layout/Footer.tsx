@@ -9,9 +9,9 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img 
-                src="/londrina-logo.png" 
+                src="/lovable-uploads/fd844232-ed4e-417c-9466-26ce847d8051.png" 
                 alt="Londrina Locações" 
-                className="h-10 w-auto"
+                className="h-14 w-auto"
               />
             </div>
             <p className="text-muted-foreground mb-4">
@@ -58,7 +58,7 @@ export function Footer() {
             <address className="not-italic space-y-2 text-muted-foreground">
               <p>Av. das Máquinas, 1234</p>
               <p>Londrina, PR - CEP 86000-000</p>
-              <p>Telefone: (43) 3333-4444</p>
+              <p>Telefone: (43) 3372-3860</p>
               <p>WhatsApp: (43) 99999-8888</p>
               <p>Email: contato@londrinalocacoes.com.br</p>
             </address>

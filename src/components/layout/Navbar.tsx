@@ -19,9 +19,9 @@ export function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img 
-            src="/londrina-logo.png" 
+            src="/lovable-uploads/fd844232-ed4e-417c-9466-26ce847d8051.png" 
             alt="Londrina Locações" 
-            className="h-10 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
         
