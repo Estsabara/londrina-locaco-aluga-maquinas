@@ -6,7 +6,6 @@ import { products } from "@/data/products";
 import { HeroBanner } from "@/components/home/HeroBanner";
 import { CategoryTabs } from "@/components/home/CategoryTabs";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
-import { CategoryHighlights } from "@/components/home/CategoryHighlights";
 import { ContactCTA } from "@/components/home/ContactCTA";
 
 export default function Index() {
@@ -24,7 +23,6 @@ export default function Index() {
         <HeroBanner />
         <CategoryTabs onCategorySelect={setSelectedCategory} />
         <FeaturedProducts products={filteredProducts} selectedCategory={selectedCategory} />
-        <CategoryHighlights />
         <ContactCTA />
       </main>
       
