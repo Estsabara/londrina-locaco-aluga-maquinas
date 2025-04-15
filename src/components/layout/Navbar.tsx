@@ -1,124 +1,107 @@
-
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Menu, X, Search, UserCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { Badge } from "@/components/ui/badge";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { Input } from "@/components/ui/input";
 
-export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { getCartItemCount } = useCart();
-  const isMobile = useIsMobile();
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cartItems } = useCart();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   
-  const cartItemCount = getCartItemCount();
+  const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   
   return (
-    <>
-      {/* Navbar principal */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
-        <div className="container flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="/lovable-uploads/3b4fefb8-58db-4d89-81e6-00d74836ab68.png" 
-              alt="Londrina Locações" 
-              className="h-12 w-auto object-contain"
-            />
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="container mx-auto px-4 flex items-center justify-between h-16">
+        <Link to="/" className="flex items-center text-primary font-bold text-xl">
+          <ShoppingCart className="mr-2" />
+          MaqLoc
+        </Link>
+        
+        <nav className="hidden md:flex space-x-8">
+          <Link
+            to="/"
+            className="text-gray-700 hover:text-primary transition-colors"
+          >
+            Início
           </Link>
-          
-          {/* Campo de busca */}
-          <div className="hidden md:flex flex-1 mx-12 relative">
-            <Input
-              type="text"
-              placeholder="Do que você precisa?"
-              className="w-full pl-10 pr-4 py-2 rounded-full"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-2">
-              <UserCircle2 className="h-5 w-5" />
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">Olá!</span>
-                <Link to="/login" className="text-xs hover:underline">Entrar ou Cadastrar-se</Link>
-              </div>
-            </div>
-            
-            <Link to="/carrinho">
-              <Button variant="outline" size="icon" className="relative">
-                <ShoppingCart className="h-5 w-5" />
-                {cartItemCount > 0 && (
-                  <Badge className="absolute -top-2 -right-2 px-2 py-1 h-5 min-w-5 flex items-center justify-center">
-                    {cartItemCount}
-                  </Badge>
-                )}
-              </Button>
-            </Link>
-            
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          <Link
+            to="/produtos"
+            className="text-gray-700 hover:text-primary transition-colors"
+          >
+            Produtos
+          </Link>
+          <Link
+            to="/admin"
+            className="text-gray-700 hover:text-primary transition-colors"
+          >
+            Admin
+          </Link>
+        </nav>
+        
+        <div className="flex items-center space-x-4">
+          <Link to="/carrinho" className="relative hover:text-primary transition-colors">
+            <ShoppingCart className="h-6 w-6" />
+            {cartQuantity > 0 && (
+              <span className="absolute top-[-6px] right-[-6px] bg-primary text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                {cartQuantity}
+              </span>
+            )}
+          </Link>
+          <button
+            onClick={toggleMenu}
+            className="md:hidden text-gray-700 hover:text-primary focus:outline-none"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
         </div>
         
-        {/* Mobile Navigation */}
-        {isMobile && mobileMenuOpen && (
-          <div className="md:hidden px-4 py-2 space-y-2 border-t bg-background">
-            <div className="relative my-2">
-              <Input
-                type="text"
-                placeholder="Do que você precisa?"
-                className="w-full pl-10 pr-4 py-2 rounded-full"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+        {isMenuOpen && (
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-md p-4 z-50">
+            <div className="flex flex-col space-y-4">
+              <Link
+                to="/"
+                className="text-gray-700 hover:text-primary transition-colors py-2"
+                onClick={toggleMenu}
+              >
+                Início
+              </Link>
+              <Link
+                to="/produtos"
+                className="text-gray-700 hover:text-primary transition-colors py-2"
+                onClick={toggleMenu}
+              >
+                Produtos
+              </Link>
+              <Link
+                to="/admin"
+                className="text-gray-700 hover:text-primary transition-colors py-2"
+                onClick={toggleMenu}
+              >
+                Admin
+              </Link>
             </div>
-            <Link 
-              to="/" 
-              className="block py-2 text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Início
-            </Link>
-            <Link 
-              to="/produtos" 
-              className="block py-2 text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Equipamentos
-            </Link>
-            <Link 
-              to="/sobre" 
-              className="block py-2 text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Sobre Nós
-            </Link>
-            <Link 
-              to="/contato" 
-              className="block py-2 text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Contato
-            </Link>
-            <Link 
-              to="/login" 
-              className="block py-2 text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Entrar ou Cadastrar-se
-            </Link>
           </div>
         )}
-      </header>
-    </>
+      </div>
+    </header>
   );
-}
+};
+
+export default Navbar;
