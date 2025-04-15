@@ -18,7 +18,7 @@ export function Navbar() {
   return (
     <>
       {/* Top bar com links secundários */}
-      <div className="bg-primary text-primary-foreground py-2 px-4 text-sm">
+      <div className="bg-secondary text-white py-2 px-4 text-sm">
         <div className="container flex justify-end gap-6">
           <Link to="/nossas-lojas" className="hover:underline">Nossas Lojas</Link>
           <Link to="/seja-franqueado" className="hover:underline">Seja um franqueado</Link>
@@ -31,7 +31,7 @@ export function Navbar() {
         <div className="container flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src="/lovable-uploads/fd844232-ed4e-417c-9466-26ce847d8051.png" 
+              src="/lovable-uploads/03dd052f-50cd-4207-8539-e9ed491b9d51.png" 
               alt="Londrina Locações" 
               className="h-12 w-auto object-contain"
             />

@@ -5,66 +5,66 @@
 
 @layer base {
   :root {
-    /* Cores baseadas na imagem de referência - tom roxo escuro e amarelo */
+    /* Cores baseadas na imagem de referência - laranja e preto */
     --background: 0 0% 100%;
-    --foreground: 280 45% 15%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 280 45% 15%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 280 45% 15%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 280 80% 15%; /* Roxo escuro */
-    --primary-foreground: 50 100% 50%; /* Amarelo */
+    --primary: 16 100% 50%; /* Laranja */
+    --primary-foreground: 0 0% 100%; /* Branco */
 
-    --secondary: 280 80% 96%;
-    --secondary-foreground: 280 45% 15%;
+    --secondary: 0 0% 13%; /* Preto */
+    --secondary-foreground: 0 0% 100%; /* Branco */
 
-    --muted: 280 10% 95%;
-    --muted-foreground: 280 10% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 50 100% 50%; /* Amarelo */
-    --accent-foreground: 280 80% 15%;
+    --accent: 16 100% 50%; /* Laranja */
+    --accent-foreground: 0 0% 0%; /* Preto */
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 280 10% 90%;
-    --input: 280 10% 90%;
-    --ring: 50 100% 50%; /* Amarelo */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 16 100% 50%; /* Laranja */
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 280 80% 10%;
+    --background: 0 0% 10%;
     --foreground: 0 0% 98%;
 
-    --card: 280 80% 10%;
+    --card: 0 0% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 280 80% 10%;
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 280 80% 15%; /* Roxo escuro */
-    --primary-foreground: 50 100% 50%; /* Amarelo */
+    --primary: 16 100% 50%; /* Laranja */
+    --primary-foreground: 0 0% 100%; /* Branco */
 
-    --secondary: 280 40% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 13%; /* Preto */
+    --secondary-foreground: 0 0% 100%; /* Branco */
 
-    --muted: 280 40% 15%;
-    --muted-foreground: 280 10% 65%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 50 100% 50%; /* Amarelo */
-    --accent-foreground: 280 80% 15%;
+    --accent: 16 100% 50%; /* Laranja */
+    --accent-foreground: 0 0% 0%; /* Preto */
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 280 40% 20%;
-    --input: 280 40% 20%;
-    --ring: 50 100% 50%; /* Amarelo */
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 16 100% 50%; /* Laranja */
   }
 }
 
