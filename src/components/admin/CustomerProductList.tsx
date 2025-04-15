@@ -13,7 +13,7 @@ import {
   CardTitle 
 } from "@/components/ui/card";
 import { formatShortDate } from "@/lib/date-utils";
-import { RentalContract, Customer } from "@/types";
+import { RentalContract } from "@/types";
 import { Badge } from "@/components/ui/badge";
 
 export default function CustomerProductList() {
@@ -35,7 +35,7 @@ export default function CustomerProductList() {
       
       if (error) throw error;
       
-      setRentals(data || []);
+      setRentals(data as RentalContract[] || []);
     } catch (error) {
       console.error("Error fetching rentals:", error);
       toast.error("Erro ao carregar dados de cliente/produto");

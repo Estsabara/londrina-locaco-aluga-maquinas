@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { formatShortDate, formatCurrency } from "@/lib/date-utils";
@@ -45,7 +46,7 @@ export default function OverdueItems() {
       
       // Filter to only get overdue rentals
       const today = new Date();
-      const overdueRentals = (data || []).filter(rental => {
+      const overdueRentals = (data as RentalContract[] || []).filter(rental => {
         const cartData = rental.cart_data as any[];
         if (!cartData?.length) return false;
         
@@ -321,7 +322,7 @@ export default function OverdueItems() {
                           
                           <DialogFooter>
                             <Button
-                              onClick={() => updateRentalStatus(selectedRental?.id!, 'completed')}
+                              onClick={() => selectedRental?.id && updateRentalStatus(selectedRental.id, 'completed')}
                               className="mr-2"
                             >
                               <CheckCircle className="h-4 w-4 mr-1" />
@@ -335,7 +336,7 @@ export default function OverdueItems() {
                         variant="outline" 
                         size="sm"
                         className="text-green-600"
-                        onClick={() => updateRentalStatus(rental.id!, 'completed')}
+                        onClick={() => rental.id && updateRentalStatus(rental.id, 'completed')}
                       >
                         <CheckCircle className="h-4 w-4 mr-1" />
                         Marcar como Devolvido

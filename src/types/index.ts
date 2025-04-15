@@ -27,20 +27,25 @@ export interface DateRange {
 }
 
 export interface Customer {
-  id?: string;
+  id: string;
   name: string;
   email: string;
   phone?: string;
   document_number?: string;
   address?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface RentalContract {
   id?: string;
   customer_id: string;
-  cart_data: CartItem[];
+  cart_data: any; // Using any to handle the JSON data from Supabase
   total_amount: number;
   contract_text: string;
-  status: 'pending' | 'agreed' | 'completed' | 'cancelled';
-  agreed_at?: Date;
+  status: 'pending' | 'active' | 'completed' | 'overdue';
+  created_at: string;
+  updated_at: string;
+  agreed_at?: string;
+  customers?: Customer; // For joined data from Supabase
 }

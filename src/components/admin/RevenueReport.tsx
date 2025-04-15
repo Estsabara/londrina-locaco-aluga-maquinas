@@ -40,8 +40,8 @@ export default function RevenueReport() {
       
       if (error) throw error;
       
-      setRentals(data || []);
-      processData(data || []);
+      setRentals(data as RentalContract[] || []);
+      processData(data as RentalContract[] || []);
     } catch (error) {
       console.error("Error fetching rentals:", error);
       toast.error("Erro ao carregar dados de receita");

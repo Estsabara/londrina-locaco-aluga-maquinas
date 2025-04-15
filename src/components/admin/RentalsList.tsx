@@ -50,7 +50,7 @@ export default function RentalsList() {
       
       if (error) throw error;
       
-      setRentals(data || []);
+      setRentals(data as RentalContract[] || []);
     } catch (error) {
       console.error("Error fetching rentals:", error);
       toast.error("Erro ao carregar aluguéis");
@@ -189,7 +189,7 @@ export default function RentalsList() {
                         <Button 
                           variant="outline" 
                           size="sm"
-                          onClick={() => updateRentalStatus(rental.id!, 'completed')}
+                          onClick={() => rental.id && updateRentalStatus(rental.id, 'completed')}
                         >
                           <CheckCircle className="h-3 w-3 mr-1" />
                           Marcar como Devolvido
@@ -200,7 +200,7 @@ export default function RentalsList() {
                           variant="outline" 
                           size="sm"
                           className="ml-2"
-                          onClick={() => updateRentalStatus(rental.id!, 'active')}
+                          onClick={() => rental.id && updateRentalStatus(rental.id, 'active')}
                         >
                           <Clock className="h-3 w-3 mr-1" />
                           Em andamento
@@ -211,7 +211,7 @@ export default function RentalsList() {
                           variant="outline" 
                           size="sm"
                           className="ml-2 text-red-600 hover:text-red-600"
-                          onClick={() => updateRentalStatus(rental.id!, 'overdue')}
+                          onClick={() => rental.id && updateRentalStatus(rental.id, 'overdue')}
                         >
                           <XCircle className="h-3 w-3 mr-1" />
                           Marcar como Atrasado
