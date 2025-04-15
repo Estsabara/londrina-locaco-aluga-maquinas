@@ -22,8 +22,8 @@ export default function Checkout() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   
-  // Fixed customer state initialization to include required fields
-  const [customer, setCustomer] = useState<Partial<Customer>>({
+  // Use a proper type that matches what the database expects
+  const [customer, setCustomer] = useState({
     name: '',
     email: '',
     phone: '',
@@ -54,10 +54,16 @@ export default function Checkout() {
         return;
       }
       
-      // Create customer in database
+      // Create customer in database - fix the insert operation to match required fields
       const { data: customerData, error: customerError } = await supabase
         .from('customers')
-        .insert([customer])
+        .insert({
+          name: customer.name,
+          email: customer.email,
+          phone: customer.phone,
+          document_number: customer.document_number,
+          address: customer.address
+        })
         .select('id')
         .single();
       
@@ -65,8 +71,20 @@ export default function Checkout() {
         throw new Error(customerError.message);
       }
       
+      // Create a complete Customer object for the contract text generation
+      const fullCustomer: Customer = {
+        id: customerData.id,
+        name: customer.name,
+        email: customer.email,
+        phone: customer.phone,
+        document_number: customer.document_number,
+        address: customer.address,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+      
       // Generate contract text (simplified for now)
-      const contractText = generateContractText(customer, cartItems, getCartTotal());
+      const contractText = generateContractText(fullCustomer, cartItems, getCartTotal());
       
       // Create serializable cart data without circular references
       const serializableCartItems = cartItems.map(item => ({
