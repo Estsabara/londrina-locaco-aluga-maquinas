@@ -67,16 +67,16 @@ export default function Checkout() {
       // Generate contract text (simplified for now)
       const contractText = generateContractText(customer, cartItems, getCartTotal());
       
-      // Create contract in database
+      // Create contract in database - Fix: Convert cartItems to a JSON object
       const { data: contractData, error: contractError } = await supabase
         .from('rental_contracts')
-        .insert([{
+        .insert({
           customer_id: customerData.id,
-          cart_data: cartItems,
+          cart_data: cartItems, // This is automatically converted to JSON
           total_amount: getCartTotal(),
           contract_text: contractText,
           status: 'pending'
-        }])
+        })
         .select('id')
         .single();
       
