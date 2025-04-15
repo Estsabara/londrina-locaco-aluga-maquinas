@@ -67,12 +67,31 @@ export default function Checkout() {
       // Generate contract text (simplified for now)
       const contractText = generateContractText(customer, cartItems, getCartTotal());
       
-      // Create contract in database - Fix: Convert cartItems to a JSON object
+      // Create serializable cart data without circular references
+      const serializableCartItems = cartItems.map(item => ({
+        product: {
+          id: item.product.id,
+          name: item.product.name,
+          description: item.product.description,
+          price: item.product.price,
+          imageUrl: item.product.imageUrl,
+          category: item.product.category,
+          available: item.product.available,
+          brand: item.product.brand,
+          model: item.product.model,
+          specs: item.product.specs
+        },
+        startDate: item.startDate.toISOString(),
+        endDate: item.endDate.toISOString(),
+        quantity: item.quantity
+      }));
+      
+      // Create contract in database with serialized cart data
       const { data: contractData, error: contractError } = await supabase
         .from('rental_contracts')
         .insert({
           customer_id: customerData.id,
-          cart_data: cartItems, // This is automatically converted to JSON
+          cart_data: serializableCartItems,
           total_amount: getCartTotal(),
           contract_text: contractText,
           status: 'pending'
@@ -256,7 +275,7 @@ function generateContractText(customer: Customer, cartItems: any[], totalAmount:
   
   return `CONTRATO DE LOCAÇÃO DE EQUIPAMENTOS
 
-DATA: ${today}
+DATE: ${today}
 
 PARTES:
 
@@ -291,3 +310,4 @@ CONDIÇÕES GERAIS:
 Este contrato entra em vigor na data de sua assinatura.
 `;
 }
+
