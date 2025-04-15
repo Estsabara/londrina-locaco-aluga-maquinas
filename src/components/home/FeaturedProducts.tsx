@@ -12,7 +12,7 @@ interface FeaturedProductsProps {
 
 export function FeaturedProducts({ products, selectedCategory }: FeaturedProductsProps) {
   return (
-    <section className="py-12 bg-secondary/50">
+    <section className="py-12 bg-[hsl(0deg_0%_13%_/_3%)]">
       <div className="container px-4 md:px-6">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold tracking-tight">
