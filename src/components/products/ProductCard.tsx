@@ -4,12 +4,22 @@ import { Product } from "@/types";
 import { formatCurrency } from "@/lib/date-utils";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { WhatsApp } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const openWhatsApp = (e: React.MouseEvent, productName: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const message = `Olá! Estou interessado em alugar o equipamento: ${productName}. Poderia me dar mais informações?`;
+    const whatsappUrl = `https://wa.me/5543337238607?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <Link to={`/produto/${product.id}`}>
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
@@ -35,16 +45,25 @@ export function ProductCard({ product }: ProductCardProps) {
             <span className="font-medium">Modelo:</span> {product.model}
           </div>
         </CardContent>
-        <CardFooter className="p-4 pt-0 flex items-center justify-between">
-          <div className="font-bold text-lg">
-            {formatCurrency(product.price)}
-            <span className="text-xs font-normal text-muted-foreground">/dia</span>
+        <CardFooter className="p-4 pt-0 flex flex-col gap-2">
+          <div className="w-full flex items-center justify-between">
+            <div className="font-bold text-lg">
+              {formatCurrency(product.price)}
+              <span className="text-xs font-normal text-muted-foreground">/dia</span>
+            </div>
+            {product.available ? (
+              <Badge variant="default">Disponível</Badge>
+            ) : (
+              <Badge variant="destructive">Indisponível</Badge>
+            )}
           </div>
-          {product.available ? (
-            <Badge variant="default">Disponível</Badge>
-          ) : (
-            <Badge variant="destructive">Indisponível</Badge>
-          )}
+          <Button 
+            className="w-full bg-green-600 hover:bg-green-700 text-white"
+            onClick={(e) => openWhatsApp(e, product.name)}
+          >
+            <WhatsApp className="mr-2 h-4 w-4" />
+            Consultar loja
+          </Button>
         </CardFooter>
       </Card>
     </Link>

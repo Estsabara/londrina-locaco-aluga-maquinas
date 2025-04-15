@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ShoppingCart, ArrowLeft, CheckCircle, Info } from "lucide-react";
+import { ShoppingCart, ArrowLeft, CheckCircle, Info, WhatsApp } from "lucide-react";
 import { products } from "@/data/products";
 import { formatCurrency, calculateTotalPrice } from "@/lib/date-utils";
 import { DateRange } from "@/types";
@@ -31,6 +31,14 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   
   const product = products.find(p => p.id === Number(id));
+
+  const openWhatsApp = () => {
+    if (!product) return;
+    
+    const message = `Olá! Estou interessado em alugar o equipamento: ${product.name}. Poderia me dar mais informações?`;
+    const whatsappUrl = `https://wa.me/5543337238607?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
   
   if (!product) {
     return (
@@ -134,6 +142,17 @@ export default function ProductDetails() {
               <div>
                 <span className="font-medium">Modelo:</span> {model}
               </div>
+            </div>
+            
+            <div className="flex flex-col gap-3">
+              <Button 
+                className="w-full bg-green-600 hover:bg-green-700 text-white" 
+                size="lg"
+                onClick={openWhatsApp}
+              >
+                <WhatsApp className="mr-2 h-5 w-5" />
+                Consultar loja
+              </Button>
             </div>
             
             <Separator />
