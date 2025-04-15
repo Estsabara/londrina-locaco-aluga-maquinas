@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { products } from "@/data/products";
+import { products } from "@/data/products/index";
 import { HeroBanner } from "@/components/home/HeroBanner";
 import { CategoryTabs } from "@/components/home/CategoryTabs";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
