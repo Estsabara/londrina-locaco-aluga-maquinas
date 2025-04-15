@@ -5,7 +5,8 @@ import { formatCurrency } from "@/lib/date-utils";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { WhatsApp } from "lucide-react";
+import { MessageCircle } from "lucide-react";
+import { createWhatsAppLink } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -16,7 +17,8 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault();
     e.stopPropagation();
     const message = `Olá! Estou interessado em alugar o equipamento: ${productName}. Poderia me dar mais informações?`;
-    const whatsappUrl = `https://wa.me/5543337238607?text=${encodeURIComponent(message)}`;
+    const phoneNumber = "5543337238607";
+    const whatsappUrl = createWhatsAppLink(phoneNumber, message);
     window.open(whatsappUrl, '_blank');
   };
 
@@ -61,7 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="w-full bg-green-600 hover:bg-green-700 text-white"
             onClick={(e) => openWhatsApp(e, product.name)}
           >
-            <WhatsApp className="mr-2 h-4 w-4" />
+            <MessageCircle className="mr-2 h-4 w-4" />
             Consultar loja
           </Button>
         </CardFooter>

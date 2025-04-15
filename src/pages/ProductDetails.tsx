@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
@@ -15,12 +14,13 @@ import {
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ShoppingCart, ArrowLeft, CheckCircle, Info, WhatsApp } from "lucide-react";
+import { ShoppingCart, ArrowLeft, CheckCircle, Info, MessageCircle } from "lucide-react";
 import { products } from "@/data/products";
 import { formatCurrency, calculateTotalPrice } from "@/lib/date-utils";
 import { DateRange } from "@/types";
 import { DateRange as RDPDateRange } from "react-day-picker";
 import { useCart } from "@/context/CartContext";
+import { createWhatsAppLink } from "@/lib/utils";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -36,7 +36,8 @@ export default function ProductDetails() {
     if (!product) return;
     
     const message = `Olá! Estou interessado em alugar o equipamento: ${product.name}. Poderia me dar mais informações?`;
-    const whatsappUrl = `https://wa.me/5543337238607?text=${encodeURIComponent(message)}`;
+    const phoneNumber = "5543337238607";
+    const whatsappUrl = createWhatsAppLink(phoneNumber, message);
     window.open(whatsappUrl, '_blank');
   };
   
@@ -100,7 +101,6 @@ export default function ProductDetails() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Product Image */}
           <div className="bg-muted rounded-lg overflow-hidden h-[300px] md:h-[400px]">
             <img 
               src={imageUrl} 
@@ -109,7 +109,6 @@ export default function ProductDetails() {
             />
           </div>
           
-          {/* Product Info */}
           <div className="space-y-6">
             <div>
               <div className="flex items-center justify-between">
@@ -150,7 +149,7 @@ export default function ProductDetails() {
                 size="lg"
                 onClick={openWhatsApp}
               >
-                <WhatsApp className="mr-2 h-5 w-5" />
+                <MessageCircle className="mr-2 h-5 w-5" />
                 Consultar loja
               </Button>
             </div>
@@ -205,7 +204,6 @@ export default function ProductDetails() {
           </div>
         </div>
         
-        {/* Specifications */}
         <div className="mt-10">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="specs">
