@@ -1,4 +1,3 @@
-
 import { useCart } from "@/context/CartContext";
 import { formatCurrency } from "@/lib/date-utils";
 import { Separator } from "@/components/ui/separator";
@@ -9,7 +8,7 @@ export function CartSummary() {
   const cartTotal = getCartTotal();
   
   return (
-    <div className="bg-secondary rounded-lg p-6 sticky top-20">
+    <div className="bg-[hsl(0deg_0%_100%_/_23%)] rounded-lg p-6 sticky top-20">
       <h2 className="text-xl font-semibold mb-4">Resumo da Locação</h2>
       
       <div className="space-y-3 mb-4">
