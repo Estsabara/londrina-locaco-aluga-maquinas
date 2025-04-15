@@ -21,7 +21,7 @@ export function Navbar() {
           <img 
             src="/lovable-uploads/fd844232-ed4e-417c-9466-26ce847d8051.png" 
             alt="Londrina Locações" 
-            className="h-12 w-auto"
+            className="h-12 w-auto object-contain"
           />
         </Link>
         

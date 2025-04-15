@@ -56,11 +56,11 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4">Contato</h3>
             <address className="not-italic space-y-2 text-muted-foreground">
-              <p>Av. das Máquinas, 1234</p>
-              <p>Londrina, PR - CEP 86000-000</p>
+              <p>Avenida Theodoro Victorelli, 181</p>
+              <p>Londrina, PR - CEP 86027-750</p>
+              <p>Brasil</p>
               <p>Telefone: (43) 3372-3860</p>
-              <p>WhatsApp: (43) 99999-8888</p>
-              <p>Email: contato@londrinalocacoes.com.br</p>
+              <p>Email: londrinalocacao@gmail.com</p>
             </address>
           </div>
         </div>
