@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ShoppingCart, Menu, X, Search, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,15 +17,6 @@ export function Navbar() {
   
   return (
     <>
-      {/* Top bar com links secundários */}
-      <div className="bg-secondary text-white py-2 px-4 text-sm">
-        <div className="container flex justify-end gap-6">
-          <Link to="/nossas-lojas" className="hover:underline">Nossas Lojas</Link>
-          <Link to="/seja-franqueado" className="hover:underline">Seja um franqueado</Link>
-          <Link to="/ouvidoria" className="hover:underline">Ouvidoria</Link>
-        </div>
-      </div>
-      
       {/* Navbar principal */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
         <div className="container flex h-16 items-center justify-between">
@@ -34,10 +26,6 @@ export function Navbar() {
               alt="Londrina Locações" 
               className="h-12 w-auto object-contain"
             />
-            <span className="text-lg font-bold ml-2">
-              LONDRINA
-              <div className="text-xs text-muted-foreground">43 3372-3860</div>
-            </span>
           </Link>
           
           {/* Campo de busca */}
