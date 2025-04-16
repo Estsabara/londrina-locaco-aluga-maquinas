@@ -7,7 +7,7 @@ export const soldagemFixacaoProducts: Product[] = [
     name: "Transformador 3000W",
     description: "Transformador de 3000W para alimentação de equipamentos em obras.",
     price: 120,
-    imageUrl: "/lovable-uploads/22e56a97-a20e-4ed3-9012-6b453c790b29.png",
+    imageUrl: "/lovable-uploads/e27e45a6-708a-4166-a128-ac3aba14d9e2.png",
     category: "Soldagem e Fixação",
     available: true,
     brand: "Bambozzi",

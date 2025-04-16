@@ -7,12 +7,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
+import { useState } from "react";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const [imageError, setImageError] = useState(false);
+
   const openWhatsApp = (e: React.MouseEvent, productName: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -27,13 +30,10 @@ export function ProductCard({ product }: ProductCardProps) {
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
         <div className="relative h-48 bg-muted">
           <img 
-            src={product.imageUrl} 
+            src={imageError ? "/placeholder.svg" : product.imageUrl} 
             alt={product.name} 
             className="w-full h-full object-contain p-2"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "/placeholder.svg";
-            }}
+            onError={() => setImageError(true)}
           />
           <Badge className="absolute top-2 right-2">
             {product.category}

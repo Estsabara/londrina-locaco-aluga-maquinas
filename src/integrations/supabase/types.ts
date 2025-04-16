@@ -1088,6 +1088,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      add_room: {
+        Args: {
+          room_number: string
+          room_type: string
+          room_capacity: number
+          room_price: number
+          room_status: string
+          room_floor: string
+          room_description: string
+          room_amenities: string[]
+          hotel_id_param: string
+        }
+        Returns: string
+      }
       add_user_role: {
         Args: {
           user_id_param: string

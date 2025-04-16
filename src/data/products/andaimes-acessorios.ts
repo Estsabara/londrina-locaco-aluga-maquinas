@@ -7,7 +7,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Andaime Metálico",
     description: "Andaime metálico para trabalhos em altura com segurança.",
     price: 50,
-    imageUrl: "https://http2.mlstatic.com/D_NQ_NP_687149-MLB51906682222_102022-O.webp",
+    imageUrl: "/lovable-uploads/2330866e-30ce-4eeb-8c01-5b3df7bd9675.png",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Metax",

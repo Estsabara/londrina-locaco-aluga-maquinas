@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 
 interface ProductImageGalleryProps {
   imageUrl: string;
@@ -7,16 +7,15 @@ interface ProductImageGalleryProps {
 }
 
 export function ProductImageGallery({ imageUrl, name }: ProductImageGalleryProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div className="bg-muted rounded-lg overflow-hidden h-[300px] md:h-[400px]">
       <img 
-        src={imageUrl} 
+        src={imageError ? "/placeholder.svg" : imageUrl} 
         alt={name} 
         className="w-full h-full object-contain"
-        onError={(e) => {
-          const target = e.target as HTMLImageElement;
-          target.src = "/placeholder.svg";
-        }}
+        onError={() => setImageError(true)}
       />
     </div>
   );
