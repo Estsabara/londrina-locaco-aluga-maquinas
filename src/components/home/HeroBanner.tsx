@@ -7,21 +7,21 @@ export function HeroBanner() {
   const isMobile = useIsMobile();
   
   return (
-    <section className="bg-primary py-6 md:py-16">
+    <section className="bg-white border-2 border-primary py-6 md:py-16">
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-3 md:space-y-4 text-center lg:text-left">
-            <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tighter text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tighter text-primary">
               Tudo para sua obra
             </h1>
-            <p className="text-base md:text-lg text-white max-w-md mx-auto lg:mx-0">
+            <p className="text-base md:text-lg text-gray-700 max-w-md mx-auto lg:mx-0">
               mais de 70 tipos de equipamentos à sua disposição
             </p>
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
               <Button 
                 asChild 
                 size={isMobile ? "default" : "lg"} 
-                className="bg-white text-primary hover:bg-white/90 font-bold text-lg shadow-md"
+                className="bg-primary text-white hover:bg-primary/90 font-bold text-lg shadow-md"
               >
                 <Link to="/produtos">
                   Alugue já!
