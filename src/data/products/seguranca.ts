@@ -7,7 +7,7 @@ export const segurancaProducts: Product[] = [
     name: "Cinto Paraquedista",
     description: "Cinto paraquedista para trabalhos em altura com segurança.",
     price: 40,
-    imageUrl: "/placeholder.svg",
+    imageUrl: "https://http2.mlstatic.com/D_NQ_NP_874322-MLB31847278097_082019-O.webp",
     category: "Segurança",
     available: true,
     brand: "Ultrasafe",

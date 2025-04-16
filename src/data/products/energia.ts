@@ -7,7 +7,7 @@ export const energiaProducts: Product[] = [
     name: "Gerador de Energia 8kVA",
     description: "Gerador de energia de 8kVA para alimentação elétrica em locais sem rede.",
     price: 250,
-    imageUrl: "/placeholder.svg",
+    imageUrl: "https://www.toyama.com.br/fmanager/toyama/produtos/imagem38_1_super.png",
     category: "Energia",
     available: true,
     brand: "Toyama",

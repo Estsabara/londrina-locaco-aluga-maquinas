@@ -7,7 +7,7 @@ export const escoramentoProducts: Product[] = [
     name: "Escoramento Metálico",
     description: "Escoramento metálico para suporte de lajes, vigas e estruturas.",
     price: 45,
-    imageUrl: "/placeholder.svg",
+    imageUrl: "https://apferra.com.br/wp-content/uploads/2023/03/Escora-Metalica-SH-1.png",
     category: "Escoramento",
     available: true,
     brand: "SH",
