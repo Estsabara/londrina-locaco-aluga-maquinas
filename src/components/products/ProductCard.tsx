@@ -28,11 +28,11 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link to={`/produto/${product.id}`}>
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
-        <div className="relative h-48 bg-muted">
+        <div className="relative h-48 bg-white border-b">
           <img 
             src={imageError ? "/placeholder.svg" : product.imageUrl} 
             alt={product.name} 
-            className="w-full h-full object-contain p-2"
+            className="w-full h-full object-contain p-3"
             onError={() => setImageError(true)}
           />
           <Badge className="absolute top-2 right-2">

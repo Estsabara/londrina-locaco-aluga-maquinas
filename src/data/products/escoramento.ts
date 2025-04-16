@@ -7,7 +7,7 @@ export const escoramentoProducts: Product[] = [
     name: "Escoramento Metálico",
     description: "Escoramento metálico para suporte de lajes, vigas e estruturas.",
     price: 45,
-    imageUrl: "/lovable-uploads/ba112243-ec73-4824-964b-343785b040b4.png",
+    imageUrl: "/lovable-uploads/28846c23-aa52-4784-9eda-b026851f8180.png",
     category: "Escoramento",
     available: true,
     brand: "SH",
