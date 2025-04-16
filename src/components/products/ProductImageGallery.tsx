@@ -12,7 +12,7 @@ export function ProductImageGallery({ imageUrl, name }: ProductImageGalleryProps
       <img 
         src={imageUrl} 
         alt={name} 
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
         onError={(e) => {
           const target = e.target as HTMLImageElement;
           target.src = "/placeholder.svg";
