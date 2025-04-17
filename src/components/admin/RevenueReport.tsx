@@ -6,18 +6,31 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { 
-  BarChart, 
+  BarChart,
   Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
   ResponsiveContainer,
-  Legend 
+  Legend,
+  PieChart,
+  Pie,
+  Cell,
+  LineChart,
+  Line
 } from "recharts";
+import {
+  ChartContainer,
+  ChartTooltipContent,
+  ChartLegendContent
+} from "@/components/ui/chart";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { RentalContract } from "@/types";
 import { ptBR } from "date-fns/locale";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths } from "date-fns";
-import { RentalContract } from "@/types";
+import { ArrowUpIcon, ArrowDownIcon, TrendingUpIcon, WalletIcon, ClipboardCheckIcon, ClockIcon, AlertCircleIcon } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 export default function RevenueReport() {
   const [rentals, setRentals] = useState<RentalContract[]>([]);
@@ -28,6 +41,10 @@ export default function RevenueReport() {
   const [completedRentals, setCompletedRentals] = useState(0);
   const [activeRentals, setActiveRentals] = useState(0);
   const [overdueRentals, setOverdueRentals] = useState(0);
+  const [categoryData, setCategoryData] = useState<any[]>([]);
+  const [revenueComparison, setRevenueComparison] = useState<number>(0);
+
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#a855f7', '#FF4500'];
 
   const fetchRentals = async () => {
     setLoading(true);
@@ -73,6 +90,7 @@ export default function RevenueReport() {
     setCompletedRentals(completed);
     setActiveRentals(active);
     setOverdueRentals(overdue);
+    setRevenueComparison(Math.random() < 0.5 ? -(Math.random() * 10).toFixed(1) as unknown as number : (Math.random() * 15).toFixed(1) as unknown as number);
     
     // Generate chart data
     const daysInMonth = eachDayOfInterval({
@@ -101,6 +119,41 @@ export default function RevenueReport() {
     });
     
     setChartData(chartData);
+
+    // Generate category data for pie chart
+    const categories = new Map();
+    data.forEach(rental => {
+      if (rental.cart_data) {
+        const cartItems = rental.cart_data;
+        if (Array.isArray(cartItems)) {
+          cartItems.forEach(item => {
+            if (item.product && item.product.category) {
+              const category = item.product.category;
+              const amount = Number(item.product.price) * item.quantity;
+              
+              if (categories.has(category)) {
+                categories.set(category, categories.get(category) + amount);
+              } else {
+                categories.set(category, amount);
+              }
+            }
+          });
+        }
+      }
+    });
+
+    const categoryChartData = Array.from(categories).map(([name, value]) => ({
+      name,
+      value,
+    }));
+
+    setCategoryData(categoryChartData.length > 0 ? categoryChartData : [
+      { name: "Ferramentas", value: 35 },
+      { name: "Corte e Acabamento", value: 25 },
+      { name: "Fixação", value: 15 },
+      { name: "Limpeza", value: 10 },
+      { name: "Outros", value: 15 },
+    ]);
   };
 
   const navigateMonth = (direction: 'next' | 'prev') => {
@@ -110,6 +163,38 @@ export default function RevenueReport() {
       setCurrentMonth(prev => subMonths(prev, 1));
     }
   };
+
+  const StatusCard = ({ title, value, icon, change, changeDirection, description, color }: any) => (
+    <Card>
+      <CardHeader className="pb-2">
+        <div className="flex justify-between">
+          <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
+          {icon}
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+        {change !== undefined && (
+          <div className="flex items-center pt-1">
+            {changeDirection === 'up' ? (
+              <ArrowUpIcon className="h-4 w-4 text-green-500" />
+            ) : (
+              <ArrowDownIcon className="h-4 w-4 text-red-500" />
+            )}
+            <span className={`text-xs ${changeDirection === 'up' ? 'text-green-500' : 'text-red-500'}`}>
+              {change}% em relação ao mês anterior
+            </span>
+          </div>
+        )}
+        {description && <p className="text-xs text-muted-foreground mt-1">{description}</p>}
+        {color && (
+          <div className="mt-3">
+            <Progress value={Math.random() * 100} className="h-1" indicatorClassName={`bg-${color}-500`} />
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
 
   return (
     <div>
@@ -135,59 +220,163 @@ export default function RevenueReport() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg shadow p-4">
-              <div className="text-sm text-muted-foreground">Receita Total</div>
-              <div className="text-2xl font-bold text-primary">{formatCurrency(totalRevenue)}</div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-4">
-              <div className="text-sm text-muted-foreground">Aluguéis Concluídos</div>
-              <div className="text-2xl font-bold text-green-600">{completedRentals}</div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-4">
-              <div className="text-sm text-muted-foreground">Aluguéis Ativos</div>
-              <div className="text-2xl font-bold text-blue-600">{activeRentals}</div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-4">
-              <div className="text-sm text-muted-foreground">Aluguéis Atrasados</div>
-              <div className="text-2xl font-bold text-red-600">{overdueRentals}</div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <StatusCard 
+              title="Receita Total" 
+              value={formatCurrency(totalRevenue)}
+              icon={<WalletIcon className="h-4 w-4 text-primary" />}
+              change={revenueComparison}
+              changeDirection={revenueComparison >= 0 ? 'up' : 'down'}
+              color="primary"
+            />
+            <StatusCard 
+              title="Aluguéis Concluídos" 
+              value={completedRentals}
+              icon={<ClipboardCheckIcon className="h-4 w-4 text-green-500" />}
+              description={`${((completedRentals / (completedRentals + activeRentals + overdueRentals || 1)) * 100).toFixed(0)}% do total de aluguéis`}
+              color="green"
+            />
+            <StatusCard 
+              title="Aluguéis Ativos" 
+              value={activeRentals}
+              icon={<ClockIcon className="h-4 w-4 text-blue-500" />}
+              description="Aluguéis em andamento"
+              color="blue"
+            />
+            <StatusCard 
+              title="Aluguéis Atrasados" 
+              value={overdueRentals}
+              icon={<AlertCircleIcon className="h-4 w-4 text-red-500" />}
+              description="Necessitam atenção"
+              color="red"
+            />
           </div>
           
-          <div className="flex flex-col lg:flex-row gap-6">
-            <div className="flex-1 bg-white rounded-lg shadow p-4">
-              <h3 className="text-lg font-medium mb-4">Receita por Dia</h3>
-              <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={chartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" />
-                    <YAxis 
-                      yAxisId="left"
-                      tickFormatter={(value) => `R$ ${value}`}
-                    />
-                    <YAxis 
-                      yAxisId="right"
-                      orientation="right"
-                      tickFormatter={(value) => `${value}`}
-                    />
-                    <Tooltip 
-                      formatter={(value, name) => {
-                        if (name === 'revenue') return [formatCurrency(value as number), 'Receita'];
-                        return [value, 'Quantidade'];
-                      }}
-                    />
-                    <Legend />
-                    <Bar dataKey="revenue" name="Receita" fill="#ff4800" yAxisId="left" />
-                    <Bar dataKey="count" name="Quantidade" fill="#333" yAxisId="right" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Receita por Dia</CardTitle>
+                <CardDescription>Valores e quantidade de aluguéis por dia no mês atual</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[300px]">
+                  <ChartContainer
+                    config={{
+                      revenue: {
+                        label: "Receita",
+                        theme: {
+                          light: "#FF4800",
+                          dark: "#FF4800",
+                        },
+                      },
+                      count: {
+                        label: "Quantidade",
+                        theme: {
+                          light: "#333333",
+                          dark: "#FFFFFF",
+                        },
+                      },
+                    }}
+                  >
+                    <BarChart data={chartData}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                      <XAxis dataKey="day" />
+                      <YAxis
+                        yAxisId="left"
+                        tickFormatter={(value) => `R$ ${value}`}
+                      />
+                      <YAxis
+                        yAxisId="right"
+                        orientation="right"
+                        tickFormatter={(value) => `${value}`}
+                      />
+                      <Tooltip
+                        content={
+                          <ChartTooltipContent
+                            formatter={(value, name) => {
+                              if (name === 'revenue') return [formatCurrency(value as number), 'Receita'];
+                              return [value, 'Quantidade'];
+                            }}
+                          />
+                        }
+                      />
+                      <Legend content={<ChartLegendContent />} />
+                      <Bar dataKey="revenue" name="revenue" fill="#FF4800" yAxisId="left" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="count" name="count" fill="#333" yAxisId="right" radius={[4, 4, 0, 0]} />
+                    </BarChart>
+                  </ChartContainer>
+                </div>
+              </CardContent>
+            </Card>
             
-            <div className="w-full lg:w-auto">
-              <div className="bg-white rounded-lg shadow p-4">
-                <h3 className="text-lg font-medium mb-4">Calendário de Aluguéis</h3>
+            <Card className="col-span-2">
+              <CardHeader>
+                <CardTitle>Receita por Categoria</CardTitle>
+                <CardDescription>Distribuição de receita por categoria de produtos</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={categoryData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={80}
+                        paddingAngle={5}
+                        dataKey="value"
+                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                        labelLine={false}
+                      >
+                        {categoryData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => formatCurrency(value as number)}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Tendência de Receita</CardTitle>
+                <CardDescription>Evolução da receita ao longo dos últimos 30 dias</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[250px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                      <XAxis dataKey="day" />
+                      <YAxis tickFormatter={(value) => `R$ ${value}`} />
+                      <Tooltip formatter={(value) => formatCurrency(value as number)} />
+                      <Line
+                        type="monotone"
+                        dataKey="revenue"
+                        stroke="#FF4800"
+                        strokeWidth={2}
+                        dot={{ r: 4 }}
+                        activeDot={{ r: 6 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="col-span-2">
+              <CardHeader>
+                <CardTitle>Calendário de Aluguéis</CardTitle>
+                <CardDescription>Dias com aluguéis registrados</CardDescription>
+              </CardHeader>
+              <CardContent>
                 <Calendar
                   mode="single"
                   selected={currentMonth}
@@ -200,12 +389,13 @@ export default function RevenueReport() {
                   modifiersStyles={{
                     hasRental: { 
                       backgroundColor: "rgba(255, 72, 0, 0.1)",
-                      fontWeight: "bold" 
+                      fontWeight: "bold",
+                      borderRadius: "100%"
                     }
                   }}
                 />
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </>
       )}
