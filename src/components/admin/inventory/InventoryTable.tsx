@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Box, ArrowUpDown } from "lucide-react";
 
-interface Product {
-  id: string;
+// Define a type that includes the inventory-specific fields
+export interface InventoryProduct {
+  id: number | string; // Allow both number and string IDs
   name: string;
   category: string;
   available: boolean;
@@ -14,10 +15,18 @@ interface Product {
   stockQuantity: number;
   threshold: number;
   lastRestocked: string;
+  brand: string;
+  model: string;
+  imageUrl: string;
+  price: number;
+  description: string;
+  specs: {
+    [key: string]: string;
+  };
 }
 
 interface InventoryTableProps {
-  products: Product[];
+  products: InventoryProduct[];
 }
 
 export function InventoryTable({ products }: InventoryTableProps) {

@@ -5,14 +5,14 @@ import { plainasProducts } from "@/data/products/corte-acabamento/plainas";
 import { politrizesProducts } from "@/data/products/corte-acabamento/politrizes";
 import { InventoryHeader } from "./inventory/InventoryHeader";
 import { InventoryStats } from "./inventory/InventoryStats";
-import { InventoryTable } from "./inventory/InventoryTable";
+import { InventoryTable, InventoryProduct } from "./inventory/InventoryTable";
 
 export default function InventoryManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   
   const allProducts = [...plainasProducts, ...politrizesProducts];
   
-  const productsWithInventory = allProducts.map(product => ({
+  const productsWithInventory: InventoryProduct[] = allProducts.map(product => ({
     ...product,
     stockQuantity: Math.floor(Math.random() * 10) + 1,
     threshold: 3,
