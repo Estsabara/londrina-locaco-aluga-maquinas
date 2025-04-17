@@ -13,10 +13,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recha
 export default function InventoryManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   
-  // Combine products from different categories
   const allProducts = [...plainasProducts, ...politrizesProducts];
   
-  // Add mock inventory data
   const productsWithInventory = allProducts.map(product => ({
     ...product,
     stockQuantity: Math.floor(Math.random() * 10) + 1,
@@ -31,13 +29,11 @@ export default function InventoryManagement() {
     product.brand.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Data for the stock status pie chart
   const stockStatusData = [
     { name: "Disponível", value: productsWithInventory.filter(p => p.status === "disponível").length },
     { name: "Alugado", value: productsWithInventory.filter(p => p.status === "alugado").length },
   ];
   
-  // Data for the stock levels pie chart
   const stockLevelsData = [
     { name: "Estoque OK", value: productsWithInventory.filter(p => p.stockQuantity > p.threshold).length },
     { name: "Estoque Baixo", value: productsWithInventory.filter(p => p.stockQuantity <= p.threshold).length },
@@ -55,6 +51,12 @@ export default function InventoryManagement() {
     if (quantity === 0) return "Esgotado";
     if (quantity <= threshold) return "Baixo";
     return "OK";
+  };
+
+  const getStockLevelProgressColor = (quantity: number, threshold: number) => {
+    if (quantity === 0) return "bg-red-500";
+    if (quantity <= threshold) return "bg-yellow-500";
+    return "bg-green-500";
   };
 
   return (
@@ -234,7 +236,7 @@ export default function InventoryManagement() {
                       <Progress 
                         value={(product.stockQuantity / 10) * 100} 
                         className="h-2 w-20"
-                        indicatorClassName="bg-green-500"
+                        indicatorClassName={`${getStockLevelProgressColor(product.stockQuantity, product.threshold)}`}
                       />
                       <span className="text-xs">
                         {product.stockQuantity} 
