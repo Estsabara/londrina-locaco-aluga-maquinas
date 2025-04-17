@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -235,7 +234,7 @@ export default function InventoryManagement() {
                       <Progress 
                         value={(product.stockQuantity / 10) * 100} 
                         className="h-2 w-20"
-                        indicator={getStockStatusColor(product.stockQuantity, product.threshold)}
+                        indicatorClassName="bg-green-500"
                       />
                       <span className="text-xs">
                         {product.stockQuantity} 
