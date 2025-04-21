@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Shield } from "lucide-react";
@@ -74,6 +73,12 @@ const Navbar = () => {
           >
             Produtos
           </Link>
+          <Link
+            to="/sobre"
+            className="text-gray-700 hover:text-primary transition-colors font-medium"
+          >
+            Sobre Nós
+          </Link>
         </nav>
         
         <div className="flex items-center space-x-4">
@@ -131,6 +136,13 @@ const Navbar = () => {
                 onClick={toggleMenu}
               >
                 Produtos
+              </Link>
+              <Link
+                to="/sobre"
+                className="text-gray-700 hover:text-primary transition-colors py-2"
+                onClick={toggleMenu}
+              >
+                Sobre Nós
               </Link>
               <Button 
                 variant="ghost" 
