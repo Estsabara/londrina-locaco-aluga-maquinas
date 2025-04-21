@@ -102,5 +102,39 @@ export const concretagemMisturaProducts: Product[] = [
       rotação: "18000 rpm",
       peso: "6 kg"
     }
+  },
+  {
+    id: 40,
+    name: "Mangote Vibrador Bosch GVC",
+    description: "Mangote vibrador com motor elétrico para adensamento de concreto.",
+    price: 110,
+    imageUrl: "/lovable-uploads/d6f87748-0205-4911-ae64-25e995ec67c9.png",
+    category: "Concretagem e Mistura",
+    available: true,
+    brand: "Bosch",
+    model: "GVC 22 EX",
+    specs: {
+      potência: "2200W",
+      comprimento: "5.5m",
+      diâmetro: "45mm",
+      voltagem: "220V"
+    }
+  },
+  {
+    id: 41,
+    name: "Mangote para Vibrador 35mm",
+    description: "Mangote para vibrador de concreto com 35mm de diâmetro.",
+    price: 45,
+    imageUrl: "/lovable-uploads/f8ca62e2-fc9f-4406-af35-520f93c04fbe.png",
+    category: "Concretagem e Mistura",
+    available: true,
+    brand: "CSM",
+    model: "MV-35",
+    specs: {
+      diâmetro: "35mm",
+      comprimento: "6m",
+      rotação: "18000 rpm",
+      material: "Aço especial"
+    }
   }
 ];

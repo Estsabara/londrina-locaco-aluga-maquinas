@@ -1,38 +1,39 @@
+
 import { Product } from "@/types";
 
 export const limpezaProducts: Product[] = [
   {
     id: 34,
-    name: "Aspirador de Pó para Sólidos e Líquidos",
-    description: "Aspirador de pó para sólidos e líquidos, ideal para limpeza de obras.",
-    price: 90,
-    imageUrl: "/lovable-uploads/f0da340c-353c-429f-a9e1-a178a0471c2e.png", // Aspirador vermelho
+    name: "Lavadora de Alta Pressão HD 585",
+    description: "Lavadora de alta pressão profissional para limpeza pesada.",
+    price: 120,
+    imageUrl: "/lovable-uploads/39df544d-e5cc-4204-9a92-10ed5445eec0.png",
     category: "Limpeza",
     available: true,
-    brand: "Wap",
-    model: "GTW 20",
+    brand: "Karcher",
+    model: "HD 585",
     specs: {
-      potência: "1600W",
-      capacidade: "20 litros",
-      voltagem: "220V",
-      mangueira: "2.5 metros"
+      pressão: "1740 PSI",
+      vazão: "500 L/h",
+      potência: "1.5 kW",
+      voltagem: "220V"
     }
   },
   {
     id: 35,
-    name: "Lavadora de Alta Pressão 16L",
-    description: "Lavadora de alta pressão de 16 litros/min para limpeza de superfícies.",
-    price: 120,
-    imageUrl: "/lovable-uploads/d6a6c3dd-ac62-4313-8aa8-3fbf9a99c882.png",
+    name: "Lixadeira Orbital Dewalt",
+    description: "Lixadeira orbital 1/4 de folha para acabamentos finos.",
+    price: 65,
+    imageUrl: "/lovable-uploads/74580b16-b823-48bf-ab99-8b5a7250072d.png",
     category: "Limpeza",
     available: true,
-    brand: "Wap",
-    model: "Super 2600",
+    brand: "Dewalt",
+    model: "DWE6411",
     specs: {
-      potência: "1900W",
-      pressão: "2600 PSI",
-      vazão: "16L/min",
-      voltagem: "220V"
+      potência: "230W",
+      orbitas: "14000 opm",
+      base: "1/4 folha",
+      peso: "1.1 kg"
     }
   }
 ];

@@ -4,10 +4,10 @@ import { Product } from "@/types";
 export const esmerilhadeirasProducts: Product[] = [
   {
     id: 22,
-    name: "Esmerilhadeira 4\"",
-    description: "Esmerilhadeira de 4 polegadas para corte, desbaste e acabamento.",
+    name: "Esmerilhadeira Makita 4.5\"",
+    description: "Esmerilhadeira angular Makita compacta de 4.5 polegadas para trabalhos de corte e desbaste.",
     price: 60,
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/lovable-uploads/ed3abff8-1925-4fe4-ba9e-26276558fc9f.png",
     category: "Corte e Acabamento",
     available: true,
     brand: "Makita",
@@ -21,10 +21,10 @@ export const esmerilhadeirasProducts: Product[] = [
   },
   {
     id: 23,
-    name: "Esmerilhadeira 7\"",
-    description: "Esmerilhadeira de 7 polegadas para trabalhos pesados de corte e desbaste.",
+    name: "Esmerilhadeira Bosch 7\"",
+    description: "Esmerilhadeira angular Bosch profissional de 7 polegadas para trabalhos pesados.",
     price: 80,
-    imageUrl: "/placeholder.svg",
+    imageUrl: "/lovable-uploads/076002dd-edd6-4c2d-b416-451e403993ae.png",
     category: "Corte e Acabamento",
     available: true,
     brand: "Bosch",
