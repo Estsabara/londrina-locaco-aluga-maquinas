@@ -56,7 +56,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/a318feda-ccf9-4034-8132-160b1fd158c6.png" 
             alt="Londrina Locações" 
-            className="h-12"
+            className="h-12 md:h-12 sm:h-10 max-w-full object-contain"
           />
         </Link>
         

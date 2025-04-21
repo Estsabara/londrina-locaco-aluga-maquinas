@@ -1,7 +1,7 @@
 
 import { ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LogOut, BarChart3 } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -24,8 +24,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       <header className="sticky top-0 z-30 border-b bg-background">
         <div className="container flex h-20 items-center justify-between py-4">
           <div className="flex items-center gap-2">
-            <BarChart3 className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold">Admin Londrina Locações</span>
+            <Settings className="h-6 w-6 text-primary" />
+            <span className="text-lg font-bold">Painel Administrativo</span>
           </div>
           
           <div className="flex items-center gap-4">
