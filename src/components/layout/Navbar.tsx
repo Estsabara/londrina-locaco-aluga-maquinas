@@ -1,53 +1,24 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Shield } from "lucide-react";
+import { Shield } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { LoginDialog } from "./nav/LoginDialog";
+import { MobileMenu } from "./nav/MobileMenu";
+import { NavigationLinks } from "./nav/NavigationLinks";
+import { CartButton } from "./nav/CartButton";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const { cartItems } = useCart();
-  const navigate = useNavigate();
-
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
   const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      
-      if (error) {
-        throw error;
-      }
-      
-      toast.success("Login realizado com sucesso");
-      setIsLoginOpen(false);
-      navigate("/admin");
-    } catch (error: any) {
-      toast.error(error.message || "Erro ao fazer login");
-    } finally {
-      setLoading(false);
-    }
-  };
   
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -60,26 +31,7 @@ const Navbar = () => {
           />
         </Link>
         
-        <nav className="hidden md:flex space-x-8">
-          <Link
-            to="/"
-            className="text-gray-700 hover:text-primary transition-colors font-medium"
-          >
-            Início
-          </Link>
-          <Link
-            to="/produtos"
-            className="text-gray-700 hover:text-primary transition-colors font-medium"
-          >
-            Produtos
-          </Link>
-          <Link
-            to="/sobre"
-            className="text-gray-700 hover:text-primary transition-colors font-medium"
-          >
-            Sobre Nós
-          </Link>
-        </nav>
+        <NavigationLinks />
         
         <div className="flex items-center space-x-4">
           <Button 
@@ -91,14 +43,7 @@ const Navbar = () => {
             <span className="hidden sm:inline text-sm">Admin</span>
           </Button>
           
-          <Link to="/carrinho" className="relative p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors group">
-            <ShoppingCart className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-            {cartQuantity > 0 && (
-              <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-semibold px-1.5 py-0.5 rounded-full min-w-[20px] flex items-center justify-center">
-                {cartQuantity}
-              </span>
-            )}
-          </Link>
+          <CartButton quantity={cartQuantity} />
           
           <button
             onClick={toggleMenu}
@@ -121,88 +66,17 @@ const Navbar = () => {
           </button>
         </div>
         
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-md p-4 z-50">
-            <div className="flex flex-col space-y-4">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-primary transition-colors py-2"
-                onClick={toggleMenu}
-              >
-                Início
-              </Link>
-              <Link
-                to="/produtos"
-                className="text-gray-700 hover:text-primary transition-colors py-2"
-                onClick={toggleMenu}
-              >
-                Produtos
-              </Link>
-              <Link
-                to="/sobre"
-                className="text-gray-700 hover:text-primary transition-colors py-2"
-                onClick={toggleMenu}
-              >
-                Sobre Nós
-              </Link>
-              <Button 
-                variant="ghost" 
-                className="flex items-center justify-start gap-2 px-0"
-                onClick={() => {
-                  setIsLoginOpen(true);
-                  setIsMenuOpen(false);
-                }}
-              >
-                <Shield className="h-5 w-5" />
-                <span>Administrativo</span>
-              </Button>
-            </div>
-          </div>
-        )}
+        <MobileMenu 
+          isOpen={isMenuOpen} 
+          onClose={() => setIsMenuOpen(false)}
+          onLoginClick={() => setIsLoginOpen(true)}
+        />
+        
+        <LoginDialog 
+          isOpen={isLoginOpen}
+          onOpenChange={setIsLoginOpen}
+        />
       </div>
-      
-      <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-center text-xl">Acesso Administrativo</DialogTitle>
-            <DialogDescription className="text-center">
-              Faça login para acessar o painel administrativo
-            </DialogDescription>
-          </DialogHeader>
-          
-          <form onSubmit={handleLogin} className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
-              <Input 
-                id="email" 
-                type="email" 
-                placeholder="seu@email.com" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input 
-                id="password" 
-                type="password" 
-                placeholder="Sua senha" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            
-            <div className="pt-2">
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Autenticando..." : "Entrar"}
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
     </header>
   );
 };
