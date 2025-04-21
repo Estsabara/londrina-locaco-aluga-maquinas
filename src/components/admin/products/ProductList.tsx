@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,7 +14,7 @@ import { formatCurrency } from "@/lib/date-utils";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ProductForm } from "./ProductForm";
-import { edit, plus, trash2 } from "lucide-react";
+import { Edit, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 export function ProductList() {
@@ -69,7 +68,7 @@ export function ProductList() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Produtos</h2>
         <Button onClick={() => setIsNewProductDialogOpen(true)}>
-          <plus className="w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4 mr-2" />
           Novo Produto
         </Button>
       </div>
@@ -103,14 +102,14 @@ export function ProductList() {
                       size="sm"
                       onClick={() => setEditingProduct(product)}
                     >
-                      <edit className="w-4 h-4" />
+                      <Edit className="w-4 h-4" />
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleDeleteProduct(product.id)}
                     >
-                      <trash2 className="w-4 h-4" />
+                      <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
                 </TableCell>
