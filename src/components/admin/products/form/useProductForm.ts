@@ -49,14 +49,19 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
       setLoading(true);
       let imageUrl = initialData?.imageurl;
 
+      // Upload image if a new one is selected
       if (imageFile) {
         const fileExt = imageFile.name.split('.').pop();
-        const fileName = `${Math.random()}.${fileExt}`;
+        const fileName = `${Date.now()}.${fileExt}`;
+        
         const { error: uploadError, data } = await supabase.storage
           .from('product-images')
           .upload(fileName, imageFile);
 
-        if (uploadError) throw uploadError;
+        if (uploadError) {
+          console.error('Upload error:', uploadError);
+          throw new Error('Error uploading image');
+        }
         
         const { data: { publicUrl } } = supabase.storage
           .from('product-images')
@@ -65,6 +70,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
         imageUrl = publicUrl;
       }
 
+      // Prepare product data
       const productData = {
         name: values.name,
         description: values.description,
@@ -73,31 +79,50 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
         brand: values.brand || null,
         model: values.model || null,
         imageurl: imageUrl,
+        available: true,
+        specs: {}
       };
 
       if (initialData) {
+        // Update existing product
         const { error } = await supabase
           .from('products')
           .update(productData)
           .eq('id', initialData.id);
 
-        if (error) throw error;
+        if (error) {
+          console.error('Update error:', error);
+          throw new Error('Error updating product');
+        }
+        
         toast.success("Produto atualizado com sucesso!");
       } else {
+        // Create new product
         const { error } = await supabase
           .from('products')
-          .insert(productData);
+          .insert([productData]);
 
-        if (error) throw error;
+        if (error) {
+          console.error('Insert error:', error);
+          throw new Error('Error creating product');
+        }
+        
         toast.success("Produto criado com sucesso!");
       }
 
-      onSuccess?.();
-      form.reset();
-      setImagePreview("");
-      setImageFile(null);
+      // Call onSuccess callback if provided
+      if (onSuccess) {
+        onSuccess();
+      }
+      
+      // Reset form if it's a new product
+      if (!initialData) {
+        form.reset();
+        setImagePreview("");
+        setImageFile(null);
+      }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Form submission error:', error);
       toast.error("Erro ao salvar produto");
     } finally {
       setLoading(false);
