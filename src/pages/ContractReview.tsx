@@ -3,7 +3,6 @@ import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, FileText } from "lucide-react";
-import { formatCurrency } from "@/lib/date-utils";
 import { ContractSteps } from "@/components/contract/ContractSteps";
 import { ContractTerms } from "@/components/contract/ContractTerms";
 import { ContractError } from "@/components/contract/ContractError";
