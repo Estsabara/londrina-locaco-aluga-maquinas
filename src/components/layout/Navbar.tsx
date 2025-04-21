@@ -51,12 +51,12 @@ const Navbar = () => {
   
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="container mx-auto px-4 flex items-center justify-between h-20">
+      <div className="container mx-auto px-4 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center">
           <img 
             src="/lovable-uploads/a318feda-ccf9-4034-8132-160b1fd158c6.png" 
             alt="Londrina Locações" 
-            className="h-12 md:h-12 sm:h-10 max-w-full object-contain"
+            className="h-8 md:h-10 max-w-full object-contain"
           />
         </Link>
         
@@ -84,21 +84,22 @@ const Navbar = () => {
         <div className="flex items-center space-x-4">
           <Button 
             variant="outline" 
-            className="flex items-center gap-2 border-2 border-primary hover:bg-primary/10 hover:text-primary text-primary font-medium shadow-sm"
+            className="flex items-center gap-2 border-2 border-primary hover:bg-primary/10 hover:text-primary text-primary font-medium shadow-sm px-3 py-1"
             onClick={() => setIsLoginOpen(true)}
           >
-            <Shield className="h-5 w-5" />
-            <span className="hidden sm:inline">Administrativo</span>
+            <Shield className="h-4 w-4" />
+            <span className="hidden sm:inline text-sm">Admin</span>
           </Button>
           
           <Link to="/carrinho" className="relative p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors group">
-            <ShoppingCart className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+            <ShoppingCart className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
             {cartQuantity > 0 && (
-              <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-semibold px-2 py-0.5 rounded-full min-w-[20px] flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-semibold px-1.5 py-0.5 rounded-full min-w-[20px] flex items-center justify-center">
                 {cartQuantity}
               </span>
             )}
           </Link>
+          
           <button
             onClick={toggleMenu}
             className="md:hidden text-gray-700 hover:text-primary focus:outline-none"

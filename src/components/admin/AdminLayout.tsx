@@ -1,7 +1,7 @@
 
 import { ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LogOut, Settings } from "lucide-react";
+import { LogOut, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -22,19 +22,27 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-30 border-b bg-background">
-        <div className="container flex h-20 items-center justify-between py-4">
-          <div className="flex items-center gap-2">
-            <Settings className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold">Painel Administrativo</span>
+        <div className="container flex h-16 items-center justify-between py-4">
+          <div className="flex items-center gap-3">
+            <ShieldCheck className="h-6 w-6 text-primary" />
+            <span className="text-lg font-bold text-primary">Área Administrativa</span>
           </div>
           
           <div className="flex items-center gap-4">
             <Link to="/">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
+              <Button 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary/10 hover:text-primary px-3 py-1 text-sm"
+              >
                 Voltar ao site
               </Button>
             </Link>
-            <Button variant="outline" size="sm" onClick={handleLogout} className="border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleLogout} 
+              className="border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600 px-3 py-1 text-sm"
+            >
               <LogOut className="mr-2 h-4 w-4" />
               Sair
             </Button>
