@@ -1,4 +1,3 @@
-
 import { Product } from "@/types";
 
 export const medicaoNiveisProducts: Product[] = [
@@ -24,7 +23,7 @@ export const medicaoNiveisProducts: Product[] = [
     name: "Escada de Extensão 10m",
     description: "Escada de extensão de 10 metros para trabalhos em altura.",
     price: 110,
-    imageUrl: "/lovable-uploads/0bbe6850-f419-49d1-b26b-9f0cf81851fb.png",
+    imageUrl: "/lovable-uploads/73ad5b66-5e72-46b6-9445-e4cf6d1cc268.png",
     category: "Medição e Níveis",
     available: true,
     brand: "Alulev",

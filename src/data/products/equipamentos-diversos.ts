@@ -1,4 +1,3 @@
-
 import { Product } from "@/types";
 
 export const equipamentosDiversosProducts: Product[] = [
@@ -7,7 +6,7 @@ export const equipamentosDiversosProducts: Product[] = [
     name: "Acabador de Piso",
     description: "Acabador de piso para alisamento de concreto em grandes áreas.",
     price: 160,
-    imageUrl: "/lovable-uploads/6357ab99-7d3d-457f-980e-e7969199dce0.png",
+    imageUrl: "/lovable-uploads/17a33fa5-9e28-490a-9d3a-04d32e4ae387.png",
     category: "Equipamentos Diversos",
     available: true,
     brand: "Menegotti",

@@ -1,4 +1,3 @@
-
 import { Product } from "@/types";
 
 export const limpezaProducts: Product[] = [
@@ -7,7 +6,7 @@ export const limpezaProducts: Product[] = [
     name: "Aspirador de Pó para Sólidos e Líquidos",
     description: "Aspirador de pó para sólidos e líquidos, ideal para limpeza de obras.",
     price: 90,
-    imageUrl: "/lovable-uploads/bf90e6b1-847a-47af-a8f7-55ffc86e465a.png",
+    imageUrl: "/lovable-uploads/f0da340c-353c-429f-a9e1-a178a0471c2e.png", // Aspirador vermelho
     category: "Limpeza",
     available: true,
     brand: "Wap",

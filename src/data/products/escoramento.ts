@@ -1,4 +1,3 @@
-
 import { Product } from "@/types";
 
 export const escoramentoProducts: Product[] = [
@@ -7,7 +6,7 @@ export const escoramentoProducts: Product[] = [
     name: "Escoramento Metálico",
     description: "Escoramento metálico para suporte de lajes, vigas e estruturas.",
     price: 45,
-    imageUrl: "/lovable-uploads/28846c23-aa52-4784-9eda-b026851f8180.png",
+    imageUrl: "/lovable-uploads/379aee53-2561-40ed-b70e-5f4fdd2198c5.png",
     category: "Escoramento",
     available: true,
     brand: "SH",

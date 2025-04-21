@@ -1,4 +1,3 @@
-
 import { Product } from "@/types";
 
 export const andaimesAcessoriosProducts: Product[] = [
@@ -7,7 +6,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Andaime Metálico",
     description: "Andaime metálico para trabalhos em altura com segurança.",
     price: 50,
-    imageUrl: "/lovable-uploads/2330866e-30ce-4eeb-8c01-5b3df7bd9675.png",
+    imageUrl: "/lovable-uploads/849334b9-db67-4e43-8f5f-2e9a26b3f282.png",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Metax",
