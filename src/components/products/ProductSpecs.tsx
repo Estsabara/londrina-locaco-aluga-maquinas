@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion";
 
 interface ProductSpecsProps {
-  specs: Record<string, string>;
+  specs: Record<string, any>;
 }
 
 export function ProductSpecs({ specs }: ProductSpecsProps) {
@@ -23,7 +23,7 @@ export function ProductSpecs({ specs }: ProductSpecsProps) {
             {Object.entries(specs).map(([key, value]) => (
               <div key={key} className="flex justify-between border-b pb-2">
                 <span className="font-medium capitalize">{key}:</span>
-                <span>{value}</span>
+                <span>{String(value)}</span>
               </div>
             ))}
           </div>

@@ -1,4 +1,3 @@
-
 export interface Product {
   id: number;
   name: string;
@@ -9,9 +8,7 @@ export interface Product {
   available: boolean;
   brand: string;
   model: string;
-  specs: {
-    [key: string]: string;
-  };
+  specs: Record<string, any>; // Changed from {[key: string]: string} to support various spec data types
 }
 
 export interface CartItem {
