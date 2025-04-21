@@ -11,7 +11,7 @@ export function ContractSteps() {
         <div>
           <h3 className="font-medium">Retirada dos Equipamentos</h3>
           <p className="text-sm text-muted-foreground">
-            Compareça ao nosso depósito com a documentação necessária (RG, CPF e comprovante de residência).
+            Compareça ao nosso depósito com a documentação necessária (RG, CPF e comprovante de residência atualizado).
           </p>
         </div>
       </div>
