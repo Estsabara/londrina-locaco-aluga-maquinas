@@ -17,8 +17,8 @@ export function HeroBanner() {
         <div className="h-full flex items-center">
           <div className="max-w-2xl space-y-6 text-center lg:text-left">
             <div className="flex items-center gap-2 justify-center lg:justify-start">
-              <Construction className="h-6 w-6 text-primary" />
-              <span className="text-primary font-semibold">Londrina Locações</span>
+              
+              
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">Alugue Equipamentos para sua obra</h1>
