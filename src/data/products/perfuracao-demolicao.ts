@@ -85,5 +85,22 @@ export const perfuracaoDemolicaoProducts: Product[] = [
       impactos: "3300 ipm",
       peso: "11 kg"
     }
+  },
+  {
+    id: 55,
+    name: "Soprador Térmico Dewalt",
+    description: "Soprador térmico profissional para remoção de tintas e aplicações diversas.",
+    price: 65,
+    imageUrl: "/lovable-uploads/5221676f-14f6-41ef-8489-8ca0e93bfebb.png",
+    category: "Perfuração e Demolição",
+    available: true,
+    brand: "Dewalt",
+    model: "D26414",
+    specs: {
+      potência: "2000W",
+      temperatura: "50-600°C",
+      fluxo: "250-500 L/min",
+      voltagem: "220V"
+    }
   }
 ];

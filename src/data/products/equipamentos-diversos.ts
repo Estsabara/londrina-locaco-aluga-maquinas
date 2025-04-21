@@ -85,5 +85,39 @@ export const equipamentosDiversosProducts: Product[] = [
       altura: "75-190mm",
       garfos: "1150mm"
     }
+  },
+  {
+    id: 56,
+    name: "Talha Manual 2 Toneladas",
+    description: "Talha manual com corrente para elevação de cargas pesadas.",
+    price: 95,
+    imageUrl: "/lovable-uploads/373f2676-0d02-4d24-927b-9872b8cba2eb.png",
+    category: "Equipamentos Diversos",
+    available: true,
+    brand: "Nagano",
+    model: "NT-2000",
+    specs: {
+      capacidade: "2000 kg",
+      elevação: "3 metros",
+      corrente: "Aço galvanizado",
+      peso: "12 kg"
+    }
+  },
+  {
+    id: 57,
+    name: "Transformador 3000VA",
+    description: "Transformador de tensão para equipamentos 110V/220V.",
+    price: 55,
+    imageUrl: "/lovable-uploads/70f4d32c-a30c-43c0-922c-34b744cdc774.png",
+    category: "Equipamentos Diversos",
+    available: true,
+    brand: "Force Line",
+    model: "TR-3000",
+    specs: {
+      potência: "3000VA",
+      tensão: "110V/220V",
+      frequência: "60Hz",
+      proteção: "Térmica"
+    }
   }
 ];

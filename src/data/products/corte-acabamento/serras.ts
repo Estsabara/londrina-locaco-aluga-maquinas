@@ -85,5 +85,39 @@ export const serrasProducts: Product[] = [
       velocidade: "5200 rpm",
       profundidade: "64mm"
     }
+  },
+  {
+    id: 53,
+    name: "Serra de Corte Rápido Dewalt",
+    description: "Serra de corte rápido para metais com base reforçada e proteção.",
+    price: 120,
+    imageUrl: "/lovable-uploads/979c81a7-f3da-4aac-a32c-f00b7784ba39.png",
+    category: "Corte e Acabamento",
+    available: true,
+    brand: "Dewalt",
+    model: "D28730",
+    specs: {
+      potência: "2200W",
+      disco: "14\"",
+      velocidade: "3800 rpm",
+      capacidade: "125mm"
+    }
+  },
+  {
+    id: 54,
+    name: "Serra Tico-Tico Dewalt",
+    description: "Serra tico-tico profissional com velocidade variável para cortes precisos.",
+    price: 75,
+    imageUrl: "/lovable-uploads/8b17d4ca-5046-427a-ad3b-173ecf78d9ab.png",
+    category: "Corte e Acabamento",
+    available: true,
+    brand: "Dewalt",
+    model: "DW331K",
+    specs: {
+      potência: "700W",
+      curso: "26mm",
+      velocidade: "0-3100 cpm",
+      capacidade: "130mm madeira"
+    }
   }
 ];

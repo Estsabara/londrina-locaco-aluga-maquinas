@@ -170,5 +170,22 @@ export const concretagemMisturaProducts: Product[] = [
       vazão: "36000 L/h",
       combustível: "Gasolina"
     }
+  },
+  {
+    id: 58,
+    name: "Vibrador de Concreto VibralMak",
+    description: "Vibrador de concreto com mangote flexível para adensamento profissional.",
+    price: 130,
+    imageUrl: "/lovable-uploads/c058fa5d-622f-4172-9918-7701e5eeb531.png",
+    category: "Concretagem e Mistura",
+    available: true,
+    brand: "VibralMak",
+    model: "VMP-2000",
+    specs: {
+      potência: "2200W",
+      mangote: "38mm x 6m",
+      rotação: "18000 rpm",
+      voltagem: "220V"
+    }
   }
 ];
