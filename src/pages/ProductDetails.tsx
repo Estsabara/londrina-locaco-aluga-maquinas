@@ -36,10 +36,19 @@ export default function ProductDetails() {
         
         if (!id) return;
         
+        // Convert the id parameter to a number since Product.id is a number type
+        const numericId = parseInt(id, 10);
+        
+        if (isNaN(numericId)) {
+          console.error('Invalid product ID:', id);
+          toast.error('ID de produto inválido');
+          return;
+        }
+        
         const { data, error } = await supabase
           .from('products')
           .select('*')
-          .eq('id', id)
+          .eq('id', numericId)
           .single();
         
         if (error) {
