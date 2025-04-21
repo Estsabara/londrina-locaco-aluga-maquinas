@@ -1,3 +1,4 @@
+
 import { Product } from "@/types";
 
 export const concretagemMisturaProducts: Product[] = [
@@ -104,7 +105,7 @@ export const concretagemMisturaProducts: Product[] = [
     }
   },
   {
-    id: 40,
+    id: 44,
     name: "Mangote Vibrador Bosch GVC",
     description: "Mangote vibrador com motor elétrico para adensamento de concreto.",
     price: 110,
@@ -121,7 +122,7 @@ export const concretagemMisturaProducts: Product[] = [
     }
   },
   {
-    id: 41,
+    id: 45,
     name: "Mangote para Vibrador 35mm",
     description: "Mangote para vibrador de concreto com 35mm de diâmetro.",
     price: 45,

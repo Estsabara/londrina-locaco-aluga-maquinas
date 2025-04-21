@@ -25,6 +25,11 @@ export function ProductCard({ product }: ProductCardProps) {
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleImageError = () => {
+    console.log(`Erro ao carregar imagem do produto: ${product.id} - ${product.name}, URL: ${product.imageUrl}`);
+    setImageError(true);
+  };
+
   return (
     <Link to={`/produto/${product.id}`}>
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
@@ -33,7 +38,7 @@ export function ProductCard({ product }: ProductCardProps) {
             src={imageError ? "/placeholder.svg" : product.imageUrl} 
             alt={product.name} 
             className="w-full h-full object-contain p-3"
-            onError={() => setImageError(true)}
+            onError={handleImageError}
           />
           <Badge className="absolute top-2 right-2">
             {product.category}
