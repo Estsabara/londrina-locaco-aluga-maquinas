@@ -787,6 +787,51 @@ export type Database = {
           },
         ]
       }
+      products: {
+        Row: {
+          available: boolean | null
+          brand: string | null
+          category: string
+          created_at: string | null
+          description: string | null
+          id: number
+          imageurl: string | null
+          model: string | null
+          name: string
+          price: number
+          specs: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          available?: boolean | null
+          brand?: string | null
+          category: string
+          created_at?: string | null
+          description?: string | null
+          id?: number
+          imageurl?: string | null
+          model?: string | null
+          name: string
+          price: number
+          specs?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          available?: boolean | null
+          brand?: string | null
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          id?: number
+          imageurl?: string | null
+          model?: string | null
+          name?: string
+          price?: number
+          specs?: Json | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

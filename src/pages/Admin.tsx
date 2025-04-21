@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -23,6 +22,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import InventoryManagement from "@/components/admin/InventoryManagement";
 import ProductAnalysis from "@/components/admin/ProductAnalysis";
+import { ProductList } from "@/components/admin/products/ProductList";
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -113,7 +113,7 @@ export default function Admin() {
         </Card>
         
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid grid-cols-3 md:grid-cols-6 mb-6">
+          <TabsList className="grid grid-cols-3 md:grid-cols-7 mb-6">
             <TabsTrigger value="rentals" className="flex items-center space-x-2">
               <BarChart3 className="h-4 w-4" />
               <span>Aluguéis</span>
@@ -136,6 +136,10 @@ export default function Admin() {
             </TabsTrigger>
             <TabsTrigger value="analysis" className="flex items-center space-x-2">
               <Warehouse className="h-4 w-4" />
+              <span>Produtos</span>
+            </TabsTrigger>
+            <TabsTrigger value="products" className="flex items-center space-x-2">
+              <Box className="h-4 w-4" />
               <span>Produtos</span>
             </TabsTrigger>
           </TabsList>
@@ -162,6 +166,10 @@ export default function Admin() {
 
           <TabsContent value="analysis" className="bg-card shadow-lg rounded-lg p-6 border border-border/50">
             <ProductAnalysis />
+          </TabsContent>
+
+          <TabsContent value="products" className="bg-card shadow-lg rounded-lg p-6 border border-border/50">
+            <ProductList />
           </TabsContent>
         </Tabs>
       </div>
