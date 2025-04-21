@@ -1,4 +1,3 @@
-
 import { Product } from "@/types";
 
 export const serrasProducts: Product[] = [
@@ -68,6 +67,23 @@ export const serrasProducts: Product[] = [
       disco: "14\"",
       capacidade: "120mm redondo",
       velocidade: "1300 rpm"
+    }
+  },
+  {
+    id: 52,
+    name: "Serra Circular Dewalt 7-1/4\"",
+    description: "Serra circular profissional para cortes precisos em madeira.",
+    price: 75,
+    imageUrl: "/lovable-uploads/2e4d25ea-eab0-4b07-a81e-02ae9e7a5988.png",
+    category: "Corte e Acabamento",
+    available: true,
+    brand: "Dewalt",
+    model: "DW384",
+    specs: {
+      potência: "1400W",
+      disco: "7-1/4\"",
+      velocidade: "5200 rpm",
+      profundidade: "64mm"
     }
   }
 ];

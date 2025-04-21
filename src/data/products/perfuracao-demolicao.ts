@@ -1,4 +1,3 @@
-
 import { Product } from "@/types";
 
 export const perfuracaoDemolicaoProducts: Product[] = [
@@ -68,6 +67,23 @@ export const perfuracaoDemolicaoProducts: Product[] = [
       energia: "35J",
       impactos: "1450 ipm",
       peso: "16 kg"
+    }
+  },
+  {
+    id: 17,
+    name: "Martelete Rompedor Dewalt",
+    description: "Martelete rompedor profissional Dewalt para trabalhos pesados de demolição.",
+    price: 190,
+    imageUrl: "/lovable-uploads/34effa82-db68-4789-ba3c-6d1588eead27.png",
+    category: "Perfuração e Demolição",
+    available: true,
+    brand: "Dewalt",
+    model: "D25901K",
+    specs: {
+      potência: "1500W",
+      energia: "16J",
+      impactos: "3300 ipm",
+      peso: "11 kg"
     }
   }
 ];

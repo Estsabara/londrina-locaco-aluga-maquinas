@@ -119,5 +119,22 @@ export const andaimesAcessoriosProducts: Product[] = [
       material: "Borracha e aço",
       freio: "Sim"
     }
+  },
+  {
+    id: 51,
+    name: "Prancha Metálica 3m",
+    description: "Prancha metálica para andaimes com 3 metros de comprimento.",
+    price: 35,
+    imageUrl: "/lovable-uploads/b4ed2c4d-bf3d-480b-9ba1-2fc66c7074d6.png",
+    category: "Andaimes e Acessórios",
+    available: true,
+    brand: "Metalon",
+    model: "PM-300",
+    specs: {
+      comprimento: "3 metros",
+      largura: "0.45 metros",
+      capacidade: "200 kg",
+      material: "Aço galvanizado"
+    }
   }
 ];

@@ -51,5 +51,39 @@ export const equipamentosDiversosProducts: Product[] = [
       fluxo: "500 L/min",
       voltagem: "220V"
     }
+  },
+  {
+    id: 49,
+    name: "Vibrador de Concreto Portátil",
+    description: "Vibrador de concreto portátil com mangote para adensamento de concreto.",
+    price: 95,
+    imageUrl: "/lovable-uploads/d71a6fb9-cc5c-4c4b-b7ac-67f21f07369c.png",
+    category: "Equipamentos Diversos",
+    available: true,
+    brand: "Wacker Neuson",
+    model: "P35A",
+    specs: {
+      potência: "1.5 HP",
+      comprimento: "6m",
+      diâmetro: "35mm",
+      voltagem: "220V"
+    }
+  },
+  {
+    id: 50,
+    name: "Paleteira Manual 2200kg",
+    description: "Paleteira manual para movimentação de cargas paletizadas.",
+    price: 80,
+    imageUrl: "/lovable-uploads/d50f468d-97d0-4d82-95b6-9d12249f033e.png",
+    category: "Equipamentos Diversos",
+    available: true,
+    brand: "Paletrans",
+    model: "TM2220",
+    specs: {
+      capacidade: "2200 kg",
+      largura: "685mm",
+      altura: "75-190mm",
+      garfos: "1150mm"
+    }
   }
 ];

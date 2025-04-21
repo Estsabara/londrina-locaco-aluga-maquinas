@@ -136,5 +136,39 @@ export const concretagemMisturaProducts: Product[] = [
       rotação: "18000 rpm",
       material: "Aço especial"
     }
+  },
+  {
+    id: 47,
+    name: "Misturador de Argamassa Dewalt",
+    description: "Misturador de argamassa profissional para mistura de materiais de construção.",
+    price: 85,
+    imageUrl: "/lovable-uploads/c5c31e24-c18d-41d4-a166-156b424342e7.png",
+    category: "Concretagem e Mistura",
+    available: true,
+    brand: "Dewalt",
+    model: "DW130V",
+    specs: {
+      potência: "900W",
+      velocidade: "0-550 rpm",
+      capacidade: "30L",
+      voltagem: "220V"
+    }
+  },
+  {
+    id: 48,
+    name: "Motobomba Branco 2\"",
+    description: "Motobomba a gasolina para transferência de água e líquidos.",
+    price: 120,
+    imageUrl: "/lovable-uploads/4ab878eb-cc35-496d-a112-52667ceae129.png",
+    category: "Concretagem e Mistura",
+    available: true,
+    brand: "Branco",
+    model: "B4T-707",
+    specs: {
+      motor: "7 HP",
+      sucção: "2 polegadas",
+      vazão: "36000 L/h",
+      combustível: "Gasolina"
+    }
   }
 ];
