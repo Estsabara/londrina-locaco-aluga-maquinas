@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -7,9 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { products } from "@/data/products";
 import { calculateTotalPrice } from "@/lib/date-utils";
-import { DateRange } from "@/types";
+import { DateRange, Product } from "@/types";
 import { useCart } from "@/context/CartContext";
 import { ProductImageGallery } from "@/components/products/ProductImageGallery";
 import { ProductInfo } from "@/components/products/ProductInfo";
@@ -17,16 +16,119 @@ import { ContactButton } from "@/components/products/ContactButton";
 import { RentalOptions } from "@/components/products/RentalOptions";
 import { ProductSpecs } from "@/components/products/ProductSpecs";
 import { RentalTerms } from "@/components/products/RentalTerms";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
-  const { toast } = useToast();
+  const { toast: hookToast } = useToast();
   const { addToCart } = useCart();
   
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState<DateRange>({ from: undefined, to: undefined });
   const [quantity, setQuantity] = useState(1);
   
-  const product = products.find(p => p.id === Number(id));
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        setLoading(true);
+        
+        if (!id) return;
+        
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .eq('id', id)
+          .single();
+        
+        if (error) {
+          console.error('Error fetching product:', error);
+          toast.error('Erro ao carregar informações do produto');
+          return;
+        }
+        
+        if (!data) {
+          console.error('No product found with ID:', id);
+          toast.error('Produto não encontrado');
+          return;
+        }
+        
+        // Process specs field to ensure it's an object
+        let processedSpecs = {};
+        if (data.specs && typeof data.specs === 'object') {
+          processedSpecs = data.specs;
+        } else if (data.specs) {
+          try {
+            processedSpecs = JSON.parse(String(data.specs));
+          } catch {
+            processedSpecs = { value: data.specs };
+          }
+        }
+        
+        const formattedProduct: Product = {
+          id: data.id,
+          name: data.name,
+          description: data.description || '',
+          price: data.price,
+          imageUrl: data.imageurl || '/placeholder.svg',
+          category: data.category,
+          available: data.available,
+          brand: data.brand || '',
+          model: data.model || '',
+          specs: processedSpecs
+        };
+        
+        setProduct(formattedProduct);
+      } catch (error) {
+        console.error('Unexpected error:', error);
+        toast.error('Ocorreu um erro ao carregar o produto');
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchProduct();
+  }, [id]);
+  
+  const handleAddToCart = () => {
+    if (!product) return;
+    
+    if (!dateRange.from || !dateRange.to) {
+      hookToast({
+        title: "Período não selecionado",
+        description: "Por favor, selecione o período de locação",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    addToCart(product, dateRange, quantity);
+    
+    hookToast({
+      title: "Adicionado ao carrinho",
+      description: `${product.name} foi adicionado ao carrinho`,
+      variant: "default"
+    });
+  };
+  
+  const rentalTotal = product && dateRange.from && dateRange.to
+    ? calculateTotalPrice(product.price, dateRange.from, dateRange.to) * quantity
+    : 0;
+  
+  if (loading) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow container py-10">
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
   
   if (!product) {
     return (
@@ -49,29 +151,6 @@ export default function ProductDetails() {
   }
   
   const { name, description, price, imageUrl, category, brand, model, specs, available } = product;
-  
-  const handleAddToCart = () => {
-    if (!dateRange.from || !dateRange.to) {
-      toast({
-        title: "Período não selecionado",
-        description: "Por favor, selecione o período de locação",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    addToCart(product, dateRange, quantity);
-    
-    toast({
-      title: "Adicionado ao carrinho",
-      description: `${name} foi adicionado ao carrinho`,
-      variant: "default"
-    });
-  };
-  
-  const rentalTotal = dateRange.from && dateRange.to
-    ? calculateTotalPrice(price, dateRange.from, dateRange.to) * quantity
-    : 0;
   
   return (
     <div className="flex flex-col min-h-screen">

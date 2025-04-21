@@ -31,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Link to={`/produto/${product.id}`}>
+    <Link to={`/produto/${product.id}`} state={{ product }}>
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
         <div className="relative h-48 bg-white border-b">
           <img 
