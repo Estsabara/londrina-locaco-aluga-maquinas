@@ -28,18 +28,34 @@ export default function Products() {
         }
         
         // Convert database products to match our Product type
-        const formattedProducts = data.map(item => ({
-          id: item.id,
-          name: item.name,
-          description: item.description || '',
-          price: item.price,
-          imageUrl: item.imageurl || '/placeholder.svg',
-          category: item.category,
-          available: item.available,
-          brand: item.brand || '',
-          model: item.model || '',
-          specs: item.specs || {}
-        }));
+        const formattedProducts = data.map(item => {
+          // Ensure specs is an object, defaulting to empty object if it's not
+          let processedSpecs = {};
+          if (item.specs && typeof item.specs === 'object') {
+            processedSpecs = item.specs;
+          } else if (item.specs) {
+            // Try to parse if it's a string that might be JSON
+            try {
+              processedSpecs = JSON.parse(String(item.specs));
+            } catch {
+              // If parsing fails, create an object with original as value
+              processedSpecs = { value: item.specs };
+            }
+          }
+          
+          return {
+            id: item.id,
+            name: item.name,
+            description: item.description || '',
+            price: item.price,
+            imageUrl: item.imageurl || '/placeholder.svg',
+            category: item.category,
+            available: item.available,
+            brand: item.brand || '',
+            model: item.model || '',
+            specs: processedSpecs
+          };
+        });
         
         setProducts(formattedProducts);
       } catch (error) {
