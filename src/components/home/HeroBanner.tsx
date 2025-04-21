@@ -8,20 +8,31 @@ export function HeroBanner() {
   const isMobile = useIsMobile();
   
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-orange-50 to-orange-100 border-b">
-      <div className="container px-4 py-12 md:py-24 mx-auto">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-          <div className="space-y-6 text-center lg:text-left">
+    <section className="relative h-screen overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: "url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50" /> {/* Dark overlay for better text readability */}
+      </div>
+
+      {/* Content */}
+      <div className="relative h-full container px-4 mx-auto">
+        <div className="h-full flex items-center">
+          <div className="max-w-2xl space-y-6 text-center lg:text-left">
             <div className="flex items-center gap-2 justify-center lg:justify-start">
               <Construction className="h-6 w-6 text-primary" />
               <span className="text-primary font-semibold">Londrina Locações</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
               Equipamentos para sua obra
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-600 max-w-xl">
+            <p className="text-lg md:text-xl text-gray-200 max-w-xl">
               Mais de 70 tipos de equipamentos profissionais disponíveis para locação. 
               Qualidade e segurança para sua construção.
             </p>
@@ -41,23 +52,13 @@ export function HeroBanner() {
                 asChild 
                 variant="outline"
                 size="lg"
-                className="gap-2"
+                className="gap-2 bg-white/10 hover:bg-white/20 text-white border-white"
               >
                 <Link to="/contato">
                   <HardHat className="w-5 h-5" />
                   Fale Conosco
                 </Link>
               </Button>
-            </div>
-          </div>
-          
-          <div className="relative mx-auto lg:ml-auto w-full max-w-2xl">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-white shadow-2xl">
-              <img 
-                src="/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png"
-                alt="Equipamentos de construção"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
             </div>
           </div>
         </div>
