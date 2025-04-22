@@ -1,3 +1,4 @@
+
 import React from "react";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
@@ -45,91 +46,121 @@ export function RentalOptions({
     setRentalPeriod(value as RentalPeriodType);
   };
 
-  const getPriceLabel = () => {
+  const getPriceDisplay = () => {
     switch (rentalPeriod) {
       case "daily":
         return `${formatCurrency(price)}/dia`;
-      case "weekly":
+      case "weekly": {
         const weeklyPrice = priceWeekly || price * 6;
         const discountedWeeklyPrice = weeklyPrice * 0.95;
         return (
-          <div>
+          <div className="flex flex-col items-end">
             <span>{formatCurrency(discountedWeeklyPrice)}/semana</span>
-            <span className="text-green-600 ml-2 text-xs">(5% OFF)</span>
+            <span className="text-green-600 text-sm mt-1">5% OFF</span>
           </div>
         );
-      case "monthly":
+      }
+      case "monthly": {
         const monthlyPrice = priceMonthly || price * 25;
         const discountedMonthlyPrice = monthlyPrice * 0.90;
         return (
-          <div>
+          <div className="flex flex-col items-end">
             <span>{formatCurrency(discountedMonthlyPrice)}/mês</span>
-            <span className="text-green-600 ml-2 text-xs">(10% OFF)</span>
+            <span className="text-green-600 text-sm mt-1">10% OFF</span>
           </div>
         );
+      }
       default:
         return `${formatCurrency(price)}/dia`;
     }
   };
 
   return (
-    <div className="space-y-4">
-      <h2 className="font-semibold">Período de Locação</h2>
+    <div className="space-y-6">
+      <h2 className="font-semibold text-lg">Configurar Locação</h2>
       
-      <RadioGroup 
-        value={rentalPeriod} 
-        onValueChange={handlePeriodChange}
-        className="grid grid-cols-1 sm:grid-cols-3 gap-2"
-      >
-        <div className="flex items-center space-x-2 border rounded-md p-2">
-          <RadioGroupItem value="daily" id="daily" />
-          <Label htmlFor="daily" className="cursor-pointer">Diário</Label>
-        </div>
-        
-        <div className="flex items-center space-x-2 border rounded-md p-2">
-          <RadioGroupItem value="weekly" id="weekly" />
-          <Label htmlFor="weekly" className="cursor-pointer">Semanal</Label>
-        </div>
-        
-        <div className="flex items-center space-x-2 border rounded-md p-2">
-          <RadioGroupItem value="monthly" id="monthly" />
-          <Label htmlFor="monthly" className="cursor-pointer">Mensal</Label>
-        </div>
-      </RadioGroup>
-      
-      <div className="text-md font-medium text-right">
-        {getPriceLabel()}
+      {/* Step 1: Quantity */}
+      <div className="space-y-2">
+        <Label htmlFor="quantity" className="text-sm font-medium">
+          1. Quantidade
+        </Label>
+        <Input
+          id="quantity"
+          type="number"
+          min={1}
+          value={quantity}
+          onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+          className="max-w-[200px]"
+        />
       </div>
       
-      <DateRangePicker 
-        dateRange={dateRange || { from: undefined, to: undefined }}
-        setDateRange={setDateRange}
-        rentalPeriod={rentalPeriod}
-        periodQuantity={periodQuantity}
-        setPeriodQuantity={setPeriodQuantity}
-      />
-      
-      <div className="grid grid-cols-2 gap-4 items-center">
-        <div>
-          <label htmlFor="quantity" className="block text-sm font-medium mb-1">
-            Quantidade
-          </label>
+      {/* Step 2: Rental Period Type and Quantity */}
+      <div className="space-y-4">
+        <Label className="text-sm font-medium">
+          2. Período de Locação
+        </Label>
+        <RadioGroup 
+          value={rentalPeriod} 
+          onValueChange={handlePeriodChange}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-2"
+        >
+          <div className="flex items-center space-x-2 border rounded-md p-2">
+            <RadioGroupItem value="daily" id="daily" />
+            <Label htmlFor="daily" className="cursor-pointer">Diário</Label>
+          </div>
+          
+          <div className="flex items-center space-x-2 border rounded-md p-2">
+            <RadioGroupItem value="weekly" id="weekly" />
+            <Label htmlFor="weekly" className="cursor-pointer">Semanal</Label>
+          </div>
+          
+          <div className="flex items-center space-x-2 border rounded-md p-2">
+            <RadioGroupItem value="monthly" id="monthly" />
+            <Label htmlFor="monthly" className="cursor-pointer">Mensal</Label>
+          </div>
+        </RadioGroup>
+
+        <div className="space-y-2">
+          <Label htmlFor="periodQuantity" className="text-sm font-medium block">
+            Quantidade de {rentalPeriod === 'daily' ? 'dias' : rentalPeriod === 'weekly' ? 'semanas' : 'meses'}
+          </Label>
           <Input
-            id="quantity"
+            id="periodQuantity"
             type="number"
             min={1}
-            value={quantity}
-            onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+            value={periodQuantity}
+            onChange={(e) => setPeriodQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+            className="max-w-[200px]"
           />
         </div>
+      </div>
+      
+      {/* Step 3: Pick-up Date */}
+      <div className="space-y-2">
+        <Label className="text-sm font-medium">
+          3. Data de Retirada
+        </Label>
+        <DateRangePicker 
+          dateRange={dateRange}
+          setDateRange={setDateRange}
+          rentalPeriod={rentalPeriod}
+          periodQuantity={periodQuantity}
+          setPeriodQuantity={setPeriodQuantity}
+        />
+      </div>
+
+      {/* Price and Total */}
+      <div className="flex justify-between items-center pt-4 border-t">
         <div>
-          {dateRange && dateRange.from && dateRange.to && (
-            <div className="flex flex-col items-end">
-              <span className="text-sm text-muted-foreground">Valor Total</span>
-              <span className="text-2xl font-bold">{formatCurrency(rentalTotal)}</span>
-            </div>
-          )}
+          <span className="text-sm text-muted-foreground">Valor por período</span>
+          <div className="font-medium">{getPriceDisplay()}</div>
         </div>
+        {dateRange && dateRange.from && dateRange.to && (
+          <div className="text-right">
+            <span className="text-sm text-muted-foreground">Valor Total</span>
+            <div className="text-2xl font-bold">{formatCurrency(rentalTotal)}</div>
+          </div>
+        )}
       </div>
       
       <Button 
