@@ -57,6 +57,8 @@ export function useProductDetails(id: string | undefined) {
           name: data.name,
           description: data.description || '',
           price: data.price,
+          priceWeekly: data.priceweekly || data.price * 6, // Use DB field or calculate if not present
+          priceMonthly: data.pricemonthly || data.price * 25, // Use DB field or calculate if not present
           imageUrl: data.imageurl || '/placeholder.svg',
           category: data.category,
           available: data.available,

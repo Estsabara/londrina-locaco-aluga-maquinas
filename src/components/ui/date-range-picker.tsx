@@ -47,6 +47,9 @@ export function DateRangePicker({
       case "monthly":
         to = addDays(addMonths(date, 1), -1); // Last day of the month
         break;
+      case "custom":
+        to = date; // Default for custom
+        break;
       default:
         to = date;
     }
@@ -81,7 +84,7 @@ export function DateRangePicker({
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        <PopoverContent className="w-auto p-0 z-50 bg-white" align="start">
           <Calendar
             mode="single"
             selected={dateRange?.from}
