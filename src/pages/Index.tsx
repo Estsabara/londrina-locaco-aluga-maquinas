@@ -6,6 +6,7 @@ import { HeroBanner } from "@/components/home/HeroBanner";
 import { CategoryTabs } from "@/components/home/CategoryTabs";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -22,6 +23,7 @@ export default function Index() {
       </main>
       
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
