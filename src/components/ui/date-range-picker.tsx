@@ -60,6 +60,16 @@ export function DateRangePicker({
     setDateRange({ from, to });
   };
 
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = Math.max(1, parseInt(e.target.value) || 1);
+    setPeriodQuantity(newQuantity);
+    
+    // If we already have a start date, update the end date based on the new quantity
+    if (dateRange.from) {
+      handleSelect(dateRange.from);
+    }
+  };
+
   const getPeriodLabel = () => {
     switch (rentalPeriod) {
       case "daily":
@@ -82,7 +92,7 @@ export function DateRangePicker({
             type="number"
             min={1}
             value={periodQuantity}
-            onChange={(e) => setPeriodQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+            onChange={handleQuantityChange}
             className="mt-1.5"
           />
         </div>
@@ -128,4 +138,3 @@ export function DateRangePicker({
     </div>
   );
 }
-

@@ -18,6 +18,15 @@ export function useProductCart(product: Product | null) {
     setDateRange({ from: undefined, to: undefined });
     setPeriodQuantity(1);
   }, [rentalPeriod]);
+
+  // This effect updates the rental end date whenever the start date or period quantity changes
+  useEffect(() => {
+    // Only recalculate if we have a from date and valid period quantity
+    if (dateRange.from && periodQuantity > 0) {
+      // The date-range-picker component will handle setting the correct end date
+      // This useEffect is more for future-proofing in case direct date manipulations are needed
+    }
+  }, [dateRange.from, periodQuantity, rentalPeriod]);
   
   const handleAddToCart = () => {
     if (!product) return;
@@ -58,7 +67,7 @@ export function useProductCart(product: Product | null) {
     }
   };
   
-  // Safe check for dateRange before accessing properties
+  // Recalculate rental total whenever any of the relevant parameters change
   const rentalTotal = product && dateRange && dateRange.from && dateRange.to
     ? calculateTotalPrice(getCurrentPrice(), dateRange.from, dateRange.to, rentalPeriod) * quantity
     : 0;

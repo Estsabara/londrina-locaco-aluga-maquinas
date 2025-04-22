@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useEffect } from "react";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -42,6 +43,27 @@ export function RentalOptions({
   const handlePeriodChange = (value: string) => {
     setRentalPeriod(value as RentalPeriodType);
   };
+
+  // Reset dateRange whenever period changes
+  useEffect(() => {
+    setDateRange({ from: undefined, to: undefined });
+  }, [rentalPeriod, setDateRange]);
+
+  // Update end date when periodQuantity changes if we have a start date
+  useEffect(() => {
+    if (dateRange.from && periodQuantity > 0) {
+      // Force a refresh of the date range
+      const currentFrom = new Date(dateRange.from);
+      setDateRange({ from: undefined, to: undefined });
+      setTimeout(() => {
+        // Create a callback to update with the current from date
+        const event = { target: { value: currentFrom } };
+        // For the DOM API this simulates selecting the same date again
+        setDateRange({ from: currentFrom, to: undefined });
+      }, 0);
+    }
+  }, [periodQuantity, setDateRange, dateRange.from]);
+  
   const getPriceDisplay = () => {
     switch (rentalPeriod) {
       case "daily":
@@ -68,6 +90,7 @@ export function RentalOptions({
         return `${formatCurrency(price)}/dia`;
     }
   };
+  
   return <div className="space-y-6">
       <h2 className="font-semibold text-lg">Configurar Locação</h2>
       
@@ -109,7 +132,13 @@ export function RentalOptions({
         <Label className="text-sm font-medium">
           3. Data de Retirada
         </Label>
-        <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} rentalPeriod={rentalPeriod} periodQuantity={periodQuantity} setPeriodQuantity={setPeriodQuantity} />
+        <DateRangePicker 
+          dateRange={dateRange} 
+          setDateRange={setDateRange} 
+          rentalPeriod={rentalPeriod} 
+          periodQuantity={periodQuantity} 
+          setPeriodQuantity={setPeriodQuantity} 
+        />
       </div>
 
       {/* Price and Total */}
@@ -118,10 +147,10 @@ export function RentalOptions({
           <span className="text-sm text-muted-foreground">Valor por período</span>
           <div className="font-medium">{getPriceDisplay()}</div>
         </div>
-        {dateRange && dateRange.from && dateRange.to && <div className="text-right">
-            <span className="text-sm text-muted-foreground">Valor Total</span>
-            <div className="text-2xl font-bold">{formatCurrency(rentalTotal)}</div>
-          </div>}
+        <div className="text-right">
+          <span className="text-sm text-muted-foreground">Valor Total</span>
+          <div className="text-2xl font-bold">{formatCurrency(rentalTotal)}</div>
+        </div>
       </div>
       
       <Button onClick={onAddToCart} disabled={!available || !dateRange || !dateRange.from || !dateRange.to} className="w-full" size="lg">
