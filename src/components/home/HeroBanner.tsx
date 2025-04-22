@@ -30,15 +30,18 @@ export function HeroBanner() {
   }];
 
   return (
-    <section className="relative bg-white border-b h-[400px]">
+    <section className="relative bg-white border-b h-[500px]">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')] bg-cover bg-center opacity-10" />
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')] bg-cover bg-center opacity-20" />
       
       <div className="container mx-auto px-4 py-8 h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full relative z-10">
           {/* Left side - Title */}
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4 md:text-5xl">Alugue Equipamentos para sua Obra</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4 md:text-6xl leading-tight" 
+                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+              Alugue Equipamentos para sua Obra
+            </h1>
             <p className="text-gray-600 text-xl">
               Mais de 70 tipos de equipamentos profissionais disponíveis para locação.
             </p>
