@@ -1,5 +1,5 @@
 
-import { WhatsappIcon } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
 
 export function FloatingWhatsApp() {
@@ -16,7 +16,7 @@ export function FloatingWhatsApp() {
       onClick={handleWhatsAppContact}
       className="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[#20ba59] transition-colors duration-200"
     >
-      <WhatsappIcon className="h-6 w-6" />
+      <MessageCircle className="h-6 w-6" />
       <span className="font-medium">Alugue pelo WhatsApp</span>
     </button>
   );
