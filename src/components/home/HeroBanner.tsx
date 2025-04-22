@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { 
   DrillIcon, 
-  ForkLift, 
+  Forklift,  // Changed from ForkLift to Forklift 
   Scissors, 
   TruckIcon,
   ZapIcon,
@@ -16,7 +16,7 @@ export function HeroBanner() {
     href: "/produtos?categoria=furacao-demolicao"
   }, {
     name: "Movimentação e elevação",
-    icon: ForkLift,
+    icon: Forklift,  // Changed here as well
     href: "/produtos?categoria=movimentacao-elevacao"
   }, {
     name: "Corte e acabamento",
