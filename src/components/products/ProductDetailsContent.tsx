@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
-import { Product, DateRange } from "@/types";
+import { Product, DateRange, RentalPeriodType } from "@/types";
 import { ProductImageGallery } from "@/components/products/ProductImageGallery";
 import { ProductInfo } from "@/components/products/ProductInfo";
 import { ContactButton } from "@/components/products/ContactButton";
@@ -19,6 +19,8 @@ interface ProductDetailsContentProps {
   setQuantity: (quantity: number) => void;
   rentalTotal: number;
   onAddToCart: () => void;
+  rentalPeriod: RentalPeriodType;
+  setRentalPeriod: (period: RentalPeriodType) => void;
 }
 
 export function ProductDetailsContent({
@@ -28,9 +30,11 @@ export function ProductDetailsContent({
   quantity,
   setQuantity,
   rentalTotal,
-  onAddToCart
+  onAddToCart,
+  rentalPeriod,
+  setRentalPeriod
 }: ProductDetailsContentProps) {
-  const { name, description, price, imageUrl, category, brand, model, specs, available } = product;
+  const { name, description, price, imageUrl, category, brand, model, specs, available, priceWeekly, priceMonthly } = product;
 
   return (
     <main className="flex-grow container py-8">
@@ -66,12 +70,16 @@ export function ProductDetailsContent({
           <RentalOptions
             available={available}
             price={price}
+            priceWeekly={priceWeekly}
+            priceMonthly={priceMonthly}
             dateRange={dateRange}
             setDateRange={setDateRange}
             quantity={quantity}
             setQuantity={setQuantity}
             rentalTotal={rentalTotal}
             onAddToCart={onAddToCart}
+            rentalPeriod={rentalPeriod}
+            setRentalPeriod={setRentalPeriod}
           />
         </div>
       </div>

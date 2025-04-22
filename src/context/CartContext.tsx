@@ -1,10 +1,15 @@
 
 import { createContext, useState, useContext, ReactNode } from 'react';
-import { Product, CartItem, DateRange } from '@/types';
+import { Product, CartItem, DateRange, RentalPeriodType } from '@/types';
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (product: Product, dateRange: DateRange, quantity: number) => void;
+  addToCart: (
+    product: Product, 
+    dateRange: DateRange, 
+    quantity: number, 
+    rentalPeriod: RentalPeriodType
+  ) => void;
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
   getCartTotal: () => number;
@@ -16,18 +21,24 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (product: Product, dateRange: DateRange, quantity: number) => {
+  const addToCart = (
+    product: Product, 
+    dateRange: DateRange, 
+    quantity: number,
+    rentalPeriod: RentalPeriodType
+  ) => {
     if (!dateRange.from || !dateRange.to) {
       console.error("Date range is incomplete");
       return;
     }
 
-    // Check if the product is already in the cart with the same dates
+    // Check if the product is already in the cart with the same dates and period
     const existingItemIndex = cartItems.findIndex(
       item => 
         item.product.id === product.id && 
         item.startDate.getTime() === dateRange.from!.getTime() && 
-        item.endDate.getTime() === dateRange.to!.getTime()
+        item.endDate.getTime() === dateRange.to!.getTime() &&
+        item.rentalPeriod === rentalPeriod
     );
 
     if (existingItemIndex > -1) {
@@ -43,7 +54,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
           product,
           startDate: dateRange.from,
           endDate: dateRange.to,
-          quantity
+          quantity,
+          rentalPeriod
         }
       ]);
     }
@@ -59,10 +71,34 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const getCartTotal = () => {
     return cartItems.reduce((total, item) => {
+      let itemPrice;
+      
+      switch (item.rentalPeriod) {
+        case 'weekly':
+          itemPrice = item.product.priceWeekly || item.product.price * 6;
+          break;
+        case 'monthly':
+          itemPrice = item.product.priceMonthly || item.product.price * 25;
+          break;
+        case 'daily':
+        default:
+          itemPrice = item.product.price;
+      }
+      
       const days = Math.ceil(
         (item.endDate.getTime() - item.startDate.getTime()) / (1000 * 60 * 60 * 24)
       ) + 1; // Include both start and end dates
-      return total + (item.product.price * days * item.quantity);
+      
+      let periodMultiplier = 1;
+      if (item.rentalPeriod === 'weekly') {
+        periodMultiplier = Math.ceil(days / 7);
+      } else if (item.rentalPeriod === 'monthly') {
+        periodMultiplier = Math.ceil(days / 30);
+      } else {
+        periodMultiplier = days;
+      }
+      
+      return total + (itemPrice * periodMultiplier * item.quantity);
     }, 0);
   };
 

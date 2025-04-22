@@ -5,35 +5,97 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Info, ShoppingCart } from "lucide-react";
 import { formatCurrency } from "@/lib/date-utils";
-import { DateRange } from "@/types";
+import { DateRange, RentalPeriodType } from "@/types";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 interface RentalOptionsProps {
   available: boolean;
   price: number;
+  priceWeekly?: number;
+  priceMonthly?: number;
   dateRange: DateRange;
   setDateRange: (range: DateRange) => void;
   quantity: number;
   setQuantity: (quantity: number) => void;
   rentalTotal: number;
   onAddToCart: () => void;
+  rentalPeriod: RentalPeriodType;
+  setRentalPeriod: (period: RentalPeriodType) => void;
 }
 
 export function RentalOptions({
   available,
   price,
+  priceWeekly,
+  priceMonthly,
   dateRange,
   setDateRange,
   quantity,
   setQuantity,
   rentalTotal,
-  onAddToCart
+  onAddToCart,
+  rentalPeriod,
+  setRentalPeriod
 }: RentalOptionsProps) {
+  const handlePeriodChange = (value: string) => {
+    setRentalPeriod(value as RentalPeriodType);
+    
+    // Reset date range when changing period type
+    setDateRange({ from: undefined, to: undefined });
+  };
+
+  const getPriceLabel = () => {
+    switch (rentalPeriod) {
+      case "daily":
+        return `${formatCurrency(price)}/dia`;
+      case "weekly":
+        return `${formatCurrency(priceWeekly || price * 6)}/semana`;
+      case "monthly":
+        return `${formatCurrency(priceMonthly || price * 25)}/mês`;
+      default:
+        return `${formatCurrency(price)}/dia`;
+    }
+  };
+
   return (
     <div className="space-y-4">
       <h2 className="font-semibold">Período de Locação</h2>
+      
+      <RadioGroup 
+        value={rentalPeriod} 
+        onValueChange={handlePeriodChange}
+        className="grid grid-cols-2 gap-2 sm:grid-cols-4"
+      >
+        <div className="flex items-center space-x-2 border rounded-md p-2">
+          <RadioGroupItem value="daily" id="daily" />
+          <Label htmlFor="daily" className="cursor-pointer">Diário</Label>
+        </div>
+        
+        <div className="flex items-center space-x-2 border rounded-md p-2">
+          <RadioGroupItem value="weekly" id="weekly" />
+          <Label htmlFor="weekly" className="cursor-pointer">Semanal</Label>
+        </div>
+        
+        <div className="flex items-center space-x-2 border rounded-md p-2">
+          <RadioGroupItem value="monthly" id="monthly" />
+          <Label htmlFor="monthly" className="cursor-pointer">Mensal</Label>
+        </div>
+        
+        <div className="flex items-center space-x-2 border rounded-md p-2">
+          <RadioGroupItem value="custom" id="custom" />
+          <Label htmlFor="custom" className="cursor-pointer">Outro Período</Label>
+        </div>
+      </RadioGroup>
+      
+      <div className="text-md font-medium text-right">
+        {getPriceLabel()}
+      </div>
+      
       <DateRangePicker 
         dateRange={dateRange}
         setDateRange={setDateRange}
+        rentalPeriod={rentalPeriod}
       />
       
       <div className="grid grid-cols-2 gap-4 items-center">

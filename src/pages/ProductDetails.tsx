@@ -17,7 +17,9 @@ export default function ProductDetails() {
     quantity, 
     setQuantity, 
     handleAddToCart, 
-    rentalTotal 
+    rentalTotal,
+    rentalPeriod,
+    setRentalPeriod
   } = useProductCart(product);
   
   if (loading) {
@@ -39,6 +41,8 @@ export default function ProductDetails() {
         setQuantity={setQuantity}
         rentalTotal={rentalTotal}
         onAddToCart={handleAddToCart}
+        rentalPeriod={rentalPeriod}
+        setRentalPeriod={setRentalPeriod}
       />
       <Footer />
     </div>

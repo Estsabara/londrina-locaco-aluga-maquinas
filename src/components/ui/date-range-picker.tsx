@@ -1,9 +1,9 @@
 
 import * as React from "react"
-import { format } from "date-fns"
+import { format, addDays, addWeeks, addMonths } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange as RDPDateRange } from "react-day-picker"
-import { DateRange } from "@/types"
+import { DateRange, RentalPeriodType } from "@/types"
 import { ptBR } from "date-fns/locale"
 
 import { cn } from "@/lib/utils"
@@ -20,13 +20,50 @@ interface DateRangePickerProps {
   dateRange: DateRange | undefined
   setDateRange: (range: DateRange | undefined) => void
   className?: string
+  rentalPeriod?: RentalPeriodType
 }
 
 export function DateRangePicker({
   dateRange,
   setDateRange,
   className,
+  rentalPeriod = "custom",
 }: DateRangePickerProps) {
+  const handleSelect = (range: RDPDateRange | undefined) => {
+    if (!range) {
+      setDateRange(undefined);
+      return;
+    }
+
+    const { from } = range;
+    if (!from) {
+      setDateRange(undefined);
+      return;
+    }
+
+    // Calculate "to" date based on rental period
+    let to;
+    switch (rentalPeriod) {
+      case "daily":
+        to = from; // Same day for daily rental
+        break;
+      case "weekly":
+        to = addDays(from, 6); // 7 days (inclusive)
+        break;
+      case "monthly":
+        to = addDays(addMonths(from, 1), -1); // Last day of the month period
+        break;
+      case "custom":
+      default:
+        to = range.to;
+        break;
+    }
+
+    setDateRange({ from, to });
+  };
+
+  const shouldDisableCalendar = rentalPeriod !== "custom";
+  
   return (
     <div className={cn("grid gap-2", className)}>
       <Popover>
@@ -55,16 +92,31 @@ export function DateRangePicker({
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
-          <Calendar
-            initialFocus
-            mode="range"
-            defaultMonth={dateRange?.from}
-            selected={dateRange as RDPDateRange}
-            onSelect={(range) => setDateRange(range as DateRange)}
-            numberOfMonths={2}
-            disabled={disablePastDates}
-            locale={ptBR}
-          />
+          {rentalPeriod === "custom" ? (
+            <Calendar
+              initialFocus
+              mode="range"
+              defaultMonth={dateRange?.from}
+              selected={dateRange as RDPDateRange}
+              onSelect={handleSelect}
+              numberOfMonths={2}
+              disabled={disablePastDates}
+              locale={ptBR}
+              className="pointer-events-auto"
+            />
+          ) : (
+            <Calendar
+              initialFocus
+              mode="single"
+              defaultMonth={dateRange?.from}
+              selected={dateRange?.from}
+              onSelect={(date) => date && handleSelect({ from: date, to: undefined })}
+              numberOfMonths={1}
+              disabled={disablePastDates}
+              locale={ptBR}
+              className="pointer-events-auto"
+            />
+          )}
         </PopoverContent>
       </Popover>
     </div>

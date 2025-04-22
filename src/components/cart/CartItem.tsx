@@ -1,9 +1,10 @@
 
-import { CartItem as CartItemType } from "@/types";
 import { Button } from "@/components/ui/button";
+import { formatShortDate, formatCurrency } from "@/lib/date-utils";
 import { Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { formatCurrency, formatShortDate, calculateDaysBetween, calculateTotalPrice } from "@/lib/date-utils";
+import { CartItem as CartItemType } from "@/types";
+import { Link } from "react-router-dom";
 
 interface CartItemProps {
   item: CartItemType;
@@ -11,61 +12,78 @@ interface CartItemProps {
 
 export function CartItem({ item }: CartItemProps) {
   const { removeFromCart } = useCart();
-  const { product, startDate, endDate, quantity } = item;
+  const { product, startDate, endDate, quantity, rentalPeriod } = item;
   
-  const rentalDays = calculateDaysBetween(startDate, endDate);
-  const itemTotal = calculateTotalPrice(product.price, startDate, endDate) * quantity;
+  const getPeriodText = () => {
+    switch (rentalPeriod) {
+      case "daily":
+        return "Locação Diária";
+      case "weekly":
+        return "Locação Semanal";
+      case "monthly":
+        return "Locação Mensal";
+      case "custom":
+        return "Período Personalizado";
+      default:
+        return "Locação";
+    }
+  };
   
+  const getItemPrice = () => {
+    switch (rentalPeriod) {
+      case "weekly":
+        return product.priceWeekly || product.price * 6;
+      case "monthly":
+        return product.priceMonthly || product.price * 25;
+      case "daily":
+      default:
+        return product.price;
+    }
+  };
+
   return (
-    <div className="flex flex-col sm:flex-row py-4 border-b gap-4">
-      <div className="w-full sm:w-24 h-24 flex-shrink-0 bg-muted rounded overflow-hidden">
-        <img 
-          src={product.imageUrl} 
-          alt={product.name} 
-          className="w-full h-full object-cover"
-        />
+    <div className="flex flex-col sm:flex-row border-b py-4 gap-4">
+      <div className="w-full sm:w-36 h-36 bg-secondary rounded-md flex-shrink-0 overflow-hidden">
+        <Link to={`/produto/${product.id}`}>
+          <img 
+            src={product.imageUrl} 
+            alt={product.name} 
+            className="w-full h-full object-cover"
+          />
+        </Link>
       </div>
       
-      <div className="flex-grow">
-        <div className="flex justify-between items-start">
+      <div className="flex-grow space-y-2">
+        <div className="flex justify-between items-start gap-2">
+          <Link to={`/produto/${product.id}`} className="hover:underline">
+            <h3 className="text-lg font-semibold">{product.name}</h3>
+          </Link>
+          <span className="text-lg font-bold">
+            {formatCurrency(getItemPrice())}
+          </span>
+        </div>
+        
+        <div className="text-sm text-muted-foreground">
+          <div>{product.category}</div>
+          <div className="font-medium">{getPeriodText()}</div>
           <div>
-            <h3 className="font-medium text-lg">{product.name}</h3>
-            <p className="text-sm text-muted-foreground">{product.brand} - {product.model}</p>
+            De {formatShortDate(startDate)} até {formatShortDate(endDate)}
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
+        </div>
+        
+        <div className="flex justify-between items-center mt-4">
+          <div className="bg-secondary px-3 py-1 rounded-md">
+            Qtd: {quantity}
+          </div>
+          
+          <Button 
+            variant="destructive" 
+            size="sm" 
             onClick={() => removeFromCart(product.id)}
-            className="text-muted-foreground hover:text-destructive"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="w-4 h-4 mr-1" />
+            Remover
           </Button>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-          <div>
-            <div className="text-sm">
-              <span className="font-medium">Período:</span>{" "}
-              {formatShortDate(startDate)} até {formatShortDate(endDate)}
-            </div>
-            <div className="text-sm">
-              <span className="font-medium">Duração:</span> {rentalDays} {rentalDays === 1 ? "dia" : "dias"}
-            </div>
-          </div>
-          <div>
-            <div className="text-sm">
-              <span className="font-medium">Valor diário:</span> {formatCurrency(product.price)}
-            </div>
-            <div className="text-sm">
-              <span className="font-medium">Quantidade:</span> {quantity}
-            </div>
-          </div>
-        </div>
-        
-        <div className="flex justify-end mt-2">
-          <div className="font-bold text-lg">
-            {formatCurrency(itemTotal)}
-          </div>
         </div>
       </div>
     </div>
