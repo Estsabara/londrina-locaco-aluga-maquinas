@@ -14,29 +14,32 @@ export function HeroBanner() {
   ];
 
   return (
-    <section className="relative bg-white border-b">
-      <div className="container mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <section className="relative bg-white border-b h-[400px]">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')] bg-cover bg-center opacity-10" />
+      
+      <div className="container mx-auto px-4 py-8 h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full relative z-10">
           {/* Left side - Title */}
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Equipamentos e ferramentas para locação
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-lg">
               Mais de 70 tipos de equipamentos profissionais disponíveis para locação.
             </p>
           </div>
 
           {/* Right side - Category Icons */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-4">
             {categories.map((category) => (
               <Link
                 key={category.name}
                 to={category.href}
-                className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-gray-50 transition-colors text-center"
+                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors text-center"
               >
-                <category.icon className="w-6 h-6 text-primary mb-1" />
-                <span className="text-xs text-gray-600 font-medium line-clamp-2">
+                <category.icon className="w-8 h-8 text-primary mb-2" />
+                <span className="text-sm text-gray-600 font-medium line-clamp-2">
                   {category.name}
                 </span>
               </Link>
