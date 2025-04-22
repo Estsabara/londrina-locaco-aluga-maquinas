@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -21,6 +20,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Drill, Forklift, Truck, Construction, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ElectricMachines } from "@/components/home/ElectricMachines";
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -87,6 +87,7 @@ export default function Index() {
             <HeroBanner />
             <CategoryTabs onCategorySelect={setSelectedCategory} />
             <FeaturedProducts selectedCategory={selectedCategory} />
+            <ElectricMachines />
             <ContactCTA />
           </main>
         </div>
