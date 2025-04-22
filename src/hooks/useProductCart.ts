@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/context/CartContext";
 import { Product, DateRange, RentalPeriodType } from "@/types";
@@ -11,6 +11,11 @@ export function useProductCart(product: Product | null) {
   const [dateRange, setDateRange] = useState<DateRange>({ from: undefined, to: undefined });
   const [quantity, setQuantity] = useState(1);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodType>("daily");
+  
+  // Reset date range when rental period changes
+  useEffect(() => {
+    setDateRange({ from: undefined, to: undefined });
+  }, [rentalPeriod]);
   
   const handleAddToCart = () => {
     if (!product) return;

@@ -16,8 +16,8 @@ import {
 import { disablePastDates } from "@/lib/date-utils"
 
 interface DateRangePickerProps {
-  dateRange: DateRange | undefined;
-  setDateRange: (range: DateRange | undefined) => void;
+  dateRange: DateRange;
+  setDateRange: (range: DateRange) => void;
   className?: string;
   rentalPeriod: RentalPeriodType;
 }
@@ -30,7 +30,7 @@ export function DateRangePicker({
 }: DateRangePickerProps) {
   const handleSelect = (date: Date | undefined) => {
     if (!date) {
-      setDateRange(undefined);
+      setDateRange({ from: undefined, to: undefined });
       return;
     }
 
@@ -48,10 +48,9 @@ export function DateRangePicker({
         to = addDays(addMonths(date, 1), -1); // Last day of the month
         break;
       case "custom":
+      default:
         to = date; // Default for custom
         break;
-      default:
-        to = date;
     }
 
     setDateRange({ from, to });
@@ -66,7 +65,7 @@ export function DateRangePicker({
             variant={"outline"}
             className={cn(
               "w-full justify-start text-left font-normal",
-              !dateRange && "text-muted-foreground"
+              !dateRange?.from && "text-muted-foreground"
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
