@@ -1,4 +1,3 @@
-
 export interface Product {
   id: number;
   name: string;
@@ -14,7 +13,7 @@ export interface Product {
   priceMonthly?: number;
 }
 
-export type RentalPeriodType = "daily" | "weekly" | "monthly" | "custom";
+export type RentalPeriodType = "daily" | "weekly" | "monthly";
 
 export interface DateRange {
   from: Date | undefined;

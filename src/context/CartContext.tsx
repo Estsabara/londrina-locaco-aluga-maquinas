@@ -87,7 +87,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       
       const days = Math.ceil(
         (item.endDate.getTime() - item.startDate.getTime()) / (1000 * 60 * 60 * 24)
-      ) + 1; // Include both start and end dates
+      ) + 1;
       
       let periodMultiplier = 1;
       if (item.rentalPeriod === 'weekly') {

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
@@ -40,8 +39,6 @@ export function RentalOptions({
 }: RentalOptionsProps) {
   const handlePeriodChange = (value: string) => {
     setRentalPeriod(value as RentalPeriodType);
-    
-    // Reset date range when changing period type
     setDateRange({ from: undefined, to: undefined });
   };
 
@@ -65,7 +62,7 @@ export function RentalOptions({
       <RadioGroup 
         value={rentalPeriod} 
         onValueChange={handlePeriodChange}
-        className="grid grid-cols-2 gap-2 sm:grid-cols-4"
+        className="grid grid-cols-1 sm:grid-cols-3 gap-2"
       >
         <div className="flex items-center space-x-2 border rounded-md p-2">
           <RadioGroupItem value="daily" id="daily" />
@@ -80,11 +77,6 @@ export function RentalOptions({
         <div className="flex items-center space-x-2 border rounded-md p-2">
           <RadioGroupItem value="monthly" id="monthly" />
           <Label htmlFor="monthly" className="cursor-pointer">Mensal</Label>
-        </div>
-        
-        <div className="flex items-center space-x-2 border rounded-md p-2">
-          <RadioGroupItem value="custom" id="custom" />
-          <Label htmlFor="custom" className="cursor-pointer">Outro Período</Label>
         </div>
       </RadioGroup>
       

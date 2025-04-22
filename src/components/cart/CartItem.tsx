@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { formatShortDate, formatCurrency } from "@/lib/date-utils";
 import { Trash2 } from "lucide-react";
@@ -22,8 +21,6 @@ export function CartItem({ item }: CartItemProps) {
         return "Locação Semanal";
       case "monthly":
         return "Locação Mensal";
-      case "custom":
-        return "Período Personalizado";
       default:
         return "Locação";
     }
