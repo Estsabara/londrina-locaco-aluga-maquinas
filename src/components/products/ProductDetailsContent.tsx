@@ -21,6 +21,8 @@ interface ProductDetailsContentProps {
   onAddToCart: () => void;
   rentalPeriod: RentalPeriodType;
   setRentalPeriod: (period: RentalPeriodType) => void;
+  periodQuantity: number;
+  setPeriodQuantity: (quantity: number) => void;
 }
 
 export function ProductDetailsContent({
@@ -32,7 +34,9 @@ export function ProductDetailsContent({
   rentalTotal,
   onAddToCart,
   rentalPeriod,
-  setRentalPeriod
+  setRentalPeriod,
+  periodQuantity,
+  setPeriodQuantity
 }: ProductDetailsContentProps) {
   const { name, description, price, imageUrl, category, brand, model, specs, available, priceWeekly, priceMonthly } = product;
 
@@ -80,6 +84,8 @@ export function ProductDetailsContent({
             onAddToCart={onAddToCart}
             rentalPeriod={rentalPeriod}
             setRentalPeriod={setRentalPeriod}
+            periodQuantity={periodQuantity}
+            setPeriodQuantity={setPeriodQuantity}
           />
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/context/CartContext";
@@ -53,6 +54,7 @@ export function useProductCart(product: Product | null) {
     }
   };
   
+  // Safe check for dateRange before accessing properties
   const rentalTotal = product && dateRange && dateRange.from && dateRange.to
     ? calculateTotalPrice(getCurrentPrice(), dateRange.from, dateRange.to, rentalPeriod) * quantity
     : 0;
