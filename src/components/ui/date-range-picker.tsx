@@ -35,7 +35,7 @@ export function DateRangePicker({
   setPeriodQuantity,
 }: DateRangePickerProps) {
   const handleSelect = (date: Date | undefined) => {
-    if (!date) {
+    if (!date || periodQuantity < 1) {
       setDateRange({ from: undefined, to: undefined });
       return;
     }
@@ -95,6 +95,7 @@ export function DateRangePicker({
                 "justify-start text-left font-normal",
                 !dateRange?.from && "text-muted-foreground"
               )}
+              disabled={periodQuantity < 1}
             >
               <CalendarIcon className="mr-2 h-4 w-4" />
               {dateRange?.from ? (
@@ -127,3 +128,4 @@ export function DateRangePicker({
     </div>
   );
 }
+
