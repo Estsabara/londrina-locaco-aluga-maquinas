@@ -18,7 +18,8 @@ export default function InventoryManagement() {
     threshold: 3,
     lastRestocked: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString(),
     status: Math.random() > 0.7 ? "alugado" : "disponível",
-    brand: product.brand || "Sem marca" // Ensure brand is always populated
+    brand: product.brand || "Sem marca", // Ensure brand is always populated
+    model: product.model || "Sem modelo" // Ensure model is always populated
   }));
   
   const filteredProducts = productsWithInventory.filter(product =>

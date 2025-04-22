@@ -33,11 +33,9 @@ export function useCheckoutSubmit() {
         id: customerResult.id,
         name: customerData.name!,
         email: customerData.email!,
-        phone: customerData.phone,
+        phone: customerData.phone!,
         document_number: customerData.document_number,
-        address: customerData.address,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
+        address: customerData.address!
       };
 
       const contractText = generateContractText(fullCustomer, cartItems, getCartTotal());

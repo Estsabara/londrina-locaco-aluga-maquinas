@@ -67,7 +67,7 @@ export function useContractDetails() {
           status: 'agreed',
           agreed_at: new Date().toISOString()
         })
-        .eq('id', contract.id);
+        .eq('id', String(contract.id));
       
       if (error) throw new Error(error.message);
       

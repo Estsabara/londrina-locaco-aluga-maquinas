@@ -14,7 +14,7 @@ export interface Product {
   priceMonthly?: number;
 }
 
-export type RentalPeriodType = "daily" | "weekly" | "monthly";
+export type RentalPeriodType = "daily" | "weekly" | "monthly" | "custom";
 
 export interface DateRange {
   from: Date | undefined;
@@ -35,9 +35,9 @@ export interface Customer {
   email: string;
   phone: string;
   address: string;
-  city: string;
-  state: string;
-  zipCode: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
   documentId?: string;
   document_number?: string;  // Added to match Supabase structure
 }
@@ -73,4 +73,5 @@ export interface InventoryProduct extends Product {
   lastRestocked: string;
   status: string;
   brand: string;  // Making brand required for InventoryProduct
+  model: string;  // Making model required for InventoryProduct
 }

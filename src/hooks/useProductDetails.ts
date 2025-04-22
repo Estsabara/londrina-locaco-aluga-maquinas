@@ -57,8 +57,6 @@ export function useProductDetails(id: string | undefined) {
           name: data.name,
           description: data.description || '',
           price: data.price,
-          priceWeekly: data.priceWeekly || null,
-          priceMonthly: data.priceMonthly || null,
           imageUrl: data.imageurl || '/placeholder.svg',
           category: data.category,
           available: data.available,

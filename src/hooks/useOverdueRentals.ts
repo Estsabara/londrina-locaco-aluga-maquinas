@@ -41,7 +41,7 @@ export const useOverdueRentals = () => {
           await supabase
             .from("rental_contracts")
             .update({ status: 'overdue' })
-            .eq("id", rental.id);
+            .eq("id", String(rental.id));
             
           rental.status = 'overdue';
         }
@@ -61,7 +61,7 @@ export const useOverdueRentals = () => {
       const { error } = await supabase
         .from("rental_contracts")
         .update({ status })
-        .eq("id", id);
+        .eq("id", String(id));
       
       if (error) throw error;
       
