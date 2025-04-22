@@ -25,10 +25,10 @@ export function ObraVideosSection() {
   const fetchVideos = async () => {
     setLoading(true);
     const { data, error } = await supabase
-      .from("obra_videos")
+      .from("obra_videos" as any)
       .select("*")
       .order("order_number", { ascending: true });
-    if (!error) setVideos(data ?? []);
+    if (!error) setVideos(data as unknown as ObraVideo[]);
     setLoading(false);
   };
 
@@ -78,7 +78,7 @@ export function ObraVideosSection() {
 
       // Insert in obra_videos table
       const { error: insertErr } = await supabase
-        .from("obra_videos")
+        .from("obra_videos" as any)
         .insert({
           title,
           url: pubUrl?.publicUrl,
@@ -168,4 +168,3 @@ export function ObraVideosSection() {
     </section>
   );
 }
-
