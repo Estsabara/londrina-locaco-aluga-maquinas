@@ -11,7 +11,7 @@ export function HeroBanner() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
         style={{
-          backgroundImage: "url('/lovable-uploads/equipment-mobile-bg.png')"
+          backgroundImage: "url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')"
         }}
       >
         <div className="absolute inset-0 bg-black/50" /> {/* Dark overlay for better text readability */}
