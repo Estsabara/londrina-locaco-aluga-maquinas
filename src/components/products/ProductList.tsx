@@ -25,8 +25,8 @@ export function ProductList({ products, categories }: ProductListProps) {
   
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="relative flex-grow">
+      <div className="flex flex-col md:flex-row gap-4 items-start">
+        <div className="relative flex-grow w-full">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
@@ -36,13 +36,13 @@ export function ProductList({ products, categories }: ProductListProps) {
             className="pl-10 rounded-full"
           />
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 w-full overflow-x-auto scrollbar-hide">
           {categories.map(category => (
             <Button
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
               size="sm"
-              className={`${selectedCategory === category ? 'bg-primary text-primary-foreground' : ''}`}
+              className={`${selectedCategory === category ? 'bg-primary text-primary-foreground' : ''} whitespace-nowrap`}
               onClick={() => setSelectedCategory(category)}
             >
               {category}
