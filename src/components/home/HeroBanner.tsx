@@ -38,8 +38,8 @@ export function HeroBanner() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full relative z-10">
           {/* Left side - Title */}
           <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 md:text-6xl leading-tight" 
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 md:text-5xl leading-tight" 
+                style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.3)' }}>
               Alugue Equipamentos para sua Obra
             </h1>
             <p className="text-gray-600 text-xl">
