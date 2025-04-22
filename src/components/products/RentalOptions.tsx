@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { formatCurrency } from "@/lib/date-utils";
 import { DateRange, RentalPeriodType } from "@/types";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+
 interface RentalOptionsProps {
   available: boolean;
   price: number;
@@ -24,6 +25,7 @@ interface RentalOptionsProps {
   periodQuantity: number;
   setPeriodQuantity: (quantity: number) => void;
 }
+
 export function RentalOptions({
   available,
   price,
@@ -43,26 +45,6 @@ export function RentalOptions({
   const handlePeriodChange = (value: string) => {
     setRentalPeriod(value as RentalPeriodType);
   };
-
-  // Reset dateRange whenever period changes
-  useEffect(() => {
-    setDateRange({ from: undefined, to: undefined });
-  }, [rentalPeriod, setDateRange]);
-
-  // Update end date when periodQuantity changes if we have a start date
-  useEffect(() => {
-    if (dateRange.from && periodQuantity > 0) {
-      // Force a refresh of the date range
-      const currentFrom = new Date(dateRange.from);
-      setDateRange({ from: undefined, to: undefined });
-      setTimeout(() => {
-        // Create a callback to update with the current from date
-        const event = { target: { value: currentFrom } };
-        // For the DOM API this simulates selecting the same date again
-        setDateRange({ from: currentFrom, to: undefined });
-      }, 0);
-    }
-  }, [periodQuantity, setDateRange, dateRange.from]);
   
   const getPriceDisplay = () => {
     switch (rentalPeriod) {
@@ -95,17 +77,19 @@ export function RentalOptions({
       <h2 className="font-semibold text-lg">Configurar Locação</h2>
       
       {/* Step 1: Quantity */}
-      <div className="space-y-2">
-        <Label htmlFor="quantity" className="text-sm font-medium">
-          1. Quantidade
+      <div className="space-y-2 p-4 border rounded-md bg-gray-50">
+        <Label htmlFor="quantity" className="text-sm font-medium flex items-center">
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mr-2">1</div>
+          Quantidade
         </Label>
         <Input id="quantity" type="number" min={1} value={quantity} onChange={e => setQuantity(parseInt(e.target.value) || 1)} className="max-w-[200px]" />
       </div>
       
-      {/* Step 2: Rental Period Type and Quantity */}
-      <div className="space-y-4">
-        <Label className="text-sm font-medium">
-          2. Período de Locação
+      {/* Step 2: Rental Period Type */}
+      <div className="space-y-4 p-4 border rounded-md bg-gray-50">
+        <Label className="text-sm font-medium flex items-center">
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mr-2">2</div>
+          Período de Locação
         </Label>
         <RadioGroup value={rentalPeriod} onValueChange={handlePeriodChange} className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <div className="flex items-center space-x-2 border rounded-md p-2">
@@ -123,14 +107,13 @@ export function RentalOptions({
             <Label htmlFor="monthly" className="cursor-pointer">Mensal</Label>
           </div>
         </RadioGroup>
-
-        
       </div>
       
       {/* Step 3: Pick-up Date */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium">
-          3. Data de Retirada
+      <div className="space-y-2 p-4 border rounded-md bg-gray-50">
+        <Label className="text-sm font-medium flex items-center">
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mr-2">3</div>
+          Data de Retirada
         </Label>
         <DateRangePicker 
           dateRange={dateRange} 
