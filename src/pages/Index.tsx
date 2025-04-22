@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { HeroBanner } from "@/components/home/HeroBanner";
+import { FeatureHighlights } from "@/components/home/FeatureHighlights";
 import { CategoryTabs } from "@/components/home/CategoryTabs";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { ContactCTA } from "@/components/home/ContactCTA";
@@ -89,6 +89,7 @@ export default function Index() {
               <span className="ml-2">Menu de Categorias</span>
             </div>
             <HeroBanner />
+            <FeatureHighlights />
             <CategoryTabs onCategorySelect={setSelectedCategory} />
             <FeaturedProducts selectedCategory={selectedCategory} />
             <ElectricMachines />
