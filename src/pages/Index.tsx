@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -25,6 +26,7 @@ import { ElectricMachines } from "@/components/home/ElectricMachines";
 import { PerforationEquipment } from "@/components/home/PerforationEquipment";
 import { MovementEquipment } from "@/components/home/MovementEquipment";
 import { SafetyEquipment } from "@/components/home/SafetyEquipment";
+import { ObraVideosSection } from "@/components/home/ObraVideosSection";
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -90,6 +92,7 @@ export default function Index() {
             </div>
             <HeroBanner />
             <FeatureHighlights />
+            <ObraVideosSection />
             <CategoryTabs onCategorySelect={setSelectedCategory} />
             <FeaturedProducts selectedCategory={selectedCategory} />
             <ElectricMachines />
@@ -106,3 +109,4 @@ export default function Index() {
     </SidebarProvider>
   );
 }
+
