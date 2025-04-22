@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Drill, Forklift, Scissors, Truck, Zap, Hammer } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 export function HeroBanner() {
   const categories = [
@@ -19,8 +19,8 @@ export function HeroBanner() {
       <div className="absolute inset-0 bg-[url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')] bg-cover bg-center opacity-10" />
       
       <div className="container mx-auto px-4 py-8 h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full relative z-10">
-          {/* Left side - Title */}
+        <div className="flex flex-col h-full relative z-10 gap-8">
+          {/* Title */}
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Equipamentos e ferramentas para locação
@@ -30,20 +30,33 @@ export function HeroBanner() {
             </p>
           </div>
 
-          {/* Right side - Category Icons */}
-          <div className="grid grid-cols-3 gap-4">
-            {categories.map((category) => (
-              <Link
-                key={category.name}
-                to={category.href}
-                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors text-center"
-              >
-                <category.icon className="w-8 h-8 text-primary mb-2" />
-                <span className="text-sm text-gray-600 font-medium line-clamp-2">
-                  {category.name}
-                </span>
-              </Link>
-            ))}
+          {/* Category Icons Carousel */}
+          <div className="w-full px-8 relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {categories.map((category) => (
+                  <CarouselItem key={category.name} className="pl-2 md:pl-4 basis-1/4 md:basis-1/6">
+                    <Link
+                      to={category.href}
+                      className="flex flex-col items-center justify-center p-3 rounded-lg bg-white shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors text-center h-24"
+                    >
+                      <category.icon className="w-6 h-6 text-primary mb-2" />
+                      <span className="text-xs text-gray-600 font-medium line-clamp-2">
+                        {category.name}
+                      </span>
+                    </Link>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-0" />
+              <CarouselNext className="right-0" />
+            </Carousel>
           </div>
         </div>
       </div>
