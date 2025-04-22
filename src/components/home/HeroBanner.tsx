@@ -1,6 +1,7 @@
+
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Drill, Forklift, Scissors, Truck, Zap, Hammer } from "lucide-react";
+
 export function HeroBanner() {
   const categories = [{
     name: "Perfuração e demolição",
@@ -27,7 +28,9 @@ export function HeroBanner() {
     icon: Hammer,
     href: "/produtos?categoria=compactacao-solo"
   }];
-  return <section className="relative bg-white border-b h-[400px]">
+
+  return (
+    <section className="relative bg-white border-b h-[400px]">
       {/* Background Image */}
       <div className="absolute inset-0 bg-[url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')] bg-cover bg-center opacity-10" />
       
@@ -43,14 +46,21 @@ export function HeroBanner() {
 
           {/* Right side - Category Icons */}
           <div className="grid grid-cols-3 gap-4">
-            {categories.map(category => <Link key={category.name} to={category.href} className="flex flex-col items-center justify-center p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors text-center">
-                <category.icon className="w-8 h-8 text-primary mb-2" />
-                <span className="text-sm text-gray-600 font-medium line-clamp-2">
+            {categories.map(category => (
+              <Link 
+                key={category.name} 
+                to={category.href} 
+                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+              >
+                <category.icon className="w-8 h-8 text-primary mb-2 group-hover:text-primary/80 transition-colors" />
+                <span className="text-sm text-gray-600 font-medium line-clamp-2 group-hover:text-primary transition-colors">
                   {category.name}
                 </span>
-              </Link>)}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 }
