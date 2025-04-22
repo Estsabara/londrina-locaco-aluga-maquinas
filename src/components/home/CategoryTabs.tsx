@@ -25,14 +25,14 @@ export function CategoryTabs({ onCategorySelect }: CategoryTabsProps) {
   };
 
   return (
-    <section className="py-12">
+    <section className="py-8">
       <div className="container px-4 md:px-6">
-        <h2 className="text-3xl font-bold mb-8 text-center">
+        <h2 className="text-2xl font-bold mb-6 text-center">
           Equipamentos e ferramentas para locação
         </h2>
         
         <Tabs value={selectedTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="w-full flex justify-between mb-8 border-b border-gray-200">
+          <TabsList className="w-full flex justify-between mb-6 border-b border-gray-200">
             <TabsTrigger value="mais-alugados" className="flex-1 pb-2 data-[state=active]:border-b-2 data-[state=active]:border-secondary rounded-none">
               Mais alugados
             </TabsTrigger>
