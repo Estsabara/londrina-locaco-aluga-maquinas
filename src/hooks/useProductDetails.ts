@@ -52,13 +52,23 @@ export function useProductDetails(id: string | undefined) {
           }
         }
         
+        // Check if weekly and monthly prices exist in database or calculate them
+        // Use type assertion with 'as any' to bypass TypeScript's property check
+        const weeklyPrice = (data as any).priceweekly !== undefined 
+          ? (data as any).priceweekly 
+          : data.price * 6;
+        
+        const monthlyPrice = (data as any).pricemonthly !== undefined 
+          ? (data as any).pricemonthly 
+          : data.price * 25;
+        
         const formattedProduct: Product = {
           id: data.id,
           name: data.name,
           description: data.description || '',
           price: data.price,
-          priceWeekly: data.priceweekly || data.price * 6, // Use DB field or calculate if not present
-          priceMonthly: data.pricemonthly || data.price * 25, // Use DB field or calculate if not present
+          priceWeekly: weeklyPrice,
+          priceMonthly: monthlyPrice,
           imageUrl: data.imageurl || '/placeholder.svg',
           category: data.category,
           available: data.available,
