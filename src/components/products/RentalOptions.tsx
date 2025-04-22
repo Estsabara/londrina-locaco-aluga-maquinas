@@ -1,4 +1,3 @@
-
 import React from "react";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
@@ -22,6 +21,8 @@ interface RentalOptionsProps {
   onAddToCart: () => void;
   rentalPeriod: RentalPeriodType;
   setRentalPeriod: (period: RentalPeriodType) => void;
+  periodQuantity: number;
+  setPeriodQuantity: (quantity: number) => void;
 }
 
 export function RentalOptions({
@@ -36,11 +37,12 @@ export function RentalOptions({
   rentalTotal,
   onAddToCart,
   rentalPeriod,
-  setRentalPeriod
+  setRentalPeriod,
+  periodQuantity,
+  setPeriodQuantity
 }: RentalOptionsProps) {
   const handlePeriodChange = (value: string) => {
     setRentalPeriod(value as RentalPeriodType);
-    // The date range reset is now handled in the useProductCart hook
   };
 
   const getPriceLabel = () => {
@@ -89,6 +91,8 @@ export function RentalOptions({
         dateRange={dateRange || { from: undefined, to: undefined }}
         setDateRange={setDateRange}
         rentalPeriod={rentalPeriod}
+        periodQuantity={periodQuantity}
+        setPeriodQuantity={setPeriodQuantity}
       />
       
       <div className="grid grid-cols-2 gap-4 items-center">

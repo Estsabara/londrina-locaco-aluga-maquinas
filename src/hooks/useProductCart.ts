@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/context/CartContext";
@@ -11,10 +10,12 @@ export function useProductCart(product: Product | null) {
   const [dateRange, setDateRange] = useState<DateRange>({ from: undefined, to: undefined });
   const [quantity, setQuantity] = useState(1);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodType>("daily");
+  const [periodQuantity, setPeriodQuantity] = useState(1);
   
-  // Reset date range when rental period changes
+  // Reset date range and period quantity when rental period changes
   useEffect(() => {
     setDateRange({ from: undefined, to: undefined });
+    setPeriodQuantity(1);
   }, [rentalPeriod]);
   
   const handleAddToCart = () => {
@@ -52,7 +53,6 @@ export function useProductCart(product: Product | null) {
     }
   };
   
-  // Add null/undefined check for dateRange to avoid the TypeError
   const rentalTotal = product && dateRange && dateRange.from && dateRange.to
     ? calculateTotalPrice(getCurrentPrice(), dateRange.from, dateRange.to, rentalPeriod) * quantity
     : 0;
@@ -65,6 +65,8 @@ export function useProductCart(product: Product | null) {
     handleAddToCart,
     rentalTotal,
     rentalPeriod,
-    setRentalPeriod
+    setRentalPeriod,
+    periodQuantity,
+    setPeriodQuantity
   };
 }

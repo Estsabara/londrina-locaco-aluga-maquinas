@@ -1,6 +1,6 @@
 
 import * as React from "react"
-import { format, addDays, addMonths } from "date-fns"
+import { format, addDays, addWeeks, addMonths } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange, RentalPeriodType } from "@/types"
 import { ptBR } from "date-fns/locale"
@@ -13,6 +13,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { disablePastDates } from "@/lib/date-utils"
 
 interface DateRangePickerProps {
@@ -20,6 +22,8 @@ interface DateRangePickerProps {
   setDateRange: (range: DateRange) => void;
   className?: string;
   rentalPeriod: RentalPeriodType;
+  periodQuantity: number;
+  setPeriodQuantity: (quantity: number) => void;
 }
 
 export function DateRangePicker({
@@ -27,6 +31,8 @@ export function DateRangePicker({
   setDateRange,
   className,
   rentalPeriod,
+  periodQuantity,
+  setPeriodQuantity,
 }: DateRangePickerProps) {
   const handleSelect = (date: Date | undefined) => {
     if (!date) {
@@ -39,62 +45,85 @@ export function DateRangePicker({
 
     switch (rentalPeriod) {
       case "daily":
-        to = date;
+        to = addDays(date, periodQuantity - 1); // -1 because the start day counts
         break;
       case "weekly":
-        to = addDays(date, 6); // 7 days including start date
+        to = addDays(addWeeks(date, periodQuantity), -1); // Last day of the last week
         break;
       case "monthly":
-        to = addDays(addMonths(date, 1), -1); // Last day of the month
+        to = addDays(addMonths(date, periodQuantity), -1); // Last day of the last month
         break;
-      case "custom":
       default:
-        to = date; // Default for custom
-        break;
+        to = date;
     }
 
     setDateRange({ from, to });
   };
 
+  const getPeriodLabel = () => {
+    switch (rentalPeriod) {
+      case "daily":
+        return "dias";
+      case "weekly":
+        return "semanas";
+      case "monthly":
+        return "meses";
+      default:
+        return "período";
+    }
+  };
+
   return (
-    <div className={cn("grid gap-2", className)}>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            id="date"
-            variant={"outline"}
-            className={cn(
-              "w-full justify-start text-left font-normal",
-              !dateRange?.from && "text-muted-foreground"
-            )}
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {dateRange?.from ? (
-              dateRange.to ? (
-                <>
-                  {format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })} até{" "}
-                  {format(dateRange.to, "dd/MM/yyyy", { locale: ptBR })}
-                </>
-              ) : (
-                format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })
-              )
-            ) : (
-              <span>Selecione a data inicial</span>
-            )}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0 z-50 bg-white" align="start">
-          <Calendar
-            mode="single"
-            selected={dateRange?.from}
-            onSelect={handleSelect}
-            initialFocus
-            disabled={disablePastDates}
-            locale={ptBR}
-            className="pointer-events-auto"
+    <div className={cn("grid gap-4", className)}>
+      <div className="flex items-end gap-4">
+        <div className="flex-1">
+          <Label>Quantos {getPeriodLabel()} você precisa?</Label>
+          <Input
+            type="number"
+            min={1}
+            value={periodQuantity}
+            onChange={(e) => setPeriodQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+            className="mt-1.5"
           />
-        </PopoverContent>
-      </Popover>
+        </div>
+        
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant={"outline"}
+              className={cn(
+                "justify-start text-left font-normal",
+                !dateRange?.from && "text-muted-foreground"
+              )}
+            >
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {dateRange?.from ? (
+                dateRange.to ? (
+                  <>
+                    {format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })} até{" "}
+                    {format(dateRange.to, "dd/MM/yyyy", { locale: ptBR })}
+                  </>
+                ) : (
+                  format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })
+                )
+              ) : (
+                <span>Selecione a data inicial</span>
+              )}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0 z-50 bg-white" align="start">
+            <Calendar
+              mode="single"
+              selected={dateRange?.from}
+              onSelect={handleSelect}
+              initialFocus
+              disabled={disablePastDates}
+              locale={ptBR}
+              className="pointer-events-auto"
+            />
+          </PopoverContent>
+        </Popover>
+      </div>
     </div>
   );
 }
