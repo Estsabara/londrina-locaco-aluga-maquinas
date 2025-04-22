@@ -1,8 +1,16 @@
 
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { createWhatsAppLink } from "@/lib/utils";
 
 export function ContactCTA() {
+  const whatsappNumber = "5543337238607";
+  const whatsappMessage = "Olá! Preciso de ajuda para encontrar o equipamento ideal para minha obra.";
+
+  const handleWhatsAppContact = () => {
+    const whatsappUrl = createWhatsAppLink(whatsappNumber, whatsappMessage);
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <section className="py-12 md:py-16 bg-primary/10">
       <div className="container px-4 md:px-6 text-center">
@@ -13,10 +21,12 @@ export function ContactCTA() {
           <p className="text-lg text-muted-foreground">
             Entre em contato conosco e encontraremos a solução ideal para sua obra.
           </p>
-          <Button asChild size="lg" className="mt-2">
-            <Link to="/contato">
-              Fale Conosco
-            </Link>
+          <Button 
+            size="lg" 
+            className="mt-2"
+            onClick={handleWhatsAppContact}
+          >
+            Fale Conosco
           </Button>
         </div>
       </div>

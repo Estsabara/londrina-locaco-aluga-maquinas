@@ -3,9 +3,18 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Hammer, HardHat, Construction } from "lucide-react";
+import { createWhatsAppLink } from "@/lib/utils";
 
 export function HeroBanner() {
   const isMobile = useIsMobile();
+  const whatsappNumber = "5543337238607";
+  const whatsappMessage = "Olá! Gostaria de mais informações sobre locação de equipamentos.";
+  
+  const handleWhatsAppContact = () => {
+    const whatsappUrl = createWhatsAppLink(whatsappNumber, whatsappMessage);
+    window.open(whatsappUrl, '_blank');
+  };
+
   return <section className="relative h-screen overflow-hidden">
       {/* Background Image with Overlay */}
       <div 
@@ -35,11 +44,14 @@ export function HeroBanner() {
                   Ver Equipamentos
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="gap-2 bg-white/10 hover:bg-white/20 text-white border-white">
-                <Link to="/contato">
-                  <HardHat className="w-5 h-5" />
-                  Fale Conosco
-                </Link>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="gap-2 bg-white/10 hover:bg-white/20 text-white border-white"
+                onClick={handleWhatsAppContact}
+              >
+                <HardHat className="w-5 h-5" />
+                Fale Conosco
               </Button>
             </div>
           </div>
