@@ -45,9 +45,13 @@ export function useProductCart(product: Product | null) {
     
     switch (rentalPeriod) {
       case "weekly":
-        return product.priceWeekly || product.price * 6; // Default to 6x daily if no weekly price
+        // Apply 5% discount for weekly rentals
+        const weeklyPrice = product.priceWeekly || product.price * 6;
+        return weeklyPrice * 0.95; // 5% off
       case "monthly":
-        return product.priceMonthly || product.price * 25; // Default to 25x daily if no monthly price
+        // Apply 10% discount for monthly rentals
+        const monthlyPrice = product.priceMonthly || product.price * 25;
+        return monthlyPrice * 0.90; // 10% off
       case "daily":
       default:
         return product.price;

@@ -50,9 +50,23 @@ export function RentalOptions({
       case "daily":
         return `${formatCurrency(price)}/dia`;
       case "weekly":
-        return `${formatCurrency(priceWeekly || price * 6)}/semana`;
+        const weeklyPrice = priceWeekly || price * 6;
+        const discountedWeeklyPrice = weeklyPrice * 0.95;
+        return (
+          <div>
+            <span>{formatCurrency(discountedWeeklyPrice)}/semana</span>
+            <span className="text-green-600 ml-2 text-xs">(5% OFF)</span>
+          </div>
+        );
       case "monthly":
-        return `${formatCurrency(priceMonthly || price * 25)}/mês`;
+        const monthlyPrice = priceMonthly || price * 25;
+        const discountedMonthlyPrice = monthlyPrice * 0.90;
+        return (
+          <div>
+            <span>{formatCurrency(discountedMonthlyPrice)}/mês</span>
+            <span className="text-green-600 ml-2 text-xs">(10% OFF)</span>
+          </div>
+        );
       default:
         return `${formatCurrency(price)}/dia`;
     }
