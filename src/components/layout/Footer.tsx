@@ -1,9 +1,10 @@
-
 import { Link } from "react-router-dom";
+import { PaymentInfo } from "./PaymentInfo";
 
 export function Footer() {
   return (
-    <footer className="border-t bg-background">
+    <footer className="bg-background">
+      <PaymentInfo />
       <div className="container py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
