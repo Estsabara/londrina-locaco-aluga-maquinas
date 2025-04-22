@@ -47,7 +47,8 @@ export function useProductCart(product: Product | null) {
     }
   };
   
-  const rentalTotal = product && dateRange.from && dateRange.to
+  // Add null/undefined check for dateRange to avoid the TypeError
+  const rentalTotal = product && dateRange && dateRange.from && dateRange.to
     ? calculateTotalPrice(getCurrentPrice(), dateRange.from, dateRange.to, rentalPeriod) * quantity
     : 0;
   
