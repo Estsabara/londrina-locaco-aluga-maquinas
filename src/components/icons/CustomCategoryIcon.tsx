@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Tool } from 'lucide-react';
+import { Wrench } from 'lucide-react';
 
 interface CustomCategoryIconProps {
   category: string;
@@ -73,5 +73,5 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   }
   
   // Fallback to a generic icon
-  return <Tool className={`h-12 w-12 text-primary ${className}`} />;
+  return <Wrench className={`h-12 w-12 text-primary ${className}`} />;
 }
