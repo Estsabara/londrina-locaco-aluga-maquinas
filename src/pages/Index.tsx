@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -10,7 +9,7 @@ import { ContactCTA } from "@/components/home/ContactCTA";
 import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
 import { 
   SidebarProvider, 
-  Sidebar, 
+  Sidebar,
   SidebarContent, 
   SidebarMenu, 
   SidebarMenuItem, 
@@ -26,7 +25,6 @@ import { ElectricMachines } from "@/components/home/ElectricMachines";
 import { PerforationEquipment } from "@/components/home/PerforationEquipment";
 import { MovementEquipment } from "@/components/home/MovementEquipment";
 import { SafetyEquipment } from "@/components/home/SafetyEquipment";
-// Remove the import for CategoryHighlights if it was imported
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -37,7 +35,7 @@ export default function Index() {
         <Navbar />
         
         <div className="flex w-full flex-1">
-          <Sidebar variant="floating" collapsible="offcanvas">
+          <Sidebar variant="floating" collapsible="offcanvas" className="hidden md:flex">
             <SidebarHeader className="flex h-14 items-center border-b px-4">
               <SidebarTrigger />
               <span className="ml-2 text-lg font-semibold">Categorias</span>
@@ -91,7 +89,6 @@ export default function Index() {
             <HeroBanner />
             <FeatureHighlights />
             <CategoryTabs onCategorySelect={setSelectedCategory} />
-            {/* Remove CategoryHighlights component from here */}
             <FeaturedProducts selectedCategory={selectedCategory} />
             <ElectricMachines />
             <PerforationEquipment />

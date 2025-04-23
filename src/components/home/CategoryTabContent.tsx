@@ -38,7 +38,7 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
   }));
 
   return (
-    <div className="relative w-full px-2 md:px-8">
+    <div className="relative w-full px-1 sm:px-2 md:px-8">
       <Carousel
         opts={{
           align: "start",
@@ -46,9 +46,9 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
         }}
         className="w-full"
       >
-        <CarouselContent className="-ml-2 md:-ml-4">
+        <CarouselContent className="-ml-1 sm:-ml-2 md:-ml-4">
           {displayCategories.map((card, index) => (
-            <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6">
+            <CarouselItem key={index} className="pl-1 sm:pl-2 md:pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
               <div className="w-full">
                 <CategoryCard 
                   name={card.name}
