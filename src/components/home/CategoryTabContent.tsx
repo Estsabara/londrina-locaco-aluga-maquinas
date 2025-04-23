@@ -1,6 +1,6 @@
 
 import React from "react";
-import { CategoryCard } from "./CategoryCard";
+import { CategoryCard, CategoryCardProps } from "./CategoryCard";
 import {
   Carousel,
   CarouselContent,
