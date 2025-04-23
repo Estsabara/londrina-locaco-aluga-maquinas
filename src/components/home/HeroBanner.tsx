@@ -6,7 +6,7 @@ import {
   Hammer,
   Wrench,
   Drill,
-  Mixer
+  Truck
 } from "lucide-react";
 
 export function HeroBanner() {
@@ -24,7 +24,7 @@ export function HeroBanner() {
     href: "/produtos?categoria=corte-acabamento"
   }, {
     name: "Concretagem e mistura",
-    icon: Mixer,
+    icon: Truck,
     href: "/produtos?categoria=concretagem-mistura"
   }, {
     name: "Energia",
