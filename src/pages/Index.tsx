@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -26,7 +25,6 @@ import { ElectricMachines } from "@/components/home/ElectricMachines";
 import { PerforationEquipment } from "@/components/home/PerforationEquipment";
 import { MovementEquipment } from "@/components/home/MovementEquipment";
 import { SafetyEquipment } from "@/components/home/SafetyEquipment";
-// Removed ObraVideosSection import
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -37,7 +35,6 @@ export default function Index() {
         <Navbar />
         
         <div className="flex w-full flex-1">
-          {/* Sidebar */}
           <Sidebar variant="floating" collapsible="offcanvas">
             <SidebarHeader className="flex h-14 items-center border-b px-4">
               <SidebarTrigger />
@@ -84,7 +81,6 @@ export default function Index() {
             </SidebarContent>
           </Sidebar>
           
-          {/* Main content */}
           <main className="flex-grow">
             <div className="flex items-center p-4 md:hidden">
               <SidebarTrigger />
@@ -92,7 +88,6 @@ export default function Index() {
             </div>
             <HeroBanner />
             <FeatureHighlights />
-            {/* Removed ObraVideosSection component */}
             <CategoryTabs onCategorySelect={setSelectedCategory} />
             <FeaturedProducts selectedCategory={selectedCategory} />
             <ElectricMachines />
