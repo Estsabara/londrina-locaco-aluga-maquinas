@@ -15,72 +15,88 @@ export function useProductDetails(id: string | undefined) {
         
         if (!id) return;
         
-        const numericId = parseInt(id, 10);
-        
-        if (isNaN(numericId)) {
-          console.error('Invalid product ID:', id);
-          toast.error('ID de produto inválido');
-          return;
-        }
-        
-        const { data, error } = await supabase
+        // First try to fetch from database
+        const { data: dbProduct, error: dbError } = await supabase
           .from('products')
           .select('*')
-          .eq('id', numericId)
+          .eq('id', id)
           .single();
         
-        if (error) {
-          console.error('Error fetching product:', error);
-          toast.error('Erro ao carregar informações do produto');
-          return;
-        }
-        
-        if (!data) {
-          console.error('No product found with ID:', id);
-          toast.error('Produto não encontrado');
-          return;
-        }
-        
-        let processedSpecs = {};
-        if (data.specs && typeof data.specs === 'object') {
-          processedSpecs = data.specs;
-        } else if (data.specs) {
-          try {
-            processedSpecs = JSON.parse(String(data.specs));
-          } catch {
-            processedSpecs = { value: data.specs };
+        if (dbProduct) {
+          // Process the product from database
+          let processedSpecs = {};
+          if (dbProduct.specs && typeof dbProduct.specs === 'object') {
+            processedSpecs = dbProduct.specs;
+          } else if (dbProduct.specs) {
+            try {
+              processedSpecs = JSON.parse(String(dbProduct.specs));
+            } catch {
+              processedSpecs = { value: dbProduct.specs };
+            }
+          }
+          
+          // Check if weekly and monthly prices exist in database or calculate them
+          const weeklyPrice = (dbProduct as any).priceweekly !== undefined 
+            ? (dbProduct as any).priceweekly 
+            : dbProduct.price * 6;
+          
+          const monthlyPrice = (dbProduct as any).pricemonthly !== undefined 
+            ? (dbProduct as any).pricemonthly 
+            : dbProduct.price * 25;
+          
+          const formattedProduct: Product = {
+            id: dbProduct.id,
+            name: dbProduct.name,
+            description: dbProduct.description || '',
+            price: dbProduct.price,
+            priceWeekly: weeklyPrice,
+            priceMonthly: monthlyPrice,
+            imageUrl: dbProduct.imageurl || '/placeholder.svg',
+            category: dbProduct.category,
+            available: dbProduct.available,
+            brand: dbProduct.brand || '',
+            model: dbProduct.model || '',
+            specs: processedSpecs
+          };
+          
+          setProduct(formattedProduct);
+        } else {
+          // If not found in database, try to find in static data
+          console.log('Product not found in database, falling back to static data');
+          
+          // Import all static products
+          const { products: staticProducts } = await import('@/data/products');
+          
+          // Find the product by ID
+          const staticProduct = staticProducts.find(p => p.id.toString() === id);
+          
+          if (staticProduct) {
+            setProduct(staticProduct);
+          } else {
+            console.error('Product not found in static data either:', id);
+            return;
           }
         }
-        
-        // Check if weekly and monthly prices exist in database or calculate them
-        // Use type assertion with 'as any' to bypass TypeScript's property check
-        const weeklyPrice = (data as any).priceweekly !== undefined 
-          ? (data as any).priceweekly 
-          : data.price * 6;
-        
-        const monthlyPrice = (data as any).pricemonthly !== undefined 
-          ? (data as any).pricemonthly 
-          : data.price * 25;
-        
-        const formattedProduct: Product = {
-          id: data.id,
-          name: data.name,
-          description: data.description || '',
-          price: data.price,
-          priceWeekly: weeklyPrice,
-          priceMonthly: monthlyPrice,
-          imageUrl: data.imageurl || '/placeholder.svg',
-          category: data.category,
-          available: data.available,
-          brand: data.brand || '',
-          model: data.model || '',
-          specs: processedSpecs
-        };
-        
-        setProduct(formattedProduct);
       } catch (error) {
-        console.error('Unexpected error:', error);
+        console.error('Error fetching product:', error);
         toast.error('Ocorreu um erro ao carregar o produto');
+        
+        // Fall back to static data
+        try {
+          // Import all static products
+          const { products: staticProducts } = await import('@/data/products');
+          
+          // Find the product by ID
+          const staticProduct = staticProducts.find(p => p.id.toString() === id);
+          
+          if (staticProduct) {
+            setProduct(staticProduct);
+          } else {
+            console.error('Product not found in static data either:', id);
+          }
+        } catch (fallbackError) {
+          console.error('Error falling back to static data:', fallbackError);
+        }
       } finally {
         setLoading(false);
       }

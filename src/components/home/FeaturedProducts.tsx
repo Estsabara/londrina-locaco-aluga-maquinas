@@ -76,6 +76,8 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
             name: item.name,
             description: item.description || '',
             price: item.price,
+            priceWeekly: (item as any).priceweekly || item.price * 6,
+            priceMonthly: (item as any).pricemonthly || item.price * 25,
             imageUrl: item.imageurl || '/placeholder.svg',
             category: item.category,
             available: item.available,

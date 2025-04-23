@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ProductList } from "@/components/products/ProductList";
-import { categories } from "@/data/products";
+import { categories, products as staticProducts } from "@/data/products";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Product } from "@/types";
@@ -11,6 +11,7 @@ import { Product } from "@/types";
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [useStaticData, setUseStaticData] = useState(false);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -24,6 +25,13 @@ export default function Products() {
         if (error) {
           console.error('Error fetching products:', error);
           toast.error('Erro ao carregar produtos');
+          setUseStaticData(true);
+          return;
+        }
+        
+        if (!data || data.length === 0) {
+          console.log('No products found in database, using static data');
+          setUseStaticData(true);
           return;
         }
         
@@ -48,6 +56,8 @@ export default function Products() {
             name: item.name,
             description: item.description || '',
             price: item.price,
+            priceWeekly: (item as any).priceweekly || item.price * 6,
+            priceMonthly: (item as any).pricemonthly || item.price * 25,
             imageUrl: item.imageurl || '/placeholder.svg',
             category: item.category,
             available: item.available,
@@ -58,9 +68,11 @@ export default function Products() {
         });
         
         setProducts(formattedProducts);
+        setUseStaticData(false);
       } catch (error) {
         console.error('Unexpected error:', error);
         toast.error('Ocorreu um erro ao carregar os produtos');
+        setUseStaticData(true);
       } finally {
         setLoading(false);
       }
@@ -68,6 +80,9 @@ export default function Products() {
 
     fetchProducts();
   }, []);
+
+  // Display the products based on whether we're using static or DB data
+  const displayProducts = useStaticData ? staticProducts : products;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -88,7 +103,7 @@ export default function Products() {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
             </div>
           ) : (
-            <ProductList products={products} categories={categories} />
+            <ProductList products={displayProducts} categories={categories} />
           )}
         </div>
       </main>

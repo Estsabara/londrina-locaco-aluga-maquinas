@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Product } from "@/types";
 import { formatCurrency } from "@/lib/date-utils";
@@ -26,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   const handleImageError = () => {
-    console.log(`Erro ao carregar imagem do produto: ${product.id} - ${product.name}, URL: ${product.imageUrl}`);
+    console.log(`Failed to load image for product ${product.id} - ${product.name}`);
     setImageError(true);
   };
 
@@ -58,6 +57,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           </CardContent>
         </Link>
+        
         <CardFooter className="p-4 pt-0 flex flex-col gap-2">
           <div className="w-full flex items-center justify-between">
             <div className="font-bold text-lg">
