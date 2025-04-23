@@ -12,7 +12,7 @@ export interface CategoryCardProps {
 export function CategoryCard({ name, icon: Icon, onClick }: CategoryCardProps) {
   return (
     <div 
-      className="category-card bg-primary rounded-lg cursor-pointer flex flex-col items-center justify-center p-1 md:p-3 h-[80px] md:h-[120px]"
+      className="category-card bg-primary rounded-lg cursor-pointer flex flex-col items-center justify-center p-1 md:p-3 h-[80px] md:h-[120px] w-full transition-transform hover:scale-105"
       onClick={onClick}
     >
       <div className="mb-1 md:mb-2">

@@ -3,16 +3,19 @@ import { useEffect, useState } from "react";
 import { Product } from "@/types";
 import { ProductCard } from "@/components/products/ProductCard";
 import { supabase } from "@/integrations/supabase/client";
-import { Drill } from "lucide-react";
+import { Drill, AlertTriangle } from "lucide-react";
 
 export function PerforationEquipment() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchProducts() {
       try {
         setLoading(true);
+        setError(null);
+        
         const { data, error } = await supabase
           .from('products')
           .select('*')
@@ -22,6 +25,13 @@ export function PerforationEquipment() {
         
         if (error) {
           console.error('Error fetching products:', error);
+          setError(error.message);
+          return;
+        }
+        
+        if (!data || data.length === 0) {
+          console.log('No perforation products found');
+          setProducts([]);
           return;
         }
         
@@ -41,6 +51,7 @@ export function PerforationEquipment() {
         setProducts(formattedProducts);
       } catch (error) {
         console.error('Unexpected error:', error);
+        setError(error instanceof Error ? error.message : 'Erro desconhecido');
       } finally {
         setLoading(false);
       }
@@ -48,6 +59,11 @@ export function PerforationEquipment() {
 
     fetchProducts();
   }, []);
+
+  // Se não houver produtos e não estiver carregando, não renderize a seção
+  if (!loading && products.length === 0 && !error) {
+    return null;
+  }
 
   return (
     <section className="py-12 bg-[hsl(0deg_0%_13%_/_3%)]">
@@ -62,6 +78,15 @@ export function PerforationEquipment() {
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        ) : error ? (
+          <div className="text-center py-10 bg-red-50 rounded-lg border border-red-200">
+            <AlertTriangle className="mx-auto h-10 w-10 text-red-400 mb-3" />
+            <h3 className="text-lg font-medium text-red-800">Erro ao carregar produtos</h3>
+            <p className="text-red-600 mt-2 max-w-md mx-auto">
+              Ocorreu um problema na conexão com o banco de dados. Por favor, tente novamente mais tarde.
+            </p>
+            <p className="text-sm text-red-500 mt-2">Detalhes técnicos: {error}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
