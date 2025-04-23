@@ -4,29 +4,55 @@ import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
 export function HeroBanner() {
   const categories = [{
-    name: "Perfuração e demolição",
-    category: "Furação e Demolição",
-    href: "/produtos?categoria=furacao-demolicao"
+    name: "Andaimes e Escoramentos",
+    category: "Andaimes",
+    href: "/produtos?categoria=andaimes-escoramentos",
+    icon: "/lovable-uploads/8a42e7a3-7dde-417b-bcca-e96aeeacf321.png"
   }, {
-    name: "Movimentação e elevação",
-    category: "Movimentação e Elevação",
-    href: "/produtos?categoria=movimentacao-elevacao"
+    name: "Movimentação e Elevação",
+    category: "Movimentação",
+    href: "/produtos?categoria=movimentacao-elevacao",
+    icon: "/lovable-uploads/1be950ff-c87d-46f3-b556-7c4dec5faf4f.png"
   }, {
-    name: "Corte e acabamento",
+    name: "Compactação",
+    category: "Compactação",
+    href: "/produtos?categoria=compactacao",
+    icon: "/lovable-uploads/bdf3980a-911f-45bd-8773-6f15f75fafc7.png"
+  }, {
+    name: "Concretagem",
+    category: "Concretagem",
+    href: "/produtos?categoria=concretagem",
+    icon: "/lovable-uploads/1aa47e43-5bfc-4e2e-855a-915e09d1487d.png"
+  }, {
+    name: "Ferramentas Elétricas",
     category: "Ferramentas Elétricas",
-    href: "/produtos?categoria=corte-acabamento"
+    href: "/produtos?categoria=ferramentas-eletricas",
+    icon: "/lovable-uploads/42f43d78-811a-45b0-aef8-37d28f26c361.png"
   }, {
-    name: "Concretagem e mistura",
-    category: "Concretagem e Mistura",
-    href: "/produtos?categoria=concretagem-mistura"
+    name: "Jardinagem",
+    category: "Jardinagem",
+    href: "/produtos?categoria=jardinagem",
+    icon: "/lovable-uploads/ac1f61ab-9719-4533-8656-9355d287a08c.png"
+  }, {
+    name: "Limpeza",
+    category: "Limpeza",
+    href: "/produtos?categoria=limpeza",
+    icon: "/lovable-uploads/51453ff4-ed62-478d-a31c-d731846ee36c.png"
+  }, {
+    name: "Perfuração e Demolição",
+    category: "Perfuração",
+    href: "/produtos?categoria=perfuracao-demolicao",
+    icon: "/lovable-uploads/6f78b3f2-beb6-4873-9151-9f69b928b28d.png"
   }, {
     name: "Energia",
     category: "Energia",
-    href: "/produtos?categoria=energia"
+    href: "/produtos?categoria=energia",
+    icon: "/lovable-uploads/62aa2cf7-22c9-4d58-b672-93d9c61a73f8.png"
   }, {
-    name: "Compactação de solo",
-    category: "Compactação de Solo",
-    href: "/produtos?categoria=compactacao-solo"
+    name: "Escoramentos",
+    category: "Escoramentos",
+    href: "/produtos?categoria=escoramentos",
+    icon: "/lovable-uploads/a6ec0873-df8a-4e65-943a-dc508c17430f.png"
   }];
 
   return (
@@ -48,16 +74,17 @@ export function HeroBanner() {
           </div>
 
           {/* Right side - Category Icons */}
-          <div className="grid grid-cols-2 gap-3 md:gap-6">
-            {categories.map(category => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
+            {categories.slice(0, 6).map(category => (
               <Link 
                 key={category.name} 
                 to={category.href} 
-                className="flex flex-col items-center justify-center p-3 md:p-6 rounded-lg bg-primary shadow-lg border-2 border-primary hover:bg-primary/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-primary shadow-lg border-2 border-primary hover:bg-primary/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
-                <CustomCategoryIcon 
-                  category={category.category} 
-                  className="w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12 text-white mb-2 group-hover:text-white/90 transition-colors" 
+                <img 
+                  src={category.icon}
+                  alt={category.name}
+                  className="w-8 h-8 md:w-10 md:h-10 text-white mb-2 group-hover:text-white/90 transition-colors"
                 />
                 <span className="text-xs md:text-sm text-white font-medium line-clamp-2 text-center group-hover:text-white/90">
                   {category.name}
