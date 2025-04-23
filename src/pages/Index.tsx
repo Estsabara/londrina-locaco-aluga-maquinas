@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -19,7 +20,7 @@ import {
   SidebarGroup,
   SidebarGroupLabel
 } from "@/components/ui/sidebar";
-import { Drill, Forklift, Truck, Construction, Menu } from "lucide-react";
+import { Drill, Forklift, Truck, Construction } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ElectricMachines } from "@/components/home/ElectricMachines";
 import { PerforationEquipment } from "@/components/home/PerforationEquipment";
@@ -31,7 +32,7 @@ export default function Index() {
   
   return (
     <SidebarProvider defaultOpen={false}>
-      <div className="flex flex-col min-h-screen w-full">
+      <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
         <Navbar />
         
         <div className="flex w-full flex-1">
@@ -82,9 +83,9 @@ export default function Index() {
           </Sidebar>
           
           <main className="flex-grow">
-            <div className="flex items-center p-4 md:hidden">
-              <SidebarTrigger />
-              <span className="ml-2">Menu de Categorias</span>
+            <div className="flex items-center p-3 md:hidden">
+              <SidebarTrigger className="mr-2" />
+              <span className="text-sm">Menu de Categorias</span>
             </div>
             <HeroBanner />
             <FeatureHighlights />

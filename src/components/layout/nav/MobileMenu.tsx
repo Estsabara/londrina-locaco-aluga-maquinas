@@ -14,7 +14,7 @@ export function MobileMenu({ isOpen, onClose, onLoginClick }: MobileMenuProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-md p-4 z-50">
+    <div className="md:hidden fixed top-16 left-0 right-0 bg-white shadow-md p-4 z-50 max-h-[80vh] overflow-y-auto">
       <div className="flex flex-col space-y-4">
         <Link
           to="/"
