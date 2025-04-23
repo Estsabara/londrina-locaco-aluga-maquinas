@@ -25,21 +25,21 @@ export function CategoryTabs({ onCategorySelect }: CategoryTabsProps) {
   };
 
   return (
-    <section className="py-8">
-      <div className="container px-4 md:px-6">
-        <h2 className="text-2xl font-bold mb-6 text-center">
+    <section className="py-6 md:py-8">
+      <div className="container px-3 md:px-6">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
           Equipamentos e ferramentas para locação
         </h2>
         
         <Tabs value={selectedTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="w-full flex justify-between mb-6 border-b border-gray-200">
-            <TabsTrigger value="mais-alugados" className="flex-1 pb-2 data-[state=active]:border-b-2 data-[state=active]:border-secondary rounded-none">
+          <TabsList className="w-full flex flex-col sm:flex-row justify-between mb-4 md:mb-6 border-b border-gray-200">
+            <TabsTrigger value="mais-alugados" className="flex-1 pb-2 data-[state=active]:border-b-2 data-[state=active]:border-secondary rounded-none text-sm md:text-base">
               Mais alugados
             </TabsTrigger>
-            <TabsTrigger value="fases-da-obra" className="flex-1 pb-2 data-[state=active]:border-b-2 data-[state=active]:border-secondary rounded-none">
+            <TabsTrigger value="fases-da-obra" className="flex-1 pb-2 data-[state=active]:border-b-2 data-[state=active]:border-secondary rounded-none text-sm md:text-base">
               Fases da obra
             </TabsTrigger>
-            <TabsTrigger value="tipo-de-trabalho" className="flex-1 pb-2 data-[state=active]:border-b-2 data-[state=active]:border-secondary rounded-none">
+            <TabsTrigger value="tipo-de-trabalho" className="flex-1 pb-2 data-[state=active]:border-b-2 data-[state=active]:border-secondary rounded-none text-sm md:text-base">
               Tipo de trabalho
             </TabsTrigger>
           </TabsList>
