@@ -27,7 +27,7 @@ export const categoryData: CategoryItem[] = [
   },
   { 
     name: "Compactação",
-    slug: "compactacao",
+    slug: "movimentacao",
     description: "Equipamentos para compactação",
     icon: Wrench,
     category: "Compactação"
