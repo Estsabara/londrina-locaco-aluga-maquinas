@@ -19,7 +19,7 @@ export function useProductDetails(id: string | undefined) {
         const { data: dbProduct, error: dbError } = await supabase
           .from('products')
           .select('*')
-          .eq('id', id)
+          .eq('id', parseInt(id, 10)) // Convert string id to number
           .single();
         
         if (dbProduct) {
