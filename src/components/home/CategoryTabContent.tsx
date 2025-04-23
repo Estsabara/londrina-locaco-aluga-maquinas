@@ -22,7 +22,7 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
   // Ensure we always have at least 6 categories to display
   const displayCategories = categories.length > 0 ? categories : Array(6).fill(null).map((_, i) => ({
     name: `Categoria ${i + 1}`,
-    icon: categories[0]?.icon || (() => <div className="w-4 h-4 bg-white rounded-full"></div>),
+    icon: () => <div className="w-4 h-4 bg-white rounded-full"></div> as React.ReactElement,
     color: "bg-primary",
     category: `Categoria ${i + 1}`
   }));
