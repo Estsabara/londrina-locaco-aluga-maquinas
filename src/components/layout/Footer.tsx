@@ -1,18 +1,11 @@
-
 import { Link } from "react-router-dom";
-
 export function Footer() {
-  return (
-    <footer className="border-t bg-background">
+  return <footer className="border-t bg-background">
       <div className="container py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img 
-                src="/lovable-uploads/3b4fefb8-58db-4d89-81e6-00d74836ab68.png" 
-                alt="Londrina Locações" 
-                className="h-14 w-auto"
-              />
+              <img src="/lovable-uploads/3b4fefb8-58db-4d89-81e6-00d74836ab68.png" alt="Londrina Locações" className="h-14 w-auto" />
             </div>
             <p className="text-muted-foreground mb-4">
               Aluguel de equipamentos e máquinas para construção civil com os melhores preços e condições.
@@ -50,11 +43,10 @@ export function Footer() {
               <p>Londrina, PR - CEP 86027-750</p>
               <p>Brasil</p>
               <p>Telefone: (43) 3372-3860</p>
-              <p>Email: londrinalocacao@gmail.com</p>
+              
             </address>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 }
