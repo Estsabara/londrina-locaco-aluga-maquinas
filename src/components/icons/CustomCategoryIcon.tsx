@@ -15,43 +15,42 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
     switch (normalizedCategory) {
       case 'andaimes':
       case 'andaimes e acessórios':
-        return '/lovable-uploads/f4c745a1-e393-4fda-b020-7243ecfd84c5.png';
+      case 'escoramento':
+        return '/lovable-uploads/82dcf392-c5a3-4f8c-9779-f93923681504.png';
       case 'movimentação':
       case 'movimentação e elevação':
-        return '/lovable-uploads/a15c98a9-3f34-439d-9dfb-5da87ed63a7f.png';
+      case 'acesso e elevação':
+      case 'acesso':
+      case 'elevação':
+        return '/lovable-uploads/dd6dba73-e970-42d1-9fb0-14f436794ac2.png';
       case 'compactação':
       case 'compactação de solo':
-        return '/lovable-uploads/a15e8f03-4eff-43ea-b1cb-3ebd40f1097b.png';
+        return '/lovable-uploads/88052ce2-85e6-431e-a6ee-4106e866bd37.png';
       case 'concretagem':
       case 'concretagem e mistura':
-        return '/lovable-uploads/eb929aea-d855-41b8-8d00-ef8c40f1bf7a.png';
+        return '/lovable-uploads/e17683f7-5286-4f73-9126-b8fb48e4ac76.png';
       case 'perfuração':
       case 'furação e demolição':
       case 'furação':
       case 'demolição':
-        return '/lovable-uploads/4c6660af-dc44-4832-9cf7-7d10c1aa9e61.png';
+        return '/lovable-uploads/8d1e72c9-18c7-4138-ab3f-6f44e25000df.png';
       case 'ferramentas elétricas':
       case 'ferramentas':
       case 'elétricas':
-        return '/lovable-uploads/0733f0f0-92ab-45fa-a68a-dab9c07afafd.png';
+      case 'corte e acabamento':
+        return '/lovable-uploads/8c7998cf-5af5-4ebf-9588-d084a393afb7.png';
       case 'jardinagem':
-        return '/lovable-uploads/ffe89201-7bd3-459b-b396-77a64db8cf3a.png';
+        return '/lovable-uploads/8bdf958f-5ea9-44b8-ba09-74f5483df733.png';
       case 'limpeza':
-        return '/lovable-uploads/8e143c89-fa46-49b3-99a2-882a9c24e657.png';
+        return '/lovable-uploads/4012597a-d28c-4c10-8b6e-1ab7fb50ebcc.png';
       case 'energia':
-        return '/lovable-uploads/81020873-cbce-4c88-b547-c2e8bff08f5b.png';
-      case 'escoramento':
-        return '/lovable-uploads/d950a6d9-27d7-4850-a25c-c2bdad977c73.png';
-      case 'acesso e elevação':
-      case 'acesso':
-      case 'elevação':
-        return '/lovable-uploads/a15c98a9-3f34-439d-9dfb-5da87ed63a7f.png';
+        return '/lovable-uploads/c0a5aeb7-4fac-4a12-a5eb-843cb6bf787c.png';
       case 'equipamentos diversos':
       case 'outros':
-        return '/lovable-uploads/0733f0f0-92ab-45fa-a68a-dab9c07afafd.png';
+        return '/lovable-uploads/d8d5a42b-015d-4a36-8e5e-1a2d0ab45e24.png';
       default:
         console.log('Category icon not found:', category);
-        return '';
+        return null;
     }
   };
 
