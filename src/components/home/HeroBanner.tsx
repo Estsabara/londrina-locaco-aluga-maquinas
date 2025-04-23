@@ -2,11 +2,11 @@
 import { Link } from "react-router-dom";
 import { 
   Construction, 
-  Forklift, 
+  Drill,
   Hammer,
   Wrench,
-  Drill,
-  Truck
+  Shovel,
+  Tractor
 } from "lucide-react";
 
 export function HeroBanner() {
@@ -16,7 +16,7 @@ export function HeroBanner() {
     href: "/produtos?categoria=furacao-demolicao"
   }, {
     name: "Movimentação e elevação",
-    icon: Forklift,
+    icon: Tractor,
     href: "/produtos?categoria=movimentacao-elevacao"
   }, {
     name: "Corte e acabamento",
@@ -24,7 +24,7 @@ export function HeroBanner() {
     href: "/produtos?categoria=corte-acabamento"
   }, {
     name: "Concretagem e mistura",
-    icon: Truck,
+    icon: Shovel,
     href: "/produtos?categoria=concretagem-mistura"
   }, {
     name: "Energia",
@@ -55,18 +55,18 @@ export function HeroBanner() {
           </div>
 
           {/* Right side - Category Icons */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-6">
             {categories.map(category => (
               <Link 
                 key={category.name} 
                 to={category.href} 
-                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/90 shadow-lg border border-gray-200 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+                className="flex flex-col items-center justify-center p-6 rounded-lg bg-yellow-400 shadow-lg border-2 border-yellow-500 hover:bg-yellow-300 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
                 <category.icon 
-                  className="w-10 h-10 text-primary mb-3 group-hover:text-primary/80 transition-colors" 
+                  className="w-16 h-16 text-gray-900 mb-4 group-hover:text-gray-800 transition-colors" 
                   strokeWidth={1.5}
                 />
-                <span className="text-sm text-gray-700 font-medium line-clamp-2 text-center group-hover:text-primary transition-colors">
+                <span className="text-sm text-gray-900 font-medium line-clamp-2 text-center group-hover:text-gray-800">
                   {category.name}
                 </span>
               </Link>
