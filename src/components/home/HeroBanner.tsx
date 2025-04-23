@@ -1,38 +1,31 @@
 
 import { Link } from "react-router-dom";
-import { 
-  Construction, 
-  Drill,
-  Hammer,
-  HardHat,
-  Building,
-  Factory
-} from "lucide-react";
+import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
 export function HeroBanner() {
   const categories = [{
     name: "Perfuração e demolição",
-    icon: Drill,
+    category: "Furação e Demolição",
     href: "/produtos?categoria=furacao-demolicao"
   }, {
     name: "Movimentação e elevação",
-    icon: Factory,
+    category: "Movimentação e Elevação",
     href: "/produtos?categoria=movimentacao-elevacao"
   }, {
     name: "Corte e acabamento",
-    icon: Construction,
+    category: "Ferramentas Elétricas",
     href: "/produtos?categoria=corte-acabamento"
   }, {
     name: "Concretagem e mistura",
-    icon: Building,
+    category: "Concretagem e Mistura",
     href: "/produtos?categoria=concretagem-mistura"
   }, {
     name: "Energia",
-    icon: HardHat,
+    category: "Energia",
     href: "/produtos?categoria=energia"
   }, {
     name: "Compactação de solo",
-    icon: Hammer,
+    category: "Compactação de Solo",
     href: "/produtos?categoria=compactacao-solo"
   }];
 
@@ -62,9 +55,9 @@ export function HeroBanner() {
                 to={category.href} 
                 className="flex flex-col items-center justify-center p-3 md:p-6 rounded-lg bg-primary shadow-lg border-2 border-primary hover:bg-primary/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
-                <category.icon 
+                <CustomCategoryIcon 
+                  category={category.category} 
                   className="w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12 text-white mb-2 group-hover:text-white/90 transition-colors" 
-                  strokeWidth={1.5}
                 />
                 <span className="text-xs md:text-sm text-white font-medium line-clamp-2 text-center group-hover:text-white/90">
                   {category.name}
