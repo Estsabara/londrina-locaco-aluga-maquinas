@@ -60,13 +60,13 @@ export function HeroBanner() {
               <Link 
                 key={category.name} 
                 to={category.href} 
-                className="flex flex-col items-center justify-center p-6 rounded-lg bg-yellow-400 shadow-lg border-2 border-yellow-500 hover:bg-yellow-300 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+                className="flex flex-col items-center justify-center p-6 rounded-lg bg-primary shadow-lg border-2 border-primary hover:bg-primary/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
                 <category.icon 
-                  className="w-16 h-16 text-gray-900 mb-4 group-hover:text-gray-800 transition-colors" 
+                  className="w-16 h-16 text-white mb-4 group-hover:text-white/90 transition-colors" 
                   strokeWidth={1.5}
                 />
-                <span className="text-sm text-gray-900 font-medium line-clamp-2 text-center group-hover:text-gray-800">
+                <span className="text-sm text-white font-medium line-clamp-2 text-center group-hover:text-white/90">
                   {category.name}
                 </span>
               </Link>
