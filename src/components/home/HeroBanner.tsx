@@ -4,9 +4,9 @@ import {
   Construction, 
   Drill,
   Hammer,
-  Wrench,
-  Shovel,
-  Tractor
+  HardHat,
+  Building,
+  Factory
 } from "lucide-react";
 
 export function HeroBanner() {
@@ -16,7 +16,7 @@ export function HeroBanner() {
     href: "/produtos?categoria=furacao-demolicao"
   }, {
     name: "Movimentação e elevação",
-    icon: Tractor,
+    icon: Factory,
     href: "/produtos?categoria=movimentacao-elevacao"
   }, {
     name: "Corte e acabamento",
@@ -24,11 +24,11 @@ export function HeroBanner() {
     href: "/produtos?categoria=corte-acabamento"
   }, {
     name: "Concretagem e mistura",
-    icon: Shovel,
+    icon: Building,
     href: "/produtos?categoria=concretagem-mistura"
   }, {
     name: "Energia",
-    icon: Wrench,
+    icon: HardHat,
     href: "/produtos?categoria=energia"
   }, {
     name: "Compactação de solo",
