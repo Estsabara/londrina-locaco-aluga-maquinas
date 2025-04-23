@@ -18,7 +18,7 @@ export function CategoryCard({ name, icon: Icon, onClick }: CategoryCardProps) {
     >
       <div className="mb-1 md:mb-2">
         {typeof Icon === "function" && !Icon.hasOwnProperty("$$typeof") ? (
-          Icon()
+          <>{Icon()}</>
         ) : (
           // @ts-ignore - We know Icon is a LucideIcon here
           <Icon className="h-4 w-4 md:h-6 md:w-6 text-white" />
