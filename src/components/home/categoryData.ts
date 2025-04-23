@@ -1,4 +1,3 @@
-
 import { LucideIcon } from "lucide-react";
 import { 
   ArrowUp,
@@ -7,7 +6,7 @@ import {
   Tractor,
   Drill,
   Scissors,
-  Shower,
+  Bath,
   Car,
   ToolIcon,
   Building,
@@ -15,7 +14,6 @@ import {
   Zap
 } from "lucide-react";
 
-// Helper function to check if a category has products
 const hasCategoryProducts = (category: string): boolean => {
   return true;
 };
@@ -40,7 +38,7 @@ export const categoryMaisAlugados: CategoryItem[] = [
     name: "Andaimes",
     slug: "andaimes",
     description: "Andaimes e acessórios",
-    icon: Stethoscope, // Using Stethoscope as a replacement for Stairs
+    icon: Stethoscope,
     category: "Andaimes"
   },
   { 
@@ -54,7 +52,7 @@ export const categoryMaisAlugados: CategoryItem[] = [
     name: "Concretagem",
     slug: "concretagem",
     description: "Equipamentos para concretagem",
-    icon: Tractor, // Using Tractor as a replacement for MixerHorizontal
+    icon: Tractor,
     category: "Concretagem"
   },
   { 
@@ -75,28 +73,28 @@ export const categoryMaisAlugados: CategoryItem[] = [
     name: "Jardinagem",
     slug: "jardinagem",
     description: "Equipamentos para jardinagem",
-    icon: Scissors, // Using Scissors as a replacement for LawnMower
+    icon: Scissors,
     category: "Jardinagem"
   },
   { 
     name: "Limpeza",
     slug: "limpeza",
     description: "Equipamentos para limpeza",
-    icon: Shower, // Using Shower as a replacement for VacuumCleaner
+    icon: Bath,
     category: "Limpeza"
   },
   { 
     name: "Motores",
     slug: "motores",
     description: "Motores e geradores",
-    icon: Car, // Using Car as a replacement for Engine
+    icon: Car,
     category: "Motores"
   },
   { 
     name: "Outros",
     slug: "outros",
     description: "Outros equipamentos",
-    icon: ToolIcon, // Using ToolIcon as a replacement for Tools
+    icon: ToolIcon,
     category: "Outros"
   }
 ].filter(cat => hasCategoryProducts(cat.category));
@@ -106,7 +104,7 @@ export const categoryFasesDaObra: CategoryItem[] = [
     name: "Canteiro de obras",
     slug: "canteiro-obras",
     description: "Estruturação e organização do canteiro de obras",
-    icon: Warehouse, // Using Warehouse as a replacement for Construction
+    icon: Warehouse,
     category: "Equipamentos Diversos"
   },
   { 
@@ -130,7 +128,7 @@ export const categoryTipoDeTrabalho: CategoryItem[] = [
     name: "Movimentação e elevação",
     slug: "movimentacao-elevacao",
     description: "Equipamentos para movimentação e elevação de cargas e pessoas",
-    icon: ArrowUp, // Using ArrowUp as a replacement for Forklift
+    icon: ArrowUp,
     category: "Movimentação e Elevação"
   },
   { 
@@ -144,7 +142,7 @@ export const categoryTipoDeTrabalho: CategoryItem[] = [
     name: "Concretagem",
     slug: "concretagem",
     description: "Equipamentos para preparo e aplicação de concreto",
-    icon: Tractor, // Using Tractor as a replacement for Truck
+    icon: Tractor,
     category: "Concretagem e Mistura"
   },
   { 
@@ -165,7 +163,7 @@ export const categoryTipoDeTrabalho: CategoryItem[] = [
     name: "Outros",
     slug: "outros",
     description: "Outros equipamentos para construção civil",
-    icon: ToolIcon, // Using ToolIcon as a replacement for Wrench
+    icon: ToolIcon,
     category: "Equipamentos Diversos"
   }
 ].filter(cat => hasCategoryProducts(cat.category));
