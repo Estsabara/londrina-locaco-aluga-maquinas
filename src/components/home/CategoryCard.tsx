@@ -1,30 +1,33 @@
 
-import { LucideIcon } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
+import type { LucideIcon } from "lucide-react";
 
-export interface CategoryCardProps {
+interface CategoryCardProps {
   name: string;
-  icon: LucideIcon | (() => React.ReactElement);
-  color: string;
-  category: string;
-  onClick?: () => void;
+  slug: string;
+  description: string;
+  icon: LucideIcon;
+  className?: string;
 }
 
-export function CategoryCard({ name, icon: Icon, onClick }: CategoryCardProps) {
+export function CategoryCard({
+  name,
+  slug,
+  description,
+  icon: Icon,
+  className = "",
+}: CategoryCardProps) {
   return (
-    <div 
-      className="category-card bg-primary rounded-lg cursor-pointer flex flex-col items-center justify-center p-1 md:p-3 h-[80px] md:h-[120px] w-full transition-transform hover:scale-105"
-      onClick={onClick}
-    >
-      <div className="mb-1 md:mb-2">
-        {typeof Icon === "function" && !Icon.hasOwnProperty("$$typeof") ? (
-          <>{Icon()}</>
-        ) : (
-          // @ts-ignore - We know Icon is a LucideIcon here
-          <Icon className="h-4 w-4 md:h-6 md:w-6 text-white" />
-        )}
-      </div>
-      <span className="text-center text-white text-[9px] md:text-xs font-medium line-clamp-2 px-1">{name}</span>
-    </div>
+    <Link to={`/produtos?categoria=${slug}`}>
+      <Card className={`h-full transition-transform hover:scale-105 ${className}`}>
+        <CardContent className="flex flex-col items-center justify-center p-6 text-center">
+          <Icon className="h-12 w-12 mb-4 text-primary" />
+          <h3 className="text-lg font-medium mb-2">{name}</h3>
+          <p className="text-sm text-muted-foreground">{description}</p>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }

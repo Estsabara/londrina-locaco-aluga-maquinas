@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Product } from "@/types";
 import { formatCurrency } from "@/lib/date-utils";
