@@ -1,38 +1,38 @@
 
 import { Link } from "react-router-dom";
 import { 
-  DrillIcon, 
-  Forklift,  // Changed from ForkLift to Forklift 
-  Scissors, 
-  TruckIcon,
-  ZapIcon,
-  HammerIcon
+  Construction, 
+  Forklift, 
+  Hammer,
+  Wrench,
+  Drill,
+  Mixer
 } from "lucide-react";
 
 export function HeroBanner() {
   const categories = [{
     name: "Perfuração e demolição",
-    icon: DrillIcon,
+    icon: Drill,
     href: "/produtos?categoria=furacao-demolicao"
   }, {
     name: "Movimentação e elevação",
-    icon: Forklift,  // Changed here as well
+    icon: Forklift,
     href: "/produtos?categoria=movimentacao-elevacao"
   }, {
     name: "Corte e acabamento",
-    icon: Scissors,
+    icon: Construction,
     href: "/produtos?categoria=corte-acabamento"
   }, {
     name: "Concretagem e mistura",
-    icon: TruckIcon,
+    icon: Mixer,
     href: "/produtos?categoria=concretagem-mistura"
   }, {
     name: "Energia",
-    icon: ZapIcon,
+    icon: Wrench,
     href: "/produtos?categoria=energia"
   }, {
     name: "Compactação de solo",
-    icon: HammerIcon,
+    icon: Hammer,
     href: "/produtos?categoria=compactacao-solo"
   }];
 
@@ -60,10 +60,13 @@ export function HeroBanner() {
               <Link 
                 key={category.name} 
                 to={category.href} 
-                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white shadow-sm border border-gray-100 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/90 shadow-lg border border-gray-200 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
-                <category.icon className="w-8 h-8 text-primary mb-2 group-hover:text-primary/80 transition-colors" strokeWidth={1.5} />
-                <span className="text-sm text-gray-600 font-medium line-clamp-2 text-center group-hover:text-primary transition-colors">
+                <category.icon 
+                  className="w-10 h-10 text-primary mb-3 group-hover:text-primary/80 transition-colors" 
+                  strokeWidth={1.5}
+                />
+                <span className="text-sm text-gray-700 font-medium line-clamp-2 text-center group-hover:text-primary transition-colors">
                   {category.name}
                 </span>
               </Link>
