@@ -1,6 +1,6 @@
 
 import React from "react";
-import { CategoryCard, CategoryCardProps } from "./CategoryCard";
+import { CategoryCard } from "./CategoryCard";
 import {
   Carousel,
   CarouselContent,
@@ -8,9 +8,18 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { LucideIcon } from "lucide-react";
+
+interface CategoryItemProps {
+  name: string;
+  slug: string;
+  description: string;
+  icon: LucideIcon;
+  category: string;
+}
 
 interface CategoryTabContentProps {
-  categories: CategoryCardProps[];
+  categories: CategoryItemProps[];
   onCategorySelect: (category: string) => void;
 }
 
@@ -22,8 +31,9 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
   // Ensure we always have at least 6 categories to display
   const displayCategories = categories.length > 0 ? categories : Array(6).fill(null).map((_, i) => ({
     name: `Categoria ${i + 1}`,
-    icon: () => <div className="w-4 h-4 bg-white rounded-full"></div> as React.ReactElement,
-    color: "bg-primary",
+    slug: `categoria-${i + 1}`,
+    description: `Descrição da categoria ${i + 1}`,
+    icon: () => <div className="w-4 h-4 bg-white rounded-full"></div> as unknown as LucideIcon,
     category: `Categoria ${i + 1}`
   }));
 
@@ -41,7 +51,10 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
             <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6">
               <div className="w-full">
                 <CategoryCard 
-                  {...card} 
+                  name={card.name}
+                  slug={card.slug || card.category.toLowerCase().replace(/\s+/g, '-')}
+                  description={card.description || ''}
+                  icon={card.icon}
                   onClick={() => handleCategorySelect(card.category)} 
                 />
               </div>

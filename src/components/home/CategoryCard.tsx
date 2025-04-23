@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import type { LucideIcon } from "lucide-react";
 
-interface CategoryCardProps {
+export interface CategoryCardProps {
   name: string;
   slug: string;
   description: string;

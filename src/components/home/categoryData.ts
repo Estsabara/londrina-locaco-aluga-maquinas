@@ -11,7 +11,6 @@ import {
   Zap,
   Wrench,
 } from "lucide-react";
-import { CategoryCardProps } from "./CategoryCard";
 import { products } from "@/data/products";
 
 // Helper function to check if a category has products - let's make it always return true to ensure categories display
@@ -20,101 +19,124 @@ const hasCategoryProducts = (category: string): boolean => {
   return true;
 };
 
-export const categoryMaisAlugados: CategoryCardProps[] = [
+interface CategoryItem {
+  name: string;
+  slug: string;
+  description: string;
+  icon: LucideIcon;
+  category: string;
+}
+
+export const categoryMaisAlugados: CategoryItem[] = [
   { 
     name: "Perfuração e demolição",
+    slug: "perfuracao-demolicao",
+    description: "Ferramentas para perfuração e demolição de concreto e alvenaria",
     icon: Drill,
-    color: "bg-primary",
     category: "Perfuração e Demolição"
   },
   { 
     name: "Movimentação e elevação",
+    slug: "movimentacao-elevacao",
+    description: "Equipamentos para movimentação e elevação de cargas",
     icon: Forklift,
-    color: "bg-primary",
     category: "Movimentação e Elevação"
   },
   { 
     name: "Corte e acabamento",
+    slug: "corte-acabamento",
+    description: "Ferramentas para corte e acabamento de materiais diversos",
     icon: Scissors,
-    color: "bg-primary",
     category: "Corte e Acabamento"
   },
   { 
     name: "Concretagem e mistura",
+    slug: "concretagem-mistura",
+    description: "Equipamentos para preparo e aplicação de concreto",
     icon: Truck,
-    color: "bg-primary",
     category: "Concretagem e Mistura"
   },
   { 
     name: "Energia",
+    slug: "energia",
+    description: "Geradores e equipamentos para fornecimento de energia",
     icon: Zap,
-    color: "bg-primary",
     category: "Energia"
   },
   { 
     name: "Compactação de solo",
+    slug: "compactacao-solo",
+    description: "Equipamentos para compactação de solo e terraplanagem",
     icon: Hammer,
-    color: "bg-primary",
     category: "Compactação de Solo"
   }
 ].filter(cat => hasCategoryProducts(cat.category));
 
-export const categoryFasesDaObra: CategoryCardProps[] = [
+export const categoryFasesDaObra: CategoryItem[] = [
   { 
     name: "Canteiro de obras",
+    slug: "canteiro-obras",
+    description: "Estruturação e organização do canteiro de obras",
     icon: Construction,
-    color: "bg-primary",
     category: "Equipamentos Diversos"
   },
   { 
     name: "Estrutura e alvenaria",
+    slug: "estrutura-alvenaria",
+    description: "Equipamentos para estruturas e construção de paredes",
     icon: Building,
-    color: "bg-primary",
     category: "Escoramento"
   },
   { 
     name: "Instalações",
+    slug: "instalacoes",
+    description: "Ferramentas para instalações elétricas e hidráulicas",
     icon: Zap,
-    color: "bg-primary",
     category: "Energia"
   }
 ].filter(cat => hasCategoryProducts(cat.category));
 
-export const categoryTipoDeTrabalho: CategoryCardProps[] = [
+export const categoryTipoDeTrabalho: CategoryItem[] = [
   { 
     name: "Movimentação e elevação",
+    slug: "movimentacao-elevacao",
+    description: "Equipamentos para movimentação e elevação de cargas e pessoas",
     icon: Forklift,
-    color: "bg-primary",
     category: "Movimentação e Elevação"
   },
   { 
     name: "Compactação",
+    slug: "compactacao",
+    description: "Equipamentos para compactação de solo",
     icon: Hammer,
-    color: "bg-primary",
     category: "Compactação de Solo"
   },
   { 
     name: "Concretagem",
+    slug: "concretagem",
+    description: "Equipamentos para preparo e aplicação de concreto",
     icon: Truck,
-    color: "bg-primary",
     category: "Concretagem e Mistura"
   },
   { 
     name: "Ferramentas elétricas",
+    slug: "ferramentas-eletricas",
+    description: "Diversas ferramentas elétricas para construção",
     icon: Drill,
-    color: "bg-primary",
     category: "Perfuração e Demolição"
   },
   { 
     name: "Energia",
+    slug: "energia",
+    description: "Geradores e equipamentos para fornecimento de energia",
     icon: Zap,
-    color: "bg-primary",
     category: "Energia"
   },
   { 
     name: "Outros",
+    slug: "outros",
+    description: "Outros equipamentos para construção civil",
     icon: Wrench,
-    color: "bg-primary",
     category: "Equipamentos Diversos"
   }
 ].filter(cat => hasCategoryProducts(cat.category));
