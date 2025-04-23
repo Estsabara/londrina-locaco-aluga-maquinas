@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { LucideIcon } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface CategoryItemProps {
   name: string;
@@ -24,6 +25,8 @@ interface CategoryTabContentProps {
 }
 
 export function CategoryTabContent({ categories, onCategorySelect }: CategoryTabContentProps) {
+  const isMobile = useIsMobile();
+  
   const handleCategorySelect = (category: string) => {
     onCategorySelect(category);
   };
@@ -38,7 +41,7 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
   }));
 
   return (
-    <div className="relative w-full px-1 sm:px-2 md:px-8">
+    <div className="relative w-full max-w-full overflow-hidden px-1 sm:px-2 md:px-4">
       <Carousel
         opts={{
           align: "start",

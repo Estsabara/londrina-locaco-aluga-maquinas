@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -25,9 +26,11 @@ import { ElectricMachines } from "@/components/home/ElectricMachines";
 import { PerforationEquipment } from "@/components/home/PerforationEquipment";
 import { MovementEquipment } from "@/components/home/MovementEquipment";
 import { SafetyEquipment } from "@/components/home/SafetyEquipment";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const isMobile = useIsMobile();
   
   return (
     <SidebarProvider defaultOpen={false}>
@@ -81,11 +84,8 @@ export default function Index() {
             </SidebarContent>
           </Sidebar>
           
-          <main className="flex-grow">
-            <div className="flex items-center p-3 md:hidden">
-              <SidebarTrigger className="mr-2" />
-              <span className="text-sm">Menu de Categorias</span>
-            </div>
+          <main className="flex-grow w-full overflow-hidden">
+            {/* Removido o botão de menu de categorias no mobile */}
             <HeroBanner />
             <FeatureHighlights />
             <CategoryTabs onCategorySelect={setSelectedCategory} />
