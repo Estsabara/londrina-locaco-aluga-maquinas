@@ -1,3 +1,4 @@
+
 import { LucideIcon } from "lucide-react";
 import { 
   ArrowUp,
@@ -8,7 +9,6 @@ import {
   Scissors,
   Bath,
   Car,
-  ToolIcon,
   Building,
   Warehouse,
   Zap
@@ -94,7 +94,7 @@ export const categoryMaisAlugados: CategoryItem[] = [
     name: "Outros",
     slug: "outros",
     description: "Outros equipamentos",
-    icon: ToolIcon,
+    icon: Hammer, // Replaced ToolIcon with Hammer
     category: "Outros"
   }
 ].filter(cat => hasCategoryProducts(cat.category));
@@ -163,7 +163,7 @@ export const categoryTipoDeTrabalho: CategoryItem[] = [
     name: "Outros",
     slug: "outros",
     description: "Outros equipamentos para construção civil",
-    icon: ToolIcon,
+    icon: Hammer, // Replaced ToolIcon with Hammer
     category: "Equipamentos Diversos"
   }
 ].filter(cat => hasCategoryProducts(cat.category));
