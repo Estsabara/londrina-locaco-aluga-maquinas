@@ -1,3 +1,4 @@
+
 import { Product } from "@/types";
 
 export const andaimesAcessoriosProducts: Product[] = [
@@ -23,7 +24,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Andaime com Escada de 2m",
     description: "Andaime com escada integrada para acesso mais fácil a alturas de até 2 metros.",
     price: 65,
-    imageUrl: "https://images.tcdn.com.br/img/img_prod/776033/andaime_escada_3_10m_de_altura_plataforma_60cm_de_comprimento_4424_1_eb4cbb96fd23363c90a4e2e5d0dbb8ff.jpg",
+    imageUrl: "/placeholder.svg",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Platafort",
@@ -40,7 +41,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Jogo de Guarda-Corpo para Andaime",
     description: "Jogo de guarda-corpo para andaime, essencial para segurança em trabalhos em altura.",
     price: 25,
-    imageUrl: "https://www.jcsaogeraldo.com.br/wp-content/uploads/2019/08/guarda-corpo-e-rod-pe-para-andaime-tipo-fachadeiro.jpg",
+    imageUrl: "/placeholder.svg",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Metax",
@@ -57,7 +58,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Piso Metálico para Andaime 1,0m",
     description: "Piso metálico para andaime com 1 metro de comprimento.",
     price: 15,
-    imageUrl: "https://http2.mlstatic.com/D_NQ_NP_843845-MLB72120723290_102023-O.webp",
+    imageUrl: "/placeholder.svg",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Metax",
@@ -74,7 +75,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Piso Metálico para Andaime 1,5m",
     description: "Piso metálico para andaime com 1,5 metros de comprimento.",
     price: 20,
-    imageUrl: "https://static.ferramentasgerais.com.br/static/img/products/0000092070/large/0000092070.jpg",
+    imageUrl: "/placeholder.svg",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Metax",
@@ -91,7 +92,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Sapata Ajustável para Andaime",
     description: "Sapata ajustável para nivelamento de andaimes em terrenos irregulares.",
     price: 10,
-    imageUrl: "https://http2.mlstatic.com/D_NQ_NP_693180-MLB50274752317_062022-O.webp",
+    imageUrl: "/placeholder.svg",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Metax",
@@ -108,7 +109,7 @@ export const andaimesAcessoriosProducts: Product[] = [
     name: "Roda para Andaime",
     description: "Roda para facilitar a movimentação de andaimes.",
     price: 12,
-    imageUrl: "https://http2.mlstatic.com/D_NQ_NP_771881-MLB49494633699_032022-O.webp",
+    imageUrl: "/placeholder.svg",
     category: "Andaimes e Acessórios",
     available: true,
     brand: "Metax",

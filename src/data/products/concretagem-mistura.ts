@@ -7,7 +7,7 @@ export const concretagemMisturaProducts: Product[] = [
     name: "Betoneira 400L com motor",
     description: "Betoneira com capacidade de 400 litros, ideal para obras de grande porte.",
     price: 150,
-    imageUrl: "/lovable-uploads/cf3d34eb-8c73-476e-bae6-fbd21e3725ab.png", // Betoneira amarela
+    imageUrl: "/lovable-uploads/cf3d34eb-8c73-476e-bae6-fbd21e3725ab.png",
     category: "Concretagem e Mistura",
     available: true,
     brand: "CSM",
@@ -105,7 +105,7 @@ export const concretagemMisturaProducts: Product[] = [
     }
   },
   {
-    id: 44,
+    id: 70,
     name: "Mangote Vibrador Bosch GVC",
     description: "Mangote vibrador com motor elétrico para adensamento de concreto.",
     price: 110,
@@ -122,7 +122,7 @@ export const concretagemMisturaProducts: Product[] = [
     }
   },
   {
-    id: 45,
+    id: 71,
     name: "Mangote para Vibrador 35mm",
     description: "Mangote para vibrador de concreto com 35mm de diâmetro.",
     price: 45,

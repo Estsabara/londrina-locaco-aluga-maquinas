@@ -1,8 +1,9 @@
+
 import { Product } from "@/types";
 
 export const equipamentosDiversosProducts: Product[] = [
   {
-    id: 44,
+    id: 60,
     name: "Acabador de Piso",
     description: "Acabador de piso para alisamento de concreto em grandes áreas.",
     price: 160,
@@ -19,7 +20,7 @@ export const equipamentosDiversosProducts: Product[] = [
     }
   },
   {
-    id: 45,
+    id: 61,
     name: "Bomba Mangote 2\" ou 3\"",
     description: "Bomba mangote para transferência de água em obras.",
     price: 90,
@@ -36,7 +37,7 @@ export const equipamentosDiversosProducts: Product[] = [
     }
   },
   {
-    id: 46,
+    id: 62,
     name: "Soprador Térmico",
     description: "Soprador térmico para remoção de tintas, moldagem de plásticos e outros trabalhos com calor.",
     price: 55,
@@ -53,7 +54,7 @@ export const equipamentosDiversosProducts: Product[] = [
     }
   },
   {
-    id: 49,
+    id: 63,
     name: "Vibrador de Concreto Portátil",
     description: "Vibrador de concreto portátil com mangote para adensamento de concreto.",
     price: 95,
@@ -70,7 +71,7 @@ export const equipamentosDiversosProducts: Product[] = [
     }
   },
   {
-    id: 50,
+    id: 64,
     name: "Paleteira Manual 2200kg",
     description: "Paleteira manual para movimentação de cargas paletizadas.",
     price: 80,
@@ -87,7 +88,7 @@ export const equipamentosDiversosProducts: Product[] = [
     }
   },
   {
-    id: 56,
+    id: 65,
     name: "Talha Manual 2 Toneladas",
     description: "Talha manual com corrente para elevação de cargas pesadas.",
     price: 95,
@@ -104,7 +105,7 @@ export const equipamentosDiversosProducts: Product[] = [
     }
   },
   {
-    id: 57,
+    id: 66,
     name: "Transformador 3000VA",
     description: "Transformador de tensão para equipamentos 110V/220V.",
     price: 55,
