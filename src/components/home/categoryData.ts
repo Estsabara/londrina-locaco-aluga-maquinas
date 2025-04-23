@@ -82,3 +82,9 @@ export const categoryData: CategoryItem[] = [
     category: "Escoramentos"
   }
 ];
+
+// Creating the category groups that CategoryTabs needs
+export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 5);
+export const categoryFasesDaObra: CategoryItem[] = categoryData.slice(5, 8);
+export const categoryTipoDeTrabalho: CategoryItem[] = categoryData.slice(8);
+

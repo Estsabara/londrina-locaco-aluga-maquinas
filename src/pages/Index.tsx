@@ -88,7 +88,7 @@ export default function Index() {
             {/* Removido o botão de menu de categorias no mobile */}
             <HeroBanner />
             <FeatureHighlights />
-            <CategoryTabs onCategorySelect={setSelectedCategory} />
+            <CategoryCarousel onCategorySelect={setSelectedCategory} />
             <FeaturedProducts selectedCategory={selectedCategory} />
             <ElectricMachines />
             <PerforationEquipment />
