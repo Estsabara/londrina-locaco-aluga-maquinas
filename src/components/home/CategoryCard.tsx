@@ -16,9 +16,10 @@ export function CategoryCard({ name, icon: Icon, color, onClick }: CategoryCardP
       onClick={onClick}
     >
       <div className="mb-2">
-        <Icon className="h-8 w-8 text-yellow-400" />
+        <Icon className="h-8 w-8 text-white" />
       </div>
       <span className="text-center text-white text-xs font-medium line-clamp-2">{name}</span>
     </div>
   );
 }
+
