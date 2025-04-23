@@ -26,7 +26,7 @@ import { ElectricMachines } from "@/components/home/ElectricMachines";
 import { PerforationEquipment } from "@/components/home/PerforationEquipment";
 import { MovementEquipment } from "@/components/home/MovementEquipment";
 import { SafetyEquipment } from "@/components/home/SafetyEquipment";
-import { ObraVideosSection } from "@/components/home/ObraVideosSection";
+// Removed ObraVideosSection import
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -92,7 +92,7 @@ export default function Index() {
             </div>
             <HeroBanner />
             <FeatureHighlights />
-            <ObraVideosSection />
+            {/* Removed ObraVideosSection component */}
             <CategoryTabs onCategorySelect={setSelectedCategory} />
             <FeaturedProducts selectedCategory={selectedCategory} />
             <ElectricMachines />
@@ -109,4 +109,3 @@ export default function Index() {
     </SidebarProvider>
   );
 }
-
