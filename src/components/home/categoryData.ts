@@ -1,21 +1,6 @@
-import { LucideIcon } from "lucide-react";
-import { 
-  ArrowUp,
-  Stethoscope,
-  Hammer,
-  Tractor,
-  Drill,
-  Scissors,
-  Bath,
-  Car,
-  Building,
-  Warehouse,
-  Zap
-} from "lucide-react";
 
-const hasCategoryProducts = (category: string): boolean => {
-  return true;
-};
+import { LucideIcon } from "lucide-react";
+import { Wrench } from "lucide-react";
 
 interface CategoryItem {
   name: string;
@@ -27,142 +12,79 @@ interface CategoryItem {
 
 export const categoryMaisAlugados: CategoryItem[] = [
   { 
-    name: "Acesso e elevação",
-    slug: "acesso-elevacao",
-    description: "Equipamentos para acesso e elevação",
-    icon: ArrowUp,
-    category: "Acesso e Elevação"
-  },
-  { 
     name: "Andaimes",
     slug: "andaimes",
     description: "Andaimes e acessórios",
-    icon: Stethoscope,
+    icon: Wrench,
     category: "Andaimes"
+  },
+  { 
+    name: "Movimentação",
+    slug: "movimentacao",
+    description: "Equipamentos para movimentação",
+    icon: Wrench,
+    category: "Movimentação"
   },
   { 
     name: "Compactação",
     slug: "compactacao",
     description: "Equipamentos para compactação",
-    icon: Hammer,
+    icon: Wrench,
     category: "Compactação"
+  },
+  { 
+    name: "Demolição",
+    slug: "demolicao",
+    description: "Equipamentos para demolição",
+    icon: Wrench,
+    category: "Demolição"
   },
   { 
     name: "Concretagem",
     slug: "concretagem",
     description: "Equipamentos para concretagem",
-    icon: Tractor,
+    icon: Wrench,
     category: "Concretagem"
-  },
+  }
+];
+
+export const categoryFasesDaObra: CategoryItem[] = [
   { 
-    name: "Ferramentas elétricas",
-    slug: "ferramentas-eletricas",
-    description: "Ferramentas elétricas profissionais",
-    icon: Drill,
-    category: "Ferramentas Elétricas"
-  },
-  { 
-    name: "Furação e demolição",
-    slug: "furacao-demolicao",
-    description: "Equipamentos para furação e demolição",
-    icon: Drill,
-    category: "Furação e Demolição"
+    name: "Limpeza",
+    slug: "limpeza",
+    description: "Equipamentos para limpeza",
+    icon: Wrench,
+    category: "Limpeza"
   },
   { 
     name: "Jardinagem",
     slug: "jardinagem",
     description: "Equipamentos para jardinagem",
-    icon: Scissors,
+    icon: Wrench,
     category: "Jardinagem"
   },
   { 
-    name: "Limpeza",
-    slug: "limpeza",
-    description: "Equipamentos para limpeza",
-    icon: Bath,
-    category: "Limpeza"
-  },
-  { 
-    name: "Motores",
-    slug: "motores",
-    description: "Motores e geradores",
-    icon: Car,
-    category: "Motores"
-  },
-  { 
-    name: "Outros",
-    slug: "outros",
-    description: "Outros equipamentos",
-    icon: Hammer, // Replaced ToolIcon with Hammer
-    category: "Outros"
+    name: "Ferramentas Elétricas",
+    slug: "ferramentas-eletricas",
+    description: "Ferramentas elétricas profissionais",
+    icon: Wrench,
+    category: "Ferramentas Elétricas"
   }
-].filter(cat => hasCategoryProducts(cat.category));
-
-export const categoryFasesDaObra: CategoryItem[] = [
-  { 
-    name: "Canteiro de obras",
-    slug: "canteiro-obras",
-    description: "Estruturação e organização do canteiro de obras",
-    icon: Warehouse,
-    category: "Equipamentos Diversos"
-  },
-  { 
-    name: "Estrutura e alvenaria",
-    slug: "estrutura-alvenaria",
-    description: "Equipamentos para estruturas e construção de paredes",
-    icon: Building,
-    category: "Escoramento"
-  },
-  { 
-    name: "Instalações",
-    slug: "instalacoes",
-    description: "Ferramentas para instalações elétricas e hidráulicas",
-    icon: Zap,
-    category: "Energia"
-  }
-].filter(cat => hasCategoryProducts(cat.category));
+];
 
 export const categoryTipoDeTrabalho: CategoryItem[] = [
   { 
-    name: "Movimentação e elevação",
-    slug: "movimentacao-elevacao",
-    description: "Equipamentos para movimentação e elevação de cargas e pessoas",
-    icon: ArrowUp,
-    category: "Movimentação e Elevação"
-  },
-  { 
-    name: "Compactação",
-    slug: "compactacao",
-    description: "Equipamentos para compactação de solo",
-    icon: Hammer,
-    category: "Compactação de Solo"
-  },
-  { 
-    name: "Concretagem",
-    slug: "concretagem",
-    description: "Equipamentos para preparo e aplicação de concreto",
-    icon: Tractor,
-    category: "Concretagem e Mistura"
-  },
-  { 
-    name: "Ferramentas elétricas",
-    slug: "ferramentas-eletricas",
-    description: "Diversas ferramentas elétricas para construção",
-    icon: Drill,
-    category: "Perfuração e Demolição"
-  },
-  { 
     name: "Energia",
     slug: "energia",
-    description: "Geradores e equipamentos para fornecimento de energia",
-    icon: Zap,
+    description: "Geradores e equipamentos de energia",
+    icon: Wrench,
     category: "Energia"
   },
   { 
-    name: "Outros",
-    slug: "outros",
-    description: "Outros equipamentos para construção civil",
-    icon: Hammer, // Replaced ToolIcon with Hammer
-    category: "Equipamentos Diversos"
+    name: "Escoramentos",
+    slug: "escoramentos",
+    description: "Equipamentos para escoramentos",
+    icon: Wrench,
+    category: "Escoramentos"
   }
-].filter(cat => hasCategoryProducts(cat.category));
+];

@@ -13,28 +13,25 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
     
     switch (normalizedCategory) {
       case 'andaimes':
-      case 'andaimes e escoramentos':
-        return '/lovable-uploads/8a42e7a3-7dde-417b-bcca-e96aeeacf321.png';
+        return '/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png';
       case 'movimentação':
-      case 'movimentação e elevação':
-        return '/lovable-uploads/1be950ff-c87d-46f3-b556-7c4dec5faf4f.png';
+        return '/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png';
       case 'compactação':
-        return '/lovable-uploads/bdf3980a-911f-45bd-8773-6f15f75fafc7.png';
+        return '/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png';
+      case 'demolição':
+        return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png';
       case 'concretagem':
-        return '/lovable-uploads/1aa47e43-5bfc-4e2e-855a-915e09d1487d.png';
-      case 'ferramentas elétricas':
-        return '/lovable-uploads/42f43d78-811a-45b0-aef8-37d28f26c361.png';
-      case 'jardinagem':
-        return '/lovable-uploads/ac1f61ab-9719-4533-8656-9355d287a08c.png';
+        return '/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png';
       case 'limpeza':
-        return '/lovable-uploads/51453ff4-ed62-478d-a31c-d731846ee36c.png';
-      case 'perfuração':
-      case 'perfuração e demolição':
-        return '/lovable-uploads/6f78b3f2-beb6-4873-9151-9f69b928b28d.png';
+        return '/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png';
+      case 'jardinagem':
+        return '/lovable-uploads/2bd10752-8b9d-4db6-a157-197c47ae596c.png';
+      case 'ferramentas elétricas':
+        return '/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png';
       case 'energia':
-        return '/lovable-uploads/62aa2cf7-22c9-4d58-b672-93d9c61a73f8.png';
+        return '/lovable-uploads/8018b07b-9771-47a4-8eb0-36b34f16f546.png';
       case 'escoramentos':
-        return '/lovable-uploads/a6ec0873-df8a-4e65-943a-dc508c17430f.png';
+        return '/lovable-uploads/aad19f97-574c-4505-87cc-5a3ee838a610.png';
       default:
         console.log('Category icon not found:', category);
         return null;
