@@ -10,7 +10,7 @@ interface CategoryItem {
   category: string;
 }
 
-export const categoryMaisAlugados: CategoryItem[] = [
+export const categoryData: CategoryItem[] = [
   { 
     name: "Andaimes",
     slug: "andaimes",
@@ -45,10 +45,7 @@ export const categoryMaisAlugados: CategoryItem[] = [
     description: "Equipamentos para concretagem",
     icon: Wrench,
     category: "Concretagem"
-  }
-];
-
-export const categoryFasesDaObra: CategoryItem[] = [
+  },
   { 
     name: "Limpeza",
     slug: "limpeza",
@@ -69,10 +66,7 @@ export const categoryFasesDaObra: CategoryItem[] = [
     description: "Ferramentas elétricas profissionais",
     icon: Wrench,
     category: "Ferramentas Elétricas"
-  }
-];
-
-export const categoryTipoDeTrabalho: CategoryItem[] = [
+  },
   { 
     name: "Energia",
     slug: "energia",

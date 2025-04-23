@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { HeroBanner } from "@/components/home/HeroBanner";
 import { FeatureHighlights } from "@/components/home/FeatureHighlights";
-import { CategoryTabs } from "@/components/home/CategoryTabs";
+import { CategoryCarousel } from "@/components/home/CategoryCarousel";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
