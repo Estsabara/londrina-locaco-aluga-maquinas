@@ -1,11 +1,10 @@
-
 import { Link } from "react-router-dom";
 import { Product } from "@/types";
 import { formatCurrency } from "@/lib/date-utils";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Globe } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
 import { useState } from "react";
 
@@ -31,31 +30,33 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Link to={`/produto/${product.id}`} state={{ product }}>
+    <div className="group">
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
-        <div className="relative h-48 bg-white border-b">
-          <img 
-            src={imageError ? "/placeholder.svg" : product.imageUrl} 
-            alt={product.name} 
-            className="w-full h-full object-contain p-3"
-            onError={handleImageError}
-          />
-          <Badge className="absolute top-2 right-2">
-            {product.category}
-          </Badge>
-        </div>
-        <CardContent className="p-4">
-          <h3 className="font-semibold text-lg truncate">{product.name}</h3>
-          <p className="text-muted-foreground text-sm line-clamp-2 mt-1">
-            {product.description}
-          </p>
-          <div className="mt-2 text-sm">
-            <span className="font-medium">Marca:</span> {product.brand}
+        <Link to={`/produto/${product.id}`} className="block">
+          <div className="relative h-48 bg-white border-b">
+            <img 
+              src={imageError ? "/placeholder.svg" : product.imageUrl} 
+              alt={product.name} 
+              className="w-full h-full object-contain p-3"
+              onError={handleImageError}
+            />
+            <Badge className="absolute top-2 right-2">
+              {product.category}
+            </Badge>
           </div>
-          <div className="mt-1 text-sm">
-            <span className="font-medium">Modelo:</span> {product.model}
-          </div>
-        </CardContent>
+          <CardContent className="p-4">
+            <h3 className="font-semibold text-lg truncate">{product.name}</h3>
+            <p className="text-muted-foreground text-sm line-clamp-2 mt-1">
+              {product.description}
+            </p>
+            <div className="mt-2 text-sm">
+              <span className="font-medium">Marca:</span> {product.brand}
+            </div>
+            <div className="mt-1 text-sm">
+              <span className="font-medium">Modelo:</span> {product.model}
+            </div>
+          </CardContent>
+        </Link>
         <CardFooter className="p-4 pt-0 flex flex-col gap-2">
           <div className="w-full flex items-center justify-between">
             <div className="font-bold text-lg">
@@ -75,8 +76,17 @@ export function ProductCard({ product }: ProductCardProps) {
             <MessageCircle className="mr-2 h-4 w-4" />
             Alugar pelo WhatsApp
           </Button>
+          <Link to={`/produto/${product.id}`} className="w-full">
+            <Button 
+              className="w-full bg-primary hover:bg-primary/90 text-white"
+              variant="default"
+            >
+              <Globe className="mr-2 h-4 w-4" />
+              Alugue pelo site
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
-    </Link>
+    </div>
   );
 }
