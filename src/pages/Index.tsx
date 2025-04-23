@@ -26,6 +26,7 @@ import { ElectricMachines } from "@/components/home/ElectricMachines";
 import { PerforationEquipment } from "@/components/home/PerforationEquipment";
 import { MovementEquipment } from "@/components/home/MovementEquipment";
 import { SafetyEquipment } from "@/components/home/SafetyEquipment";
+import { CategoryHighlights } from "@/components/home/CategoryHighlights";
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -90,6 +91,7 @@ export default function Index() {
             <HeroBanner />
             <FeatureHighlights />
             <CategoryTabs onCategorySelect={setSelectedCategory} />
+            <CategoryHighlights />
             <FeaturedProducts selectedCategory={selectedCategory} />
             <ElectricMachines />
             <PerforationEquipment />

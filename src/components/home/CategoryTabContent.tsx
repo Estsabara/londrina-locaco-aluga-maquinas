@@ -19,6 +19,14 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
     onCategorySelect(category);
   };
 
+  // Ensure we always have at least 6 categories to display
+  const displayCategories = categories.length > 0 ? categories : Array(6).fill(null).map((_, i) => ({
+    name: `Categoria ${i + 1}`,
+    icon: categories[0]?.icon || (() => <div className="w-4 h-4 bg-white rounded-full"></div>),
+    color: "bg-primary",
+    category: `Categoria ${i + 1}`
+  }));
+
   return (
     <div className="relative w-full px-2 md:px-8">
       <Carousel
@@ -29,7 +37,7 @@ export function CategoryTabContent({ categories, onCategorySelect }: CategoryTab
         className="w-full"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {categories.map((card, index) => (
+          {displayCategories.map((card, index) => (
             <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6">
               <div className="w-full">
                 <CategoryCard 

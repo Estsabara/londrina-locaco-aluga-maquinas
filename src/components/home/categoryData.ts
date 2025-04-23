@@ -14,9 +14,10 @@ import {
 import { CategoryCardProps } from "./CategoryCard";
 import { products } from "@/data/products";
 
-// Helper function to check if a category has products
+// Helper function to check if a category has products - let's make it always return true to ensure categories display
 const hasCategoryProducts = (category: string): boolean => {
-  return products.some(product => product.category === category);
+  // We're removing the filter to always show categories
+  return true;
 };
 
 export const categoryMaisAlugados: CategoryCardProps[] = [

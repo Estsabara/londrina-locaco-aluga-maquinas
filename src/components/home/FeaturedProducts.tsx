@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, AlertTriangle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { products as staticProducts } from "@/data/products";
 
 interface FeaturedProductsProps {
   selectedCategory: string;
@@ -16,6 +17,7 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [useStaticData, setUseStaticData] = useState(false);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -41,12 +43,15 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
           console.error('Error fetching products:', error);
           setError(error.message);
           toast.error('Erro ao carregar produtos');
+          // Fall back to static data if there's an error
+          setUseStaticData(true);
           return;
         }
         
         if (!data || data.length === 0) {
           console.log('No products found for category:', selectedCategory);
-          setProducts([]);
+          // If no data from database, use static data
+          setUseStaticData(true);
           return;
         }
         
@@ -81,10 +86,13 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
         });
         
         setProducts(formattedProducts);
+        setUseStaticData(false);
       } catch (error) {
         console.error('Unexpected error:', error);
         setError(error instanceof Error ? error.message : 'Erro desconhecido');
         toast.error('Ocorreu um erro ao carregar os produtos');
+        // Fall back to static data if there's an error
+        setUseStaticData(true);
       } finally {
         setLoading(false);
       }
@@ -92,6 +100,13 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
 
     fetchProducts();
   }, [selectedCategory]);
+
+  // If we're using static data, filter it by the selected category
+  const displayProducts = useStaticData 
+    ? (selectedCategory === "Todos" 
+        ? staticProducts.slice(0, 6) 
+        : staticProducts.filter(p => p.category === selectedCategory).slice(0, 6))
+    : products;
 
   return (
     <section className="py-12 bg-[hsl(0deg_0%_13%_/_3%)]">
@@ -112,7 +127,7 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
-        ) : error ? (
+        ) : error && !useStaticData ? (
           <div className="text-center py-10 bg-red-50 rounded-lg border border-red-200">
             <AlertTriangle className="mx-auto h-10 w-10 text-red-400 mb-3" />
             <h3 className="text-lg font-medium text-red-800">Erro ao carregar produtos</h3>
@@ -121,9 +136,9 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
             </p>
             <p className="text-sm text-red-500 mt-2">Detalhes técnicos: {error}</p>
           </div>
-        ) : products.length > 0 ? (
+        ) : displayProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {products.map(product => (
+            {displayProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
