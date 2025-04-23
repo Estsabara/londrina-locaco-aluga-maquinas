@@ -21,7 +21,7 @@ const Navbar = () => {
   const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-black shadow-sm">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center">
           <img 
