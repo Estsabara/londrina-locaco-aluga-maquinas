@@ -18,10 +18,8 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
         return '/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png';
       case 'compactação':
         return '/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png';
-      case 'furação e demolição':
-        return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png';
       case 'concretagem':
-        return '/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png';
+        return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png';
       case 'jardinagem':
         return '/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png';
       case 'ferramentas elétricas':
@@ -47,7 +45,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
           src={iconPath}
           alt={`Ícone ${category}`}
           className={`h-12 w-12 object-contain ${className}`}
-          style={{ filter: 'invert(14%) sepia(96%) saturate(5191%) hue-rotate(355deg) brightness(99%) contrast(116%)' }}
+          style={{ filter: 'invert(27%) sepia(85%) saturate(7076%) hue-rotate(5deg) brightness(102%) contrast(109%)' }}
           onError={(e) => {
             console.error(`Failed to load icon for category: ${category}`);
             e.currentTarget.onerror = null;
@@ -60,7 +58,8 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   
   return (
     <div className="bg-white rounded-lg p-4">
-      <Wrench className={`h-12 w-12 text-[#ff3800] ${className}`} />
+      <Wrench className={`h-12 w-12 text-[#ff3200] ${className}`} />
     </div>
   );
 }
+

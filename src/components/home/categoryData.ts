@@ -1,4 +1,3 @@
-
 import { LucideIcon } from "lucide-react";
 import { Wrench } from "lucide-react";
 
@@ -33,13 +32,6 @@ export const categoryData: CategoryItem[] = [
     category: "Compactação"
   },
   { 
-    name: "Furação e Demolição",
-    slug: "furacao-demolicao",
-    description: "Equipamentos para furação e demolição",
-    icon: Wrench,
-    category: "Furação e Demolição"
-  },
-  { 
     name: "Concretagem",
     slug: "concretagem",
     description: "Equipamentos para concretagem",
@@ -59,27 +51,6 @@ export const categoryData: CategoryItem[] = [
     description: "Ferramentas elétricas profissionais",
     icon: Wrench,
     category: "Ferramentas Elétricas"
-  },
-  { 
-    name: "Limpeza",
-    slug: "limpeza",
-    description: "Equipamentos para limpeza",
-    icon: Wrench,
-    category: "Limpeza"
-  },
-  { 
-    name: "Motores",
-    slug: "motores",
-    description: "Equipamentos e motores",
-    icon: Wrench,
-    category: "Motores"
-  },
-  { 
-    name: "Escoramentos",
-    slug: "escoramentos",
-    description: "Equipamentos para escoramentos",
-    icon: Wrench,
-    category: "Escoramentos"
   }
 ];
 
@@ -87,4 +58,3 @@ export const categoryData: CategoryItem[] = [
 export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 5);
 export const categoryFasesDaObra: CategoryItem[] = categoryData.slice(5, 8);
 export const categoryTipoDeTrabalho: CategoryItem[] = categoryData.slice(8);
-

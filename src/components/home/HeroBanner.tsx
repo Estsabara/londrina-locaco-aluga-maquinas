@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
@@ -23,15 +22,9 @@ export function HeroBanner() {
       href: "/produtos?categoria=compactacao"
     },
     {
-      name: "Furação e Demolição",
-      slug: "furacao-demolicao",
-      icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
-      href: "/produtos?categoria=furacao-demolicao"
-    },
-    {
       name: "Concretagem",
       slug: "concretagem",
-      icon: "/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png",
+      icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
       href: "/produtos?categoria=concretagem"
     },
     {
@@ -45,24 +38,6 @@ export function HeroBanner() {
       slug: "ferramentas-eletricas",
       icon: "/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png",
       href: "/produtos?categoria=ferramentas-eletricas"
-    },
-    {
-      name: "Limpeza",
-      slug: "limpeza",
-      icon: "/lovable-uploads/2bd10752-8b9d-4db6-a157-197c47ae596c.png",
-      href: "/produtos?categoria=limpeza"
-    },
-    {
-      name: "Motores",
-      slug: "motores",
-      icon: "/lovable-uploads/8018b07b-9771-47a4-8eb0-36b34f16f546.png",
-      href: "/produtos?categoria=motores"
-    },
-    {
-      name: "Escoramentos",
-      slug: "escoramentos",
-      icon: "/lovable-uploads/aad19f97-574c-4505-87cc-5a3ee838a610.png",
-      href: "/produtos?categoria=escoramentos"
     }
   ];
 
