@@ -16,7 +16,6 @@ export function useProductCart(product: Product | null) {
   // Reset date range when rental period changes
   useEffect(() => {
     setDateRange({ from: undefined, to: undefined });
-    setPeriodQuantity(1);
   }, [rentalPeriod]);
 
   const handleAddToCart = () => {
@@ -58,10 +57,32 @@ export function useProductCart(product: Product | null) {
     }
   };
   
-  // Recalculate rental total whenever any of the relevant parameters change
-  const rentalTotal = product && dateRange.from && dateRange.to
-    ? calculateTotalPrice(getCurrentPrice(), dateRange.from, dateRange.to, rentalPeriod) * quantity
-    : 0;
+  // Calculate rental total based on period quantity, price, and quantity
+  const calculateRentalTotal = () => {
+    if (!product || !dateRange.from || !dateRange.to) return 0;
+    
+    const basePrice = getCurrentPrice();
+    let total = 0;
+    
+    switch (rentalPeriod) {
+      case "daily":
+        total = basePrice * periodQuantity;
+        break;
+      case "weekly":
+        total = basePrice * periodQuantity;
+        break;
+      case "monthly":
+        total = basePrice * periodQuantity;
+        break;
+      default:
+        total = basePrice * periodQuantity;
+    }
+    
+    return total * quantity;
+  };
+  
+  // Calculate rental total when any of the relevant parameters change
+  const rentalTotal = calculateRentalTotal();
   
   return {
     dateRange,

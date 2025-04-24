@@ -72,6 +72,21 @@ export function RentalOptions({
         return `${formatCurrency(price)}/dia`;
     }
   };
+
+  const calculatedPrice = () => {
+    let basePrice = price;
+    
+    switch (rentalPeriod) {
+      case "weekly":
+        basePrice = (priceWeekly || price * 6) * 0.95; // 5% off weekly rate
+        break;
+      case "monthly":
+        basePrice = (priceMonthly || price * 25) * 0.90; // 10% off monthly rate
+        break;
+    }
+    
+    return basePrice * periodQuantity * quantity;
+  };
   
   return <div className="space-y-6">
       <h2 className="font-semibold text-lg">Configurar Locação</h2>
@@ -132,7 +147,18 @@ export function RentalOptions({
         </div>
         <div className="text-right">
           <span className="text-sm text-muted-foreground">Valor Total</span>
-          <div className="text-2xl font-bold">{formatCurrency(rentalTotal)}</div>
+          <div className="text-2xl font-bold">
+            {formatCurrency(calculatedPrice())}
+            <div className="text-xs text-muted-foreground">
+              {rentalPeriod === "daily" ? (
+                periodQuantity === 1 ? "1 dia" : `${periodQuantity} dias`
+              ) : rentalPeriod === "weekly" ? (
+                periodQuantity === 1 ? "1 semana" : `${periodQuantity} semanas`
+              ) : (
+                periodQuantity === 1 ? "1 mês" : `${periodQuantity} meses`
+              )}
+            </div>
+          </div>
         </div>
       </div>
       

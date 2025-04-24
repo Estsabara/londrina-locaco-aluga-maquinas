@@ -40,22 +40,21 @@ export function calculateTotalPrice(
   endDate: Date, 
   rentalPeriod: RentalPeriodType = "daily"
 ): number {
+  if (!startDate || !endDate) return 0;
+  
   switch (rentalPeriod) {
     case "daily":
-      const days = calculateDaysBetween(startDate, endDate);
-      return price * days;
+      return price * calculateDaysBetween(startDate, endDate);
     case "weekly":
+      // For weekly rental, we charge by week units
       const weeks = Math.ceil(calculateDaysBetween(startDate, endDate) / 7);
       return price * weeks;
     case "monthly":
-      // Approximate months calculation
-      const days30 = calculateDaysBetween(startDate, endDate);
-      const months = Math.ceil(days30 / 30);
+      // For monthly rental, we charge by month units
+      const months = Math.ceil(calculateDaysBetween(startDate, endDate) / 30);
       return price * months;
-    case "custom":
-      return calculateDaysBetween(startDate, endDate) * (price / 7); // Divide weekly by 7 for daily rate
     default:
-      return calculateDaysBetween(startDate, endDate) * price;
+      return price * calculateDaysBetween(startDate, endDate);
   }
 }
 
