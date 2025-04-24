@@ -45,7 +45,7 @@ export function DateRangePicker({
 
     switch (rentalPeriod) {
       case "daily":
-        to = addDays(date, periodQuantity - 1); // -1 because the start day counts
+        to = addDays(date, periodQuantity); // Add the number of days directly
         break;
       case "weekly":
         to = addDays(addWeeks(date, periodQuantity), -1); // Last day of the last week
@@ -109,16 +109,16 @@ export function DateRangePicker({
             >
               <CalendarIcon className="mr-2 h-4 w-4" />
               {dateRange?.from ? (
-                dateRange.to ? (
-                  <>
-                    {format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })} até{" "}
-                    {format(dateRange.to, "dd/MM/yyyy", { locale: ptBR })}
-                  </>
-                ) : (
-                  format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })
-                )
+                <>
+                  Retirada: {format(dateRange.from, "dd/MM/yyyy", { locale: ptBR })}
+                  {dateRange.to && (
+                    <span className="ml-2 text-muted-foreground">
+                      (Devolução: {format(dateRange.to, "dd/MM/yyyy", { locale: ptBR })})
+                    </span>
+                  )}
+                </>
               ) : (
-                <span>Selecione a data inicial</span>
+                <span>Selecione a data de retirada</span>
               )}
             </Button>
           </PopoverTrigger>
