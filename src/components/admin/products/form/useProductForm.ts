@@ -17,12 +17,14 @@ const formSchema = z.object({
   model: z.string().optional(),
 });
 
+export type ProductFormValues = z.infer<typeof formSchema>;
+
 export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>(initialData?.imageurl || "");
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: initialData?.name || "",
@@ -48,7 +50,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     }
   };
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: ProductFormValues) => {
     try {
       setLoading(true);
       let imageUrl = initialData?.imageurl;
@@ -58,13 +60,24 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
         const fileExt = imageFile.name.split('.').pop();
         const fileName = `${Date.now()}.${fileExt}`;
         
+        // Check if the storage bucket exists, create it if it doesn't
+        const { data: buckets } = await supabase.storage.listBuckets();
+        const bucketExists = buckets?.some(bucket => bucket.name === 'product-images');
+        
+        if (!bucketExists) {
+          await supabase.storage.createBucket('product-images', {
+            public: true,
+            fileSizeLimit: 5242880 // 5MB
+          });
+        }
+        
         const { error: uploadError, data } = await supabase.storage
           .from('product-images')
           .upload(fileName, imageFile);
 
         if (uploadError) {
           console.error('Upload error:', uploadError);
-          throw new Error('Error uploading image');
+          throw new Error('Erro ao fazer upload da imagem');
         }
         
         const { data: { publicUrl } } = supabase.storage
@@ -98,7 +111,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
 
         if (error) {
           console.error('Update error:', error);
-          throw new Error('Error updating product');
+          throw new Error('Erro ao atualizar produto');
         }
         
         toast.success("Produto atualizado com sucesso!");
@@ -110,7 +123,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
 
         if (error) {
           console.error('Insert error:', error);
-          throw new Error('Error creating product');
+          throw new Error('Erro ao criar produto');
         }
         
         toast.success("Produto criado com sucesso!");
@@ -127,9 +140,9 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
         setImagePreview("");
         setImageFile(null);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Form submission error:', error);
-      toast.error("Erro ao salvar produto");
+      toast.error(error.message || "Erro ao salvar produto");
     } finally {
       setLoading(false);
     }
