@@ -10,8 +10,6 @@ interface ProductInfoProps {
   category: string;
   available: boolean;
   description: string;
-  brand: string;
-  model: string;
 }
 
 export function ProductInfo({ 
@@ -19,9 +17,7 @@ export function ProductInfo({
   price, 
   category, 
   available, 
-  description, 
-  brand, 
-  model 
+  description
 }: ProductInfoProps) {
   return (
     <>
@@ -47,15 +43,6 @@ export function ProductInfo({
       <div>
         <h2 className="font-semibold mb-2">Sobre o equipamento</h2>
         <p className="text-muted-foreground">{description}</p>
-      </div>
-      
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <span className="font-medium">Marca:</span> {brand}
-        </div>
-        <div>
-          <span className="font-medium">Modelo:</span> {model}
-        </div>
       </div>
     </>
   );

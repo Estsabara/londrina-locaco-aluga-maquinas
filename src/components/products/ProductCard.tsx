@@ -53,12 +53,6 @@ export function ProductCard({ product }: ProductCardProps) {
             <p className="text-muted-foreground text-sm line-clamp-2 mt-1">
               {product.description}
             </p>
-            <div className="mt-2 text-sm">
-              <span className="font-medium">Marca:</span> {product.brand}
-            </div>
-            <div className="mt-1 text-sm">
-              <span className="font-medium">Modelo:</span> {product.model}
-            </div>
           </CardContent>
         </Link>
         

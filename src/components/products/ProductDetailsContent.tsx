@@ -38,7 +38,7 @@ export function ProductDetailsContent({
   periodQuantity,
   setPeriodQuantity
 }: ProductDetailsContentProps) {
-  const { name, description, price, imageUrl, category, brand, model, specs, available, priceWeekly, priceMonthly } = product;
+  const { name, description, price, imageUrl, category, specs, available, priceWeekly, priceMonthly } = product;
 
   return (
     <main className="flex-grow container py-8">
@@ -61,8 +61,6 @@ export function ProductDetailsContent({
             category={category}
             available={available}
             description={description}
-            brand={brand}
-            model={model}
           />
           
           <div className="flex flex-col gap-3">

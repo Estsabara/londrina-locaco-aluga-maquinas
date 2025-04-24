@@ -6,7 +6,6 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UseFormReturn } from "react-hook-form";
 import { categories } from "@/data/products";
@@ -38,34 +37,6 @@ export function AdditionalInfoFields({ form }: AdditionalInfoFieldsProps) {
                 ))}
               </SelectContent>
             </Select>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="brand"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Marca</FormLabel>
-            <FormControl>
-              <Input placeholder="Marca" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="model"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Modelo</FormLabel>
-            <FormControl>
-              <Input placeholder="Modelo" {...field} />
-            </FormControl>
             <FormMessage />
           </FormItem>
         )}
