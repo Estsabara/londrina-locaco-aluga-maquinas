@@ -75,6 +75,29 @@ export function PricingFields({ form }: PricingFieldsProps) {
 
         <FormField
           control={form.control}
+          name="priceBiweekly"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Preço Quinzenal (R$)</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="0.00"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                Valor para locação quinzenal (15 dias).
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="priceMonthly"
           render={({ field }) => (
             <FormItem>

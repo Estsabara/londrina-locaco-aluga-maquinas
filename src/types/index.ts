@@ -4,16 +4,16 @@ export interface Product {
   description: string;
   price: number;
   imageUrl: string;
+  imageUrl2?: string;
   category: string;
   available: boolean;
-  brand?: string;
-  model?: string;
   specs: any;
   priceWeekly?: number;
   priceMonthly?: number;
+  priceBiweekly?: number;
 }
 
-export type RentalPeriodType = "daily" | "weekly" | "monthly" | "custom";
+export type RentalPeriodType = "daily" | "weekly" | "biweekly" | "monthly";
 
 export interface DateRange {
   from: Date | undefined;
@@ -38,32 +38,30 @@ export interface Customer {
   state?: string;
   zipCode?: string;
   documentId?: string;
-  document_number?: string;  // Added to match Supabase structure
+  document_number?: string;
 }
 
-// Updated RentalContract to match Supabase structure
 export interface RentalContract {
   id: number | string;
-  customer_id: number | string;  // snake_case as used in Supabase
-  customerId?: number | string;  // Keep for backward compatibility
+  customer_id: number | string;
+  customerId?: number | string;
   items?: CartItem[];
-  cart_data?: any;  // Added to match Supabase structure
+  cart_data?: any;
   startDate?: Date;
   endDate?: Date;
-  total_amount: number;  // snake_case as used in Supabase
-  totalAmount?: number;  // Keep for backward compatibility
-  status: 'pending' | 'active' | 'completed' | 'canceled' | 'overdue';  // Added 'overdue'
-  created_at: Date | string;  // snake_case as used in Supabase
-  createdAt?: Date;  // Keep for backward compatibility
-  updated_at: Date | string;  // snake_case as used in Supabase
-  updatedAt?: Date;  // Keep for backward compatibility
+  total_amount: number;
+  totalAmount?: number;
+  status: 'pending' | 'active' | 'completed' | 'canceled' | 'overdue';
+  created_at: Date | string;
+  createdAt?: Date;
+  updated_at: Date | string;
+  updatedAt?: Date;
   paymentMethod?: string;
   paymentStatus?: 'pending' | 'paid' | 'refunded';
   notes?: string;
-  // Added fields to match Supabase structure
   agreed_at?: string;
   contract_text?: string;
-  customers?: Customer;  // For joined customer data
+  customers?: Customer;
 }
 
 export interface InventoryProduct extends Product {
@@ -71,6 +69,6 @@ export interface InventoryProduct extends Product {
   threshold: number;
   lastRestocked: string;
   status: string;
-  brand: string;  // Making brand required for InventoryProduct
-  model: string;  // Making model required for InventoryProduct
+  brand: string;
+  model: string;
 }

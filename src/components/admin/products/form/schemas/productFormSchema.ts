@@ -6,10 +6,9 @@ export const productFormSchema = z.object({
   description: z.string().min(10, "Descrição deve ter pelo menos 10 caracteres"),
   price: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, "Preço deve ser maior que 0"),
   priceWeekly: z.string().optional(),
+  priceBiweekly: z.string().optional(),
   priceMonthly: z.string().optional(),
   category: z.string().min(1, "Categoria é obrigatória"),
-  brand: z.string().optional(),
-  model: z.string().optional(),
 });
 
 export type ProductFormValues = z.infer<typeof productFormSchema>;

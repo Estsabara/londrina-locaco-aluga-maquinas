@@ -7,18 +7,29 @@ import { uploadImage } from "./imageHandler";
 export const handleFormSubmit = async (
   values: ProductFormValues,
   imageFile: File | null,
+  imageFile2: File | null,
   initialData: any,
   onSuccess?: () => void
 ) => {
   try {
     let imageUrl = initialData?.imageurl;
+    let imageUrl2 = initialData?.imageurl2;
 
-    // Upload image if a new one is selected
+    // Upload images if new ones are selected
     if (imageFile) {
       try {
         imageUrl = await uploadImage(imageFile);
       } catch (error: any) {
-        toast.error(`Erro no upload: ${error.message}`);
+        toast.error(`Erro no upload da imagem principal: ${error.message}`);
+        throw error;
+      }
+    }
+
+    if (imageFile2) {
+      try {
+        imageUrl2 = await uploadImage(imageFile2);
+      } catch (error: any) {
+        toast.error(`Erro no upload da imagem secundária: ${error.message}`);
         throw error;
       }
     }
@@ -29,19 +40,16 @@ export const handleFormSubmit = async (
       description: values.description,
       price: Number(values.price),
       price_weekly: values.priceWeekly ? Number(values.priceWeekly) : null,
+      price_biweekly: values.priceBiweekly ? Number(values.priceBiweekly) : null,
       price_monthly: values.priceMonthly ? Number(values.priceMonthly) : null,
       category: values.category,
-      brand: values.brand || null,
-      model: values.model || null,
       imageurl: imageUrl,
+      imageurl2: imageUrl2,
       available: true,
       specs: {}
     };
 
-    console.log("Submitting product data:", productData);
-
     if (initialData?.id) {
-      // Update existing product
       const { error } = await supabase
         .from('products')
         .update(productData)
@@ -54,7 +62,6 @@ export const handleFormSubmit = async (
       
       toast.success("Produto atualizado com sucesso!");
     } else {
-      // Create new product
       const { error } = await supabase
         .from('products')
         .insert([productData]);
@@ -67,7 +74,6 @@ export const handleFormSubmit = async (
       toast.success("Produto criado com sucesso!");
     }
 
-    // Call onSuccess callback if provided
     if (onSuccess) {
       onSuccess();
     }
@@ -76,4 +82,3 @@ export const handleFormSubmit = async (
     throw error;
   }
 };
-

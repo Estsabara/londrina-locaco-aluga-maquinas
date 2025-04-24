@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,9 +10,9 @@ import { handleFormSubmit } from "./utils/formSubmitHandler";
 export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageFile2, setImageFile2] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>(initialData?.imageurl || "");
-
-  console.log("useProductForm initialData:", initialData);
+  const [imagePreview2, setImagePreview2] = useState<string>(initialData?.imageurl2 || "");
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
@@ -20,27 +21,35 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
       description: initialData?.description || "",
       price: initialData?.price?.toString() || "",
       priceWeekly: initialData?.price_weekly?.toString() || "",
+      priceBiweekly: initialData?.price_biweekly?.toString() || "",
       priceMonthly: initialData?.price_monthly?.toString() || "",
       category: initialData?.category || "",
-      brand: initialData?.brand || "",
-      model: initialData?.model || "",
     },
   });
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, imageNumber: 1 | 2) => {
     const file = e.target.files?.[0];
     if (file) {
       if (!validateImage(file)) {
-        e.target.value = ''; // Reset file input
+        e.target.value = '';
         return;
       }
       
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      if (imageNumber === 1) {
+        setImageFile(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagePreview(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setImageFile2(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagePreview2(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
 
@@ -49,15 +58,14 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     try {
       setLoading(true);
       const values = form.getValues();
-      console.log("Form submitted with values:", values);
+      await handleFormSubmit(values, imageFile, imageFile2, initialData, onSuccess);
       
-      await handleFormSubmit(values, imageFile, initialData, onSuccess);
-      
-      // Reset form if it's a new product
       if (!initialData) {
         form.reset();
         setImagePreview("");
+        setImagePreview2("");
         setImageFile(null);
+        setImageFile2(null);
       }
     } catch (error: any) {
       console.error("Form error:", error);
@@ -71,6 +79,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     form,
     loading,
     imagePreview,
+    imagePreview2,
     handleImageChange,
     onSubmit,
   };
