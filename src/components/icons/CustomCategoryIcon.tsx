@@ -19,9 +19,9 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
       case 'compactação':
         return '/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png';
       case 'furação e demolição':
-        return '/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png'; // Using concretagem icon
+        return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png';
       case 'concretagem':
-        return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png'; // Using furação e demolição icon
+        return '/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png';
       case 'jardinagem':
         return '/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png';
       case 'ferramentas elétricas':
@@ -42,7 +42,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   
   if (iconPath) {
     return (
-      <div className="bg-black rounded-lg p-4">
+      <div className="bg-white rounded-lg p-4">
         <img 
           src={iconPath}
           alt={`Ícone ${category}`}
@@ -58,7 +58,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   }
   
   return (
-    <div className="bg-black rounded-lg p-4">
+    <div className="bg-white rounded-lg p-4">
       <Wrench className={`h-12 w-12 text-primary ${className}`} />
     </div>
   );
