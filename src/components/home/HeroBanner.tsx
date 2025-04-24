@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
@@ -25,13 +24,13 @@ export function HeroBanner() {
     {
       name: "Furação e Demolição",
       slug: "furacao-demolicao",
-      icon: "/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png",
+      icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
       href: "/produtos?categoria=furacao-demolicao"
     },
     {
       name: "Concretagem",
       slug: "concretagem",
-      icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
+      icon: "/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png",
       href: "/produtos?categoria=concretagem"
     },
     {
@@ -90,12 +89,11 @@ export function HeroBanner() {
               <Link 
                 key={category.name} 
                 to={category.href} 
-                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-primary shadow-lg border-2 border-primary hover:bg-primary/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-black hover:bg-black/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
-                <img 
-                  src={category.icon}
-                  alt={category.name}
-                  className="w-8 h-8 md:w-10 md:h-10 text-white mb-2 group-hover:text-white/90 transition-colors"
+                <CustomCategoryIcon 
+                  category={category.name}
+                  className="mb-2 group-hover:opacity-90"
                 />
                 <span className="text-xs md:text-sm text-white font-medium line-clamp-2 text-center group-hover:text-white/90">
                   {category.name}
