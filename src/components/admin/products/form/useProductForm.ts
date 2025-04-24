@@ -2,22 +2,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-
-const formSchema = z.object({
-  name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
-  description: z.string().min(10, "Descrição deve ter pelo menos 10 caracteres"),
-  price: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, "Preço deve ser maior que 0"),
-  priceWeekly: z.string().optional(),
-  priceMonthly: z.string().optional(),
-  category: z.string().min(1, "Categoria é obrigatória"),
-  brand: z.string().optional(),
-  model: z.string().optional(),
-});
-
-export type ProductFormValues = z.infer<typeof formSchema>;
+import { productFormSchema, type ProductFormValues } from "./schemas/productFormSchema";
+import { validateImage } from "./utils/imageHandler";
+import { handleFormSubmit } from "./utils/formSubmitHandler";
 
 export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const [loading, setLoading] = useState(false);
@@ -25,7 +13,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const [imagePreview, setImagePreview] = useState<string>(initialData?.imageurl || "");
 
   const form = useForm<ProductFormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(productFormSchema),
     defaultValues: {
       name: initialData?.name || "",
       description: initialData?.description || "",
@@ -41,17 +29,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Verificar tamanho do arquivo (5MB máximo)
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error("O tamanho máximo da imagem é 5MB");
-        e.target.value = ''; // Reset file input
-        return;
-      }
-      
-      // Verificar tipo de arquivo
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-      if (!allowedTypes.includes(file.type)) {
-        toast.error("Apenas imagens JPG, PNG ou WebP são permitidas");
+      if (!validateImage(file)) {
         e.target.value = ''; // Reset file input
         return;
       }
@@ -65,96 +43,10 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     }
   };
 
-  const uploadImage = async (file: File): Promise<string> => {
-    try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}.${fileExt}`;
-      
-      const { error: uploadError } = await supabase.storage
-        .from('product-images')
-        .upload(fileName, file, {
-          cacheControl: '3600',
-          upsert: true
-        });
-
-      if (uploadError) {
-        console.error('Upload error:', uploadError);
-        throw new Error('Erro ao fazer upload da imagem');
-      }
-      
-      const { data: { publicUrl } } = supabase.storage
-        .from('product-images')
-        .getPublicUrl(fileName);
-        
-      return publicUrl;
-    } catch (error) {
-      console.error('Image upload error:', error);
-      throw error;
-    }
-  };
-
   const onSubmit = async (values: ProductFormValues) => {
     try {
       setLoading(true);
-      let imageUrl = initialData?.imageurl;
-
-      // Upload image if a new one is selected
-      if (imageFile) {
-        try {
-          imageUrl = await uploadImage(imageFile);
-        } catch (error: any) {
-          toast.error(`Erro no upload: ${error.message}`);
-          setLoading(false);
-          return;
-        }
-      }
-
-      // Prepare product data
-      const productData = {
-        name: values.name,
-        description: values.description,
-        price: Number(values.price),
-        priceweekly: values.priceWeekly ? Number(values.priceWeekly) : null,
-        pricemonthly: values.priceMonthly ? Number(values.priceMonthly) : null,
-        category: values.category,
-        brand: values.brand || null,
-        model: values.model || null,
-        imageurl: imageUrl,
-        available: true,
-        specs: {}
-      };
-
-      if (initialData?.id) {
-        // Update existing product
-        const { error } = await supabase
-          .from('products')
-          .update(productData)
-          .eq('id', initialData.id);
-
-        if (error) {
-          console.error('Update error:', error);
-          throw new Error(`Erro ao atualizar produto: ${error.message}`);
-        }
-        
-        toast.success("Produto atualizado com sucesso!");
-      } else {
-        // Create new product
-        const { error } = await supabase
-          .from('products')
-          .insert([productData]);
-
-        if (error) {
-          console.error('Insert error:', error);
-          throw new Error(`Erro ao criar produto: ${error.message}`);
-        }
-        
-        toast.success("Produto criado com sucesso!");
-      }
-
-      // Call onSuccess callback if provided
-      if (onSuccess) {
-        onSuccess();
-      }
+      await handleFormSubmit(values, imageFile, initialData, onSuccess);
       
       // Reset form if it's a new product
       if (!initialData) {
@@ -163,7 +55,6 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
         setImageFile(null);
       }
     } catch (error: any) {
-      console.error('Form submission error:', error);
       toast.error(error.message || "Erro ao salvar produto");
     } finally {
       setLoading(false);
