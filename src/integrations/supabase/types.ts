@@ -799,6 +799,8 @@ export type Database = {
           model: string | null
           name: string
           price: number
+          price_monthly: number | null
+          price_weekly: number | null
           specs: Json | null
           updated_at: string | null
         }
@@ -813,6 +815,8 @@ export type Database = {
           model?: string | null
           name: string
           price: number
+          price_monthly?: number | null
+          price_weekly?: number | null
           specs?: Json | null
           updated_at?: string | null
         }
@@ -827,6 +831,8 @@ export type Database = {
           model?: string | null
           name?: string
           price?: number
+          price_monthly?: number | null
+          price_weekly?: number | null
           specs?: Json | null
           updated_at?: string | null
         }

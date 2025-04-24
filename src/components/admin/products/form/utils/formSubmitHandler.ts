@@ -23,14 +23,13 @@ export const handleFormSubmit = async (
       }
     }
 
-    // Prepare product data - Map camelCase form fields to database column names
+    // Prepare product data with correct column names
     const productData = {
       name: values.name,
       description: values.description,
       price: Number(values.price),
-      // Fix: Map camelCase field names to proper database column names
-      priceweekly: values.priceWeekly ? Number(values.priceWeekly) : null,
-      pricemonthly: values.priceMonthly ? Number(values.priceMonthly) : null,
+      price_weekly: values.priceWeekly ? Number(values.priceWeekly) : null,
+      price_monthly: values.priceMonthly ? Number(values.priceMonthly) : null,
       category: values.category,
       brand: values.brand || null,
       model: values.model || null,
@@ -77,3 +76,4 @@ export const handleFormSubmit = async (
     throw error;
   }
 };
+

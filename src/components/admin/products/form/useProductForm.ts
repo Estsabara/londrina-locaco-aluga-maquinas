@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,7 +11,6 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>(initialData?.imageurl || "");
 
-  // Log initial data for debugging
   console.log("useProductForm initialData:", initialData);
 
   const form = useForm<ProductFormValues>({
@@ -21,8 +19,8 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
       name: initialData?.name || "",
       description: initialData?.description || "",
       price: initialData?.price?.toString() || "",
-      priceWeekly: initialData?.priceweekly?.toString() || "",
-      priceMonthly: initialData?.pricemonthly?.toString() || "",
+      priceWeekly: initialData?.price_weekly?.toString() || "",
+      priceMonthly: initialData?.price_monthly?.toString() || "",
       category: initialData?.category || "",
       brand: initialData?.brand || "",
       model: initialData?.model || "",
