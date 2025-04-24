@@ -90,7 +90,7 @@ export function HeroBanner() {
               <Link 
                 key={category.name} 
                 to={category.href} 
-                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-black hover:bg-black/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-white hover:bg-white/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
                 <CustomCategoryIcon 
                   category={category.name}
