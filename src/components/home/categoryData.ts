@@ -19,11 +19,11 @@ export const categoryData: CategoryItem[] = [
     category: "Andaimes"
   },
   { 
-    name: "Movimentação",
-    slug: "movimentacao",
-    description: "Equipamentos para movimentação",
+    name: "Acesso e Elevação",
+    slug: "acesso-elevacao",
+    description: "Equipamentos para acesso e elevação",
     icon: Wrench,
-    category: "Movimentação"
+    category: "Acesso e Elevação"
   },
   { 
     name: "Compactação",
@@ -33,18 +33,25 @@ export const categoryData: CategoryItem[] = [
     category: "Compactação"
   },
   { 
-    name: "Demolição",
-    slug: "demolicao",
-    description: "Equipamentos para demolição",
-    icon: Wrench,
-    category: "Demolição"
-  },
-  { 
     name: "Concretagem",
     slug: "concretagem",
     description: "Equipamentos para concretagem",
     icon: Wrench,
     category: "Concretagem"
+  },
+  { 
+    name: "Furação e Demolição",
+    slug: "furacao-demolicao",
+    description: "Equipamentos para furação e demolição",
+    icon: Wrench,
+    category: "Furação e Demolição"
+  },
+  { 
+    name: "Ferramentas Elétricas",
+    slug: "ferramentas-eletricas",
+    description: "Ferramentas elétricas profissionais",
+    icon: Wrench,
+    category: "Ferramentas Elétricas"
   },
   { 
     name: "Limpeza",
@@ -61,18 +68,11 @@ export const categoryData: CategoryItem[] = [
     category: "Jardinagem"
   },
   { 
-    name: "Ferramentas Elétricas",
-    slug: "ferramentas-eletricas",
-    description: "Ferramentas elétricas profissionais",
+    name: "Motores",
+    slug: "motores",
+    description: "Equipamentos e motores",
     icon: Wrench,
-    category: "Ferramentas Elétricas"
-  },
-  { 
-    name: "Energia",
-    slug: "energia",
-    description: "Geradores e equipamentos de energia",
-    icon: Wrench,
-    category: "Energia"
+    category: "Motores"
   },
   { 
     name: "Escoramentos",
@@ -87,4 +87,3 @@ export const categoryData: CategoryItem[] = [
 export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 5);
 export const categoryFasesDaObra: CategoryItem[] = categoryData.slice(5, 8);
 export const categoryTipoDeTrabalho: CategoryItem[] = categoryData.slice(8);
-

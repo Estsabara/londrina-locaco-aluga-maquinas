@@ -1,59 +1,69 @@
-
 import { Link } from "react-router-dom";
 import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
 export function HeroBanner() {
-  const categories = [{
-    name: "Andaimes",
-    slug: "andaimes",
-    icon: "/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png",
-    href: "/produtos?categoria=andaimes"
-  }, {
-    name: "Movimentação",
-    slug: "movimentacao",
-    icon: "/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png",
-    href: "/produtos?categoria=movimentacao"
-  }, {
-    name: "Compactação",
-    slug: "compactacao",
-    icon: "/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png",
-    href: "/produtos?categoria=compactacao"
-  }, {
-    name: "Demolição",
-    slug: "demolicao",
-    icon: "/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png",
-    href: "/produtos?categoria=demolicao"
-  }, {
-    name: "Concretagem",
-    slug: "concretagem",
-    icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
-    href: "/produtos?categoria=concretagem"
-  }, {
-    name: "Limpeza",
-    slug: "limpeza",
-    icon: "/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png",
-    href: "/produtos?categoria=limpeza"
-  }, {
-    name: "Jardinagem",
-    slug: "jardinagem",
-    icon: "/lovable-uploads/2bd10752-8b9d-4db6-a157-197c47ae596c.png",
-    href: "/produtos?categoria=jardinagem"
-  }, {
-    name: "Ferramentas Elétricas",
-    slug: "ferramentas-eletricas",
-    icon: "/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png",
-    href: "/produtos?categoria=ferramentas-eletricas"
-  }, {
-    name: "Energia",
-    slug: "energia",
-    icon: "/lovable-uploads/8018b07b-9771-47a4-8eb0-36b34f16f546.png",
-    href: "/produtos?categoria=energia"
-  }, {
-    name: "Escoramentos",
-    slug: "escoramentos",
-    icon: "/lovable-uploads/aad19f97-574c-4505-87cc-5a3ee838a610.png",
-    href: "/produtos?categoria=escoramentos"
-  }];
+  const categories = [
+    {
+      name: "Andaimes",
+      slug: "andaimes",
+      icon: "/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png",
+      href: "/produtos?categoria=andaimes"
+    }, 
+    {
+      name: "Acesso e Elevação",
+      slug: "acesso-elevacao",
+      icon: "/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png",
+      href: "/produtos?categoria=acesso-elevacao"
+    }, 
+    {
+      name: "Compactação",
+      slug: "compactacao",
+      icon: "/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png",
+      href: "/produtos?categoria=compactacao"
+    }, 
+    {
+      name: "Concretagem",
+      slug: "concretagem",
+      icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
+      href: "/produtos?categoria=concretagem"
+    }, 
+    {
+      name: "Furação e Demolição",
+      slug: "furacao-demolicao",
+      icon: "/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png",
+      href: "/produtos?categoria=furacao-demolicao"
+    }, 
+    {
+      name: "Ferramentas Elétricas",
+      slug: "ferramentas-eletricas",
+      icon: "/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png",
+      href: "/produtos?categoria=ferramentas-eletricas"
+    }, 
+    {
+      name: "Limpeza",
+      slug: "limpeza",
+      icon: "/lovable-uploads/2bd10752-8b9d-4db6-a157-197c47ae596c.png",
+      href: "/produtos?categoria=limpeza"
+    }, 
+    {
+      name: "Jardinagem",
+      slug: "jardinagem",
+      icon: "/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png",
+      href: "/produtos?categoria=jardinagem"
+    }, 
+    {
+      name: "Motores",
+      slug: "motores",
+      icon: "/lovable-uploads/8018b07b-9771-47a4-8eb0-36b34f16f546.png",
+      href: "/produtos?categoria=motores"
+    }, 
+    {
+      name: "Escoramentos",
+      slug: "escoramentos",
+      icon: "/lovable-uploads/aad19f97-574c-4505-87cc-5a3ee838a610.png",
+      href: "/produtos?categoria=escoramentos"
+    }
+  ];
 
   return (
     <section className="relative bg-black border-b min-h-[350px] md:min-h-[500px] w-full">
