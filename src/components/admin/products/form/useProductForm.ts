@@ -12,6 +12,9 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>(initialData?.imageurl || "");
 
+  // Log initial data for debugging
+  console.log("useProductForm initialData:", initialData);
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
     defaultValues: {
@@ -43,9 +46,13 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     }
   };
 
-  const onSubmit = async (values: ProductFormValues) => {
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       setLoading(true);
+      const values = form.getValues();
+      console.log("Form submitted with values:", values);
+      
       await handleFormSubmit(values, imageFile, initialData, onSuccess);
       
       // Reset form if it's a new product
@@ -55,6 +62,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
         setImageFile(null);
       }
     } catch (error: any) {
+      console.error("Form error:", error);
       toast.error(error.message || "Erro ao salvar produto");
     } finally {
       setLoading(false);
@@ -66,6 +74,6 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     loading,
     imagePreview,
     handleImageChange,
-    onSubmit: form.handleSubmit(onSubmit),
+    onSubmit,
   };
 }

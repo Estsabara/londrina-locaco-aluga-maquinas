@@ -23,11 +23,12 @@ export const handleFormSubmit = async (
       }
     }
 
-    // Prepare product data
+    // Prepare product data - Map camelCase form fields to database column names
     const productData = {
       name: values.name,
       description: values.description,
       price: Number(values.price),
+      // Fix: Map camelCase field names to proper database column names
       priceweekly: values.priceWeekly ? Number(values.priceWeekly) : null,
       pricemonthly: values.priceMonthly ? Number(values.priceMonthly) : null,
       category: values.category,
@@ -37,6 +38,8 @@ export const handleFormSubmit = async (
       available: true,
       specs: {}
     };
+
+    console.log("Submitting product data:", productData);
 
     if (initialData?.id) {
       // Update existing product
