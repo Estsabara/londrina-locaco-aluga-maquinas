@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ProductForm } from "../ProductForm";
 import { Loader2 } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ProductFormDialogProps {
   isOpen: boolean;
@@ -30,7 +31,7 @@ export function ProductFormDialog({ isOpen, onOpenChange, product, onSuccess, is
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-3xl max-h-[90vh]">
         <DialogHeader>
           <DialogTitle>{isNew ? "Novo Produto" : "Editar Produto"}</DialogTitle>
         </DialogHeader>
@@ -41,10 +42,14 @@ export function ProductFormDialog({ isOpen, onOpenChange, product, onSuccess, is
             <span className="ml-2">Carregando dados do produto...</span>
           </div>
         ) : (
-          <ProductForm 
-            initialData={product} 
-            onSuccess={onSuccess}
-          />
+          <ScrollArea className="h-[calc(90vh-120px)] pr-4">
+            <div className="pb-6">
+              <ProductForm 
+                initialData={product} 
+                onSuccess={onSuccess}
+              />
+            </div>
+          </ScrollArea>
         )}
       </DialogContent>
     </Dialog>

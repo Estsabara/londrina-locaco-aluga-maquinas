@@ -42,7 +42,7 @@ export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
           imagePreview={imagePreview}
           onImageChange={handleImageChange}
         />
-        <div className="flex justify-end">
+        <div className="flex justify-end mt-8">
           <Button type="submit" disabled={loading}>
             {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
             {initialData ? "Atualizar Produto" : "Criar Produto"}
