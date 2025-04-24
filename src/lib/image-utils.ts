@@ -1,3 +1,4 @@
+
 /**
  * Processes an image URL to ensure it has the correct format
  * 
@@ -7,8 +8,13 @@
 export function processImageUrl(url: string): string {
   if (!url) return "/placeholder.svg";
   
-  // If it's already a full URL or starts with / (local path), use it directly
-  if (url.startsWith("http") || url.startsWith("/")) {
+  // If it's already a full URL (with http/https), use it directly
+  if (url.startsWith("http")) {
+    return url;
+  }
+  
+  // If it starts with slash, it's already a local path
+  if (url.startsWith("/")) {
     return url;
   }
   

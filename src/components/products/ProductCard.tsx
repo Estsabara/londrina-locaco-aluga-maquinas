@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Globe } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
-import { processImageUrl } from "@/lib/image-utils";
 import { useState } from "react";
 
 interface ProductCardProps {
@@ -31,13 +30,16 @@ export function ProductCard({ product }: ProductCardProps) {
     setImageError(true);
   };
 
+  // Ensure image URL doesn't change once loaded
+  const imageUrl = imageError ? "/placeholder.svg" : product.imageUrl;
+
   return (
     <div className="group">
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
         <Link to={`/produto/${product.id}`} className="block">
           <div className="relative h-48 bg-white border-b">
             <img 
-              src={imageError ? "/placeholder.svg" : processImageUrl(product.imageUrl)} 
+              src={imageUrl} 
               alt={product.name} 
               className="w-full h-full object-contain p-3"
               onError={handleImageError}
