@@ -34,8 +34,8 @@ export function CategoryCard({
       <Card className={`h-full transition-transform hover:scale-105 bg-white ${className}`}>
         <CardContent className="flex flex-col items-center justify-center p-6 text-center">
           <CustomCategoryIcon category={name} className="mb-4" />
-          <h3 className="text-lg font-medium mb-2">{name}</h3>
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <h3 className="text-lg font-medium mb-2 text-[#ff0000]">{name}</h3>
+          <p className="text-sm text-muted-foreground text-[#ff0000]">{description}</p>
         </CardContent>
       </Card>
     </Link>
