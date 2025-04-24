@@ -31,7 +31,7 @@ export function CategoryCard({
 
   return (
     <Link to={`/produtos?categoria=${slug}`} onClick={handleClick}>
-      <Card className={`h-full transition-transform hover:scale-105 ${className}`}>
+      <Card className={`h-full transition-transform hover:scale-105 bg-white ${className}`}>
         <CardContent className="flex flex-col items-center justify-center p-6 text-center">
           <CustomCategoryIcon category={name} className="mb-4" />
           <h3 className="text-lg font-medium mb-2">{name}</h3>
