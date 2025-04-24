@@ -44,6 +44,15 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
       // Verificar tamanho do arquivo (5MB máximo)
       if (file.size > 5 * 1024 * 1024) {
         toast.error("O tamanho máximo da imagem é 5MB");
+        e.target.value = ''; // Reset file input
+        return;
+      }
+      
+      // Verificar tipo de arquivo
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        toast.error("Apenas imagens JPG, PNG ou WebP são permitidas");
+        e.target.value = ''; // Reset file input
         return;
       }
       
@@ -56,46 +65,17 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     }
   };
 
-  const createBucketIfNotExists = async () => {
-    try {
-      // Check if the bucket exists
-      const { data: buckets, error: listError } = await supabase.storage.listBuckets();
-      
-      if (listError) {
-        console.error('Error listing buckets:', listError);
-        throw new Error(listError.message);
-      }
-      
-      const bucketExists = buckets?.some(bucket => bucket.name === 'product-images');
-      
-      if (!bucketExists) {
-        const { error: createError } = await supabase.storage.createBucket('product-images', {
-          public: true,
-          fileSizeLimit: 5242880 // 5MB
-        });
-        
-        if (createError) {
-          console.error('Error creating bucket:', createError);
-          throw new Error(createError.message);
-        }
-      }
-    } catch (error) {
-      console.error('Error checking/creating bucket:', error);
-      throw error;
-    }
-  };
-
   const uploadImage = async (file: File): Promise<string> => {
     try {
-      // Garantir que o bucket existe
-      await createBucketIfNotExists();
-      
       const fileExt = file.name.split('.').pop();
       const fileName = `${Date.now()}.${fileExt}`;
       
-      const { error: uploadError, data } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('product-images')
-        .upload(fileName, file);
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: true
+        });
 
       if (uploadError) {
         console.error('Upload error:', uploadError);
