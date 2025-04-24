@@ -41,12 +41,75 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // Verificar tamanho do arquivo (5MB máximo)
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("O tamanho máximo da imagem é 5MB");
+        return;
+      }
+      
       setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const createBucketIfNotExists = async () => {
+    try {
+      // Check if the bucket exists
+      const { data: buckets, error: listError } = await supabase.storage.listBuckets();
+      
+      if (listError) {
+        console.error('Error listing buckets:', listError);
+        throw new Error(listError.message);
+      }
+      
+      const bucketExists = buckets?.some(bucket => bucket.name === 'product-images');
+      
+      if (!bucketExists) {
+        const { error: createError } = await supabase.storage.createBucket('product-images', {
+          public: true,
+          fileSizeLimit: 5242880 // 5MB
+        });
+        
+        if (createError) {
+          console.error('Error creating bucket:', createError);
+          throw new Error(createError.message);
+        }
+      }
+    } catch (error) {
+      console.error('Error checking/creating bucket:', error);
+      throw error;
+    }
+  };
+
+  const uploadImage = async (file: File): Promise<string> => {
+    try {
+      // Garantir que o bucket existe
+      await createBucketIfNotExists();
+      
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+      
+      const { error: uploadError, data } = await supabase.storage
+        .from('product-images')
+        .upload(fileName, file);
+
+      if (uploadError) {
+        console.error('Upload error:', uploadError);
+        throw new Error('Erro ao fazer upload da imagem');
+      }
+      
+      const { data: { publicUrl } } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(fileName);
+        
+      return publicUrl;
+    } catch (error) {
+      console.error('Image upload error:', error);
+      throw error;
     }
   };
 
@@ -57,34 +120,13 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
 
       // Upload image if a new one is selected
       if (imageFile) {
-        const fileExt = imageFile.name.split('.').pop();
-        const fileName = `${Date.now()}.${fileExt}`;
-        
-        // Check if the storage bucket exists, create it if it doesn't
-        const { data: buckets } = await supabase.storage.listBuckets();
-        const bucketExists = buckets?.some(bucket => bucket.name === 'product-images');
-        
-        if (!bucketExists) {
-          await supabase.storage.createBucket('product-images', {
-            public: true,
-            fileSizeLimit: 5242880 // 5MB
-          });
+        try {
+          imageUrl = await uploadImage(imageFile);
+        } catch (error: any) {
+          toast.error(`Erro no upload: ${error.message}`);
+          setLoading(false);
+          return;
         }
-        
-        const { error: uploadError, data } = await supabase.storage
-          .from('product-images')
-          .upload(fileName, imageFile);
-
-        if (uploadError) {
-          console.error('Upload error:', uploadError);
-          throw new Error('Erro ao fazer upload da imagem');
-        }
-        
-        const { data: { publicUrl } } = supabase.storage
-          .from('product-images')
-          .getPublicUrl(fileName);
-          
-        imageUrl = publicUrl;
       }
 
       // Prepare product data
@@ -102,7 +144,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
         specs: {}
       };
 
-      if (initialData) {
+      if (initialData?.id) {
         // Update existing product
         const { error } = await supabase
           .from('products')
@@ -111,7 +153,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
 
         if (error) {
           console.error('Update error:', error);
-          throw new Error('Erro ao atualizar produto');
+          throw new Error(`Erro ao atualizar produto: ${error.message}`);
         }
         
         toast.success("Produto atualizado com sucesso!");
@@ -123,7 +165,7 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
 
         if (error) {
           console.error('Insert error:', error);
-          throw new Error('Erro ao criar produto');
+          throw new Error(`Erro ao criar produto: ${error.message}`);
         }
         
         toast.success("Produto criado com sucesso!");

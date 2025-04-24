@@ -15,47 +15,60 @@ import { formatCurrency } from "@/lib/date-utils";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ProductForm } from "./ProductForm";
-import { Edit, Plus, Trash2 } from "lucide-react";
+import { Edit, Plus, Trash2, AlertCircle, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export function ProductList() {
   const queryClient = useQueryClient();
   const [editingProduct, setEditingProduct] = React.useState<any | null>(null);
   const [isNewProductDialogOpen, setIsNewProductDialogOpen] = React.useState(false);
+  const [deleteConfirmProduct, setDeleteConfirmProduct] = React.useState<any | null>(null);
 
-  const { data: products, isLoading, isError } = useQuery({
+  const { data: products, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .order("name");
-      
-      if (error) {
-        console.error("Error fetching products:", error);
-        throw error;
+      try {
+        const { data, error } = await supabase
+          .from("products")
+          .select("*")
+          .order("name");
+        
+        if (error) {
+          console.error("Error fetching products:", error);
+          throw error;
+        }
+        return data || [];
+      } catch (err: any) {
+        console.error("Error in query function:", err);
+        throw new Error(`Erro ao carregar produtos: ${err.message}`);
       }
-      return data || [];
     },
   });
 
   const handleDeleteProduct = async (id: number) => {
-    if (!confirm("Tem certeza que deseja excluir este produto?")) return;
-
+    setDeleteConfirmProduct(null);
     try {
       const { error } = await supabase
         .from("products")
         .delete()
         .eq("id", id);
 
-      if (error) throw error;
+      if (error) {
+        console.error("Delete error:", error);
+        throw error;
+      }
       
       toast.success("Produto excluído com sucesso!");
       queryClient.invalidateQueries({ queryKey: ["products"] });
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error("Erro ao excluir produto");
+      toast.error(`Erro ao excluir produto: ${error.message}`);
     }
+  };
+
+  const handleConfirmDelete = (product: any) => {
+    setDeleteConfirmProduct(product);
   };
 
   const handleEditSuccess = () => {
@@ -69,14 +82,27 @@ export function ProductList() {
   };
 
   if (isLoading) {
-    return <div className="flex items-center justify-center p-8">Carregando produtos...</div>;
+    return (
+      <div className="flex items-center justify-center p-8">
+        <div className="flex items-center space-x-2">
+          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          <span>Carregando produtos...</span>
+        </div>
+      </div>
+    );
   }
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center justify-center p-8">
-        <p className="text-destructive">Erro ao carregar produtos</p>
-        <Button onClick={() => queryClient.invalidateQueries({ queryKey: ["products"] })}>
+      <div className="flex flex-col items-center justify-center p-8 space-y-4">
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>
+            {error instanceof Error ? error.message : "Erro ao carregar produtos"}
+          </AlertDescription>
+        </Alert>
+        <Button onClick={() => refetch()} variant="outline">
+          <RefreshCw className="w-4 h-4 mr-2" />
           Tentar Novamente
         </Button>
       </div>
@@ -132,7 +158,7 @@ export function ProductList() {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => handleDeleteProduct(product.id)}
+                        onClick={() => handleConfirmDelete(product)}
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
@@ -145,6 +171,7 @@ export function ProductList() {
         </div>
       )}
 
+      {/* Dialog de edição de produto */}
       <Dialog open={!!editingProduct} onOpenChange={(open) => !open && setEditingProduct(null)}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
@@ -157,6 +184,7 @@ export function ProductList() {
         </DialogContent>
       </Dialog>
 
+      {/* Dialog de novo produto */}
       <Dialog 
         open={isNewProductDialogOpen} 
         onOpenChange={setIsNewProductDialogOpen}
@@ -168,6 +196,48 @@ export function ProductList() {
           <ProductForm onSuccess={handleNewProductSuccess} />
         </DialogContent>
       </Dialog>
+
+      {/* Dialog de confirmação de exclusão */}
+      <Dialog 
+        open={!!deleteConfirmProduct} 
+        onOpenChange={(open) => !open && setDeleteConfirmProduct(null)}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirmar Exclusão</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p>Tem certeza que deseja excluir o produto "{deleteConfirmProduct?.name}"?</p>
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" onClick={() => setDeleteConfirmProduct(null)}>Cancelar</Button>
+              <Button 
+                variant="destructive" 
+                onClick={() => deleteConfirmProduct && handleDeleteProduct(deleteConfirmProduct.id)}
+              >
+                Excluir
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
+
+// Helper component for loading animation
+const Loader2 = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`lucide lucide-loader-2 ${className || ''}`}
+  >
+    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+  </svg>
+);

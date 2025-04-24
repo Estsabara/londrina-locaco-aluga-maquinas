@@ -6,6 +6,7 @@ import { Loader2 } from "lucide-react";
 import { FormFields } from "./form/FormFields";
 import { ImageUpload } from "./form/ImageUpload";
 import { useProductForm } from "./form/useProductForm";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface ProductFormProps {
   initialData?: any;
@@ -14,10 +15,28 @@ interface ProductFormProps {
 
 export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
   const { form, loading, imagePreview, handleImageChange, onSubmit } = useProductForm(initialData, onSuccess);
+  const [error, setError] = React.useState<string | null>(null);
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    
+    try {
+      await onSubmit(e);
+    } catch (err: any) {
+      setError(err.message || "Ocorreu um erro ao processar o formulário");
+    }
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="space-y-6">
+      <form onSubmit={handleFormSubmit} className="space-y-6">
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        
         <FormFields form={form} />
         <ImageUpload 
           imagePreview={imagePreview}
