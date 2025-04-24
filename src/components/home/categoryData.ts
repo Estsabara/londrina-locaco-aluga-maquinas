@@ -33,6 +33,13 @@ export const categoryData: CategoryItem[] = [
     category: "Compactação"
   },
   { 
+    name: "Furação e Demolição",
+    slug: "furacao-demolicao",
+    description: "Equipamentos para furação e demolição",
+    icon: Wrench,
+    category: "Furação e Demolição"
+  },
+  { 
     name: "Concretagem",
     slug: "concretagem",
     description: "Equipamentos para concretagem",
@@ -40,11 +47,11 @@ export const categoryData: CategoryItem[] = [
     category: "Concretagem"
   },
   { 
-    name: "Furação e Demolição",
-    slug: "furacao-demolicao",
-    description: "Equipamentos para furação e demolição",
+    name: "Jardinagem",
+    slug: "jardinagem",
+    description: "Equipamentos para jardinagem",
     icon: Wrench,
-    category: "Furação e Demolição"
+    category: "Jardinagem"
   },
   { 
     name: "Ferramentas Elétricas",
@@ -59,13 +66,6 @@ export const categoryData: CategoryItem[] = [
     description: "Equipamentos para limpeza",
     icon: Wrench,
     category: "Limpeza"
-  },
-  { 
-    name: "Jardinagem",
-    slug: "jardinagem",
-    description: "Equipamentos para jardinagem",
-    icon: Wrench,
-    category: "Jardinagem"
   },
   { 
     name: "Motores",
@@ -87,3 +87,4 @@ export const categoryData: CategoryItem[] = [
 export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 5);
 export const categoryFasesDaObra: CategoryItem[] = categoryData.slice(5, 8);
 export const categoryTipoDeTrabalho: CategoryItem[] = categoryData.slice(8);
+

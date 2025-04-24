@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Wrench } from 'lucide-react';
 
@@ -18,16 +17,16 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
         return '/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png';
       case 'compactação':
         return '/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png';
-      case 'concretagem':
-        return '/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png';
       case 'furação e demolição':
         return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png';
-      case 'ferramentas elétricas':
+      case 'concretagem':
+        return '/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png';
+      case 'jardinagem':
         return '/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png';
+      case 'ferramentas elétricas':
+        return '/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png';
       case 'limpeza':
         return '/lovable-uploads/2bd10752-8b9d-4db6-a157-197c47ae596c.png';
-      case 'jardinagem':
-        return '/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png';
       case 'motores':
         return '/lovable-uploads/8018b07b-9771-47a4-8eb0-36b34f16f546.png';
       case 'escoramentos':
