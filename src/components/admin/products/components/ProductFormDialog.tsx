@@ -1,6 +1,8 @@
 
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ProductForm } from "../ProductForm";
+import { Loader2 } from "lucide-react";
 
 interface ProductFormDialogProps {
   isOpen: boolean;
@@ -11,16 +13,39 @@ interface ProductFormDialogProps {
 }
 
 export function ProductFormDialog({ isOpen, onOpenChange, product, onSuccess, isNew = false }: ProductFormDialogProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Simulate loading state when dialog opens
+  useEffect(() => {
+    if (isOpen) {
+      setIsLoading(true);
+      // Short timeout to simulate data loading
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl">
         <DialogHeader>
           <DialogTitle>{isNew ? "Novo Produto" : "Editar Produto"}</DialogTitle>
         </DialogHeader>
-        <ProductForm 
-          initialData={product} 
-          onSuccess={onSuccess}
-        />
+        
+        {isLoading ? (
+          <div className="flex items-center justify-center p-8">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            <span className="ml-2">Carregando dados do produto...</span>
+          </div>
+        ) : (
+          <ProductForm 
+            initialData={product} 
+            onSuccess={onSuccess}
+          />
+        )}
       </DialogContent>
     </Dialog>
   );
