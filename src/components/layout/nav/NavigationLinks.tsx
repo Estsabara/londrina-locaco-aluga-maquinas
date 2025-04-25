@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export function NavigationLinks() {
   return (
-    <nav className="hidden md:flex space-x-8">
+    <nav className="hidden md:flex justify-center space-x-8">
       <Link
         to="/"
         className="text-white hover:text-primary transition-colors font-medium"

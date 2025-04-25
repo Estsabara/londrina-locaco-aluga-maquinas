@@ -33,7 +33,7 @@ const Navbar = () => {
             />
           </Link>
           
-          <div className="flex-grow max-w-xl mx-4 hidden md:block">
+          <div className="flex-grow max-w-md mx-4 hidden md:block">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
