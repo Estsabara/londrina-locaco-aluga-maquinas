@@ -12,26 +12,24 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
     const normalizedCategory = category.toLowerCase().trim();
     
     switch (normalizedCategory) {
-      case 'acesso e elevação':
-        return '/lovable-uploads/f7c8ee6a-46a5-484a-b2eb-8cdad9ae0cd1.png';
       case 'andaimes':
-        return '/lovable-uploads/3ce14fe2-4ad5-4831-8077-5235d0e1e7f3.png';
+        return '/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png';
+      case 'acesso e elevação':
+        return '/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png';
       case 'compactação':
-        return '/lovable-uploads/beb9ead4-d86e-4baf-93da-2eb47633f3b5.png';
+        return '/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png';
       case 'concretagem':
-        return '/lovable-uploads/e82f9699-ea35-4785-ba4a-f10ee8833ec4.png';
-      case 'escoramentos':
-        return '/lovable-uploads/4f42c94d-37e0-4d12-aca6-839fe9a8b617.png';
-      case 'ferramentas elétricas':
-        return '/lovable-uploads/c1cba62e-959b-474f-b465-88c313cfea04.png';
+        return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png';
       case 'jardinagem':
-        return '/lovable-uploads/aa88e866-0c19-4508-a924-cd5e872ad5b8.png';
+        return '/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png';
+      case 'ferramentas elétricas':
+        return '/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png';
       case 'limpeza':
-        return '/lovable-uploads/42c78cd7-4c35-4deb-9397-446640d46762.png';
+        return '/lovable-uploads/2bd10752-8b9d-4db6-a157-197c47ae596c.png';
       case 'motores':
-        return '/lovable-uploads/deb08805-cdd2-4722-b7ee-db6ff996d02b.png';
-      case 'perfuração':
-        return '/lovable-uploads/4bab052c-6e85-4ce2-a0fb-ab43e16408e1.png';
+        return '/lovable-uploads/8018b07b-9771-47a4-8eb0-36b34f16f546.png';
+      case 'escoramentos':
+        return '/lovable-uploads/aad19f97-574c-4505-87cc-5a3ee838a610.png';
       default:
         console.log('Category icon not found:', category);
         return null;
@@ -42,11 +40,12 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   
   if (iconPath) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="bg-white rounded-lg p-4">
         <img 
           src={iconPath}
           alt={`Ícone ${category}`}
           className={`h-12 w-12 object-contain ${className}`}
+          style={{ filter: 'invert(27%) sepia(85%) saturate(7076%) hue-rotate(5deg) brightness(102%) contrast(109%)' }}
           onError={(e) => {
             console.error(`Failed to load icon for category: ${category}`);
             e.currentTarget.onerror = null;
@@ -58,10 +57,9 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   }
   
   return (
-    <div className="flex items-center justify-center">
-      <Wrench 
-        className={`h-12 w-12 ${className}`}
-      />
+    <div className="bg-white rounded-lg p-4">
+      <Wrench className={`h-12 w-12 text-[#ff3200] ${className}`} />
     </div>
   );
 }
+

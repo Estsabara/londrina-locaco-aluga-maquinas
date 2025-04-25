@@ -33,11 +33,9 @@ export function CategoryCard({
     <Link to={`/produtos?categoria=${slug}`} onClick={handleClick}>
       <Card className={`h-full transition-transform hover:scale-105 bg-white ${className}`}>
         <CardContent className="flex flex-col items-center justify-center p-6 text-center">
-          <div className="mb-4 flex items-center justify-center h-12 w-12">
-            <CustomCategoryIcon category={name} />
-          </div>
-          <h3 className="text-lg font-medium mb-2 text-[#FF7F00]">{name}</h3>
-          <p className="text-sm text-muted-foreground text-gray-500">{description}</p>
+          <CustomCategoryIcon category={name} className="mb-4" />
+          <h3 className="text-lg font-medium mb-2 text-[#ff0000]">{name}</h3>
+          <p className="text-sm text-muted-foreground text-[#ff0000]">{description}</p>
         </CardContent>
       </Card>
     </Link>

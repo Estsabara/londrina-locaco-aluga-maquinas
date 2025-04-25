@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
@@ -7,31 +6,37 @@ export function HeroBanner() {
     {
       name: "Andaimes",
       slug: "andaimes",
+      icon: "/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png",
       href: "/produtos?categoria=andaimes"
     },
     {
       name: "Acesso e Elevação",
       slug: "acesso-elevacao",
+      icon: "/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png",
       href: "/produtos?categoria=acesso-elevacao"
     },
     {
       name: "Compactação",
       slug: "compactacao",
+      icon: "/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png",
       href: "/produtos?categoria=compactacao"
     },
     {
       name: "Concretagem",
       slug: "concretagem",
+      icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
       href: "/produtos?categoria=concretagem"
     },
     {
       name: "Jardinagem",
       slug: "jardinagem",
+      icon: "/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png",
       href: "/produtos?categoria=jardinagem"
     },
     {
       name: "Ferramentas Elétricas",
       slug: "ferramentas-eletricas",
+      icon: "/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png",
       href: "/produtos?categoria=ferramentas-eletricas"
     }
   ];
@@ -56,19 +61,17 @@ export function HeroBanner() {
 
           {/* Right side - Category Icons */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
-            {categories.map(category => (
+            {categories.slice(0, 6).map(category => (
               <Link 
                 key={category.name} 
                 to={category.href} 
                 className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-white hover:bg-white/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
-                <div className="mb-2 flex items-center justify-center h-12 w-12">
-                  <CustomCategoryIcon 
-                    category={category.name}
-                    className="group-hover:opacity-90"
-                  />
-                </div>
-                <span className="text-xs md:text-sm text-[#FF7F00] font-medium line-clamp-2 text-center group-hover:text-[#FF7F00]/90">
+                <CustomCategoryIcon 
+                  category={category.name}
+                  className="mb-2 group-hover:opacity-90"
+                />
+                <span className="text-xs md:text-sm text-[#ff0000] font-medium line-clamp-2 text-center group-hover:text-[#ff0000]/90">
                   {category.name}
                 </span>
               </Link>
