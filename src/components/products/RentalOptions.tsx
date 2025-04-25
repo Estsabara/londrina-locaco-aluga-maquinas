@@ -1,4 +1,3 @@
-
 import React from "react";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
@@ -68,6 +67,15 @@ export function RentalOptions({
             <span className="text-green-600 text-sm mt-1">10% OFF</span>
           </div>;
         }
+      case "biweekly":
+        {
+          const biweeklyPrice = priceWeekly || price * 12;
+          const discountedBiweeklyPrice = biweeklyPrice * 0.90;
+          return <div className="flex flex-col items-end">
+            <span>{formatCurrency(discountedBiweeklyPrice)}/quinzena</span>
+            <span className="text-green-600 text-sm mt-1">10% OFF</span>
+          </div>;
+        }
       default:
         return `${formatCurrency(price)}/dia`;
     }
@@ -82,6 +90,9 @@ export function RentalOptions({
         break;
       case "monthly":
         basePrice = (priceMonthly || price * 25) * 0.90; // 10% off monthly rate
+        break;
+      case "biweekly":
+        basePrice = (priceWeekly || price * 12) * 0.90; // 10% off biweekly rate
         break;
     }
     
@@ -106,7 +117,7 @@ export function RentalOptions({
           <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mr-2">2</div>
           Período de Locação
         </Label>
-        <RadioGroup value={rentalPeriod} onValueChange={handlePeriodChange} className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <RadioGroup value={rentalPeriod} onValueChange={handlePeriodChange} className="grid grid-cols-1 sm:grid-cols-4 gap-2">
           <div className="flex items-center space-x-2 border rounded-md p-2">
             <RadioGroupItem value="daily" id="daily" />
             <Label htmlFor="daily" className="cursor-pointer">Diário</Label>
@@ -115,6 +126,11 @@ export function RentalOptions({
           <div className="flex items-center space-x-2 border rounded-md p-2">
             <RadioGroupItem value="weekly" id="weekly" />
             <Label htmlFor="weekly" className="cursor-pointer">Semanal</Label>
+          </div>
+          
+          <div className="flex items-center space-x-2 border rounded-md p-2">
+            <RadioGroupItem value="biweekly" id="biweekly" />
+            <Label htmlFor="biweekly" className="cursor-pointer">Quinzenal</Label>
           </div>
           
           <div className="flex items-center space-x-2 border rounded-md p-2">
@@ -154,6 +170,8 @@ export function RentalOptions({
                 periodQuantity === 1 ? "1 dia" : `${periodQuantity} dias`
               ) : rentalPeriod === "weekly" ? (
                 periodQuantity === 1 ? "1 semana" : `${periodQuantity} semanas`
+              ) : rentalPeriod === "biweekly" ? (
+                periodQuantity === 1 ? "1 quinzena" : `${periodQuantity} quinzenas`
               ) : (
                 periodQuantity === 1 ? "1 mês" : `${periodQuantity} meses`
               )}
