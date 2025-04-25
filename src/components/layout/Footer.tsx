@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+
 export function Footer() {
   return <footer className="bg-black text-white">
       <div className="container py-10">
