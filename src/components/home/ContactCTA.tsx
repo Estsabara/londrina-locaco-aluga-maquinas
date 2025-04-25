@@ -7,7 +7,7 @@ export function ContactCTA() {
           Precisando de um equipamento específico?
         </h2>
         <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-          Entre em contato conosco e encontraremos a solução ideal para sua obra.
+          Conte com a Londrina Locações! Temos os melhores equipamentos para sua obra com atendimento personalizado.
         </p>
         <a
           href="https://wa.me/554333723860"
@@ -15,7 +15,7 @@ export function ContactCTA() {
           rel="noopener noreferrer"
           className="inline-block bg-white text-[#fe3100] px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
         >
-          Fale Conosco
+          Fale Conosco pelo WhatsApp
         </a>
       </div>
     </section>

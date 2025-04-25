@@ -1,9 +1,8 @@
 
 import { Link } from "react-router-dom";
 import { Product } from "@/types";
-import { formatCurrency } from "@/lib/date-utils";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
@@ -54,24 +53,13 @@ export function ProductCard({ product }: ProductCardProps) {
           </CardContent>
         </Link>
         
-        <CardFooter className="p-4 pt-0 flex flex-col gap-2">
-          <div className="w-full flex items-center justify-between">
-            <div className="font-bold text-lg">
-              {formatCurrency(product.price)}
-              <span className="text-xs font-normal text-muted-foreground">/dia</span>
-            </div>
-            {product.available ? (
-              <Badge variant="default">Disponível</Badge>
-            ) : (
-              <Badge variant="destructive">Indisponível</Badge>
-            )}
-          </div>
+        <CardFooter className="p-4 pt-0">
           <Button 
             className="w-full bg-green-600 hover:bg-green-700 text-white"
             onClick={(e) => openWhatsApp(e, product.name)}
           >
             <MessageCircle className="mr-2 h-4 w-4" />
-            Alugar pelo WhatsApp
+            Solicitar Orçamento
           </Button>
         </CardFooter>
       </Card>
