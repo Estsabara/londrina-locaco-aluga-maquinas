@@ -13,27 +13,25 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
     
     switch (normalizedCategory) {
       case 'andaimes':
-        return '/lovable-uploads/27864eea-0e5f-41b3-88ac-9924e30d518f.png';
+        return '/lovable-uploads/55fcb8ae-a8c5-4739-aab8-2df59f5fd252.png';
       case 'acesso e elevação':
-        return '/lovable-uploads/a7db7c69-2277-463c-8a2e-512014690f7e.png';
+        return '/lovable-uploads/9aacfdfa-6326-487a-93c6-2a5db5d466e7.png';
       case 'compactação':
-        return '/lovable-uploads/ddd81629-440f-46df-935f-a1ab6f9a253d.png';
+        return '/lovable-uploads/496f7ff0-cfd9-4b7f-a618-ec499be35e4e.png';
       case 'concretagem':
-        return '/lovable-uploads/74455a9f-1483-420d-a15b-568d30d1447c.png';
+        return '/lovable-uploads/ce5204fb-46eb-4ae1-bb4f-f4ea10decc33.png';
       case 'jardinagem':
-        return '/lovable-uploads/528495f1-e3c8-44d9-8f2e-3241f6a4bb04.png';
+        return '/lovable-uploads/122e2e33-db18-4741-8720-7b0608e9196a.png';
       case 'ferramentas elétricas':
-        return '/lovable-uploads/7faa5e74-9a6f-4883-9a96-3d1b3f244f74.png';
+        return '/lovable-uploads/952b267b-c852-43fa-99f1-7c25afa26bd5.png';
       case 'limpeza':
-        return '/lovable-uploads/1dadfa90-188e-42c0-93b2-58f4e50b366a.png';
+        return '/lovable-uploads/03961ce9-f203-4b21-8d58-be6e72ebf525.png';
       case 'motores':
-        return '/lovable-uploads/07aab077-f8da-4695-b82e-2d9484fa0c49.png';
+        return '/lovable-uploads/41e445cb-c6be-4249-b33a-ef009dc6a0c1.png';
       case 'escoramentos':
-        return '/lovable-uploads/5994ddf5-e8ae-4a44-b4d7-a34be579eeb9.png';
+        return '/lovable-uploads/bba1d8f0-8be5-41df-a679-2b465d25ef51.png';
       case 'perfuração':
-        return '/lovable-uploads/799da723-30cb-415d-9f19-f8cc007e4007.png';
-      case 'geradores':
-        return '/lovable-uploads/d6d2aef2-5515-48c0-a01b-aa5636bb3d73.png';
+        return '/lovable-uploads/248d9477-284c-4fe8-b4c1-1dfc09a5f0f2.png';
       default:
         console.log('Category icon not found:', category);
         return null;
@@ -62,9 +60,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   return (
     <div className="bg-white rounded-lg p-4">
       <Wrench 
-        className={`h-12 w-12 text-[#FF7F00] ${className}`}
-        color="#FF7F00"
-        strokeWidth={2}
+        className={`h-12 w-12 ${className}`}
       />
     </div>
   );
