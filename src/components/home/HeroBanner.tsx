@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
@@ -71,7 +72,7 @@ export function HeroBanner() {
                   category={category.name}
                   className="mb-2 group-hover:opacity-90"
                 />
-                <span className="text-xs md:text-sm text-[#ff0000] font-medium line-clamp-2 text-center group-hover:text-[#ff0000]/90">
+                <span className="text-xs md:text-sm text-[#FF7F00] font-medium line-clamp-2 text-center group-hover:text-[#FF7F00]/90">
                   {category.name}
                 </span>
               </Link>
