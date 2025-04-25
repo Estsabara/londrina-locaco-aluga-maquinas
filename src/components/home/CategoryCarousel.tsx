@@ -18,6 +18,8 @@ interface CategoryCarouselProps {
 export function CategoryCarousel({ onCategorySelect }: CategoryCarouselProps) {
   const isMobile = useIsMobile();
 
+  console.log('Categories data:', categoryData); // Debugging
+
   return (
     <section className="py-4 md:py-8 w-full overflow-hidden">
       <div className="container px-2 md:px-6">
@@ -42,7 +44,10 @@ export function CategoryCarousel({ onCategorySelect }: CategoryCarouselProps) {
                       slug={card.slug}
                       description={card.description}
                       icon={card.icon}
-                      onClick={() => onCategorySelect(card.category)} 
+                      onClick={() => {
+                        console.log('Category selected:', card.category);
+                        onCategorySelect(card.category);
+                      }} 
                     />
                   </div>
                 </CarouselItem>

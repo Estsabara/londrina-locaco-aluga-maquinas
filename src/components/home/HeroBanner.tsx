@@ -56,13 +56,13 @@ export function HeroBanner() {
 
           {/* Right side - Category Icons */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
-            {categories.slice(0, 6).map(category => (
+            {categories.map(category => (
               <Link 
                 key={category.name} 
                 to={category.href} 
                 className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-white hover:bg-white/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
-                <div className="mb-2">
+                <div className="mb-2 flex items-center justify-center h-12 w-12">
                   <CustomCategoryIcon 
                     category={category.name}
                     className="group-hover:opacity-90"
