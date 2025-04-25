@@ -5,7 +5,6 @@ import { CheckCircle } from "lucide-react";
 
 interface ProductInfoProps {
   name: string;
-  price: number;
   category: string;
   available: boolean;
   description: string;

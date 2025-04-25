@@ -1,3 +1,4 @@
+
 export interface Product {
   id: number;
   name: string;
@@ -67,6 +68,4 @@ export interface InventoryProduct extends Product {
   threshold: number;
   lastRestocked: string;
   status: string;
-  brand: string;
-  model: string;
 }
