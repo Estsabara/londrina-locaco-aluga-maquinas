@@ -62,10 +62,12 @@ export function HeroBanner() {
                 to={category.href} 
                 className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-white hover:bg-white/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
               >
-                <CustomCategoryIcon 
-                  category={category.name}
-                  className="mb-2 group-hover:opacity-90"
-                />
+                <div className="mb-2">
+                  <CustomCategoryIcon 
+                    category={category.name}
+                    className="group-hover:opacity-90"
+                  />
+                </div>
                 <span className="text-xs md:text-sm text-[#FF7F00] font-medium line-clamp-2 text-center group-hover:text-[#FF7F00]/90">
                   {category.name}
                 </span>

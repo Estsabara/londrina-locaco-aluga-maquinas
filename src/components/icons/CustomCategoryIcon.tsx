@@ -42,7 +42,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   
   if (iconPath) {
     return (
-      <div className="bg-white rounded-lg p-4">
+      <div className="flex items-center justify-center">
         <img 
           src={iconPath}
           alt={`Ícone ${category}`}
@@ -58,7 +58,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   }
   
   return (
-    <div className="bg-white rounded-lg p-4">
+    <div className="flex items-center justify-center">
       <Wrench 
         className={`h-12 w-12 ${className}`}
       />

@@ -35,7 +35,7 @@ export function CategoryCard({
         <CardContent className="flex flex-col items-center justify-center p-6 text-center">
           <CustomCategoryIcon category={name} className="mb-4" />
           <h3 className="text-lg font-medium mb-2 text-[#FF7F00]">{name}</h3>
-          <p className="text-sm text-muted-foreground text-[#FF7F00]">{description}</p>
+          <p className="text-sm text-muted-foreground text-gray-500">{description}</p>
         </CardContent>
       </Card>
     </Link>
