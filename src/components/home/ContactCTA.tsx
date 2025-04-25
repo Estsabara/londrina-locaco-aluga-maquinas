@@ -1,33 +1,22 @@
 
-import { Button } from "@/components/ui/button";
-import { createWhatsAppLink } from "@/lib/utils";
-
 export function ContactCTA() {
-  const whatsappMessage = "Olá! Preciso de ajuda para encontrar o equipamento ideal para minha obra.";
-
-  const handleWhatsAppContact = () => {
-    const whatsappUrl = createWhatsAppLink("554333723860", whatsappMessage);
-    window.open(whatsappUrl, '_blank');
-  };
-
   return (
-    <section className="py-12 md:py-16 bg-primary/10">
-      <div className="container px-4 md:px-6 text-center">
-        <div className="max-w-2xl mx-auto space-y-4">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Precisando de um equipamento específico?
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Entre em contato conosco e encontraremos a solução ideal para sua obra.
-          </p>
-          <Button 
-            size="lg" 
-            className="mt-2"
-            onClick={handleWhatsAppContact}
-          >
-            Fale Conosco
-          </Button>
-        </div>
+    <section className="bg-[#fe3100] py-16 px-4">
+      <div className="container mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Precisando de um equipamento específico?
+        </h2>
+        <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+          Entre em contato conosco e encontraremos a solução ideal para sua obra.
+        </p>
+        <a
+          href="https://wa.me/554333723860"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-white text-[#fe3100] px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
+        >
+          Fale Conosco
+        </a>
       </div>
     </section>
   );
