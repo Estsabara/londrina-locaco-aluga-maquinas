@@ -11,8 +11,7 @@ interface ContactButtonProps {
 export function ContactButton({ productName }: ContactButtonProps) {
   const openWhatsApp = () => {
     const message = `Olá! Estou interessado em alugar o equipamento: ${productName}. Poderia me dar mais informações?`;
-    const phoneNumber = "5543337238607";
-    const whatsappUrl = createWhatsAppLink(phoneNumber, message);
+    const whatsappUrl = createWhatsAppLink("554333723860", message);
     window.open(whatsappUrl, '_blank');
   };
 

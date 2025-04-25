@@ -3,11 +3,10 @@ import { MessageCircle } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
 
 export function FloatingWhatsApp() {
-  const whatsappNumber = "5543337238607";
   const whatsappMessage = "Olá! Gostaria de mais informações sobre locação de equipamentos.";
 
   const handleWhatsAppContact = () => {
-    const whatsappUrl = createWhatsAppLink(whatsappNumber, whatsappMessage);
+    const whatsappUrl = createWhatsAppLink("554333723860", whatsappMessage);
     window.open(whatsappUrl, '_blank');
   };
 

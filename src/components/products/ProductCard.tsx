@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Product } from "@/types";
 import { formatCurrency } from "@/lib/date-utils";
@@ -20,8 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault();
     e.stopPropagation();
     const message = `Olá! Estou interessado em alugar o equipamento: ${productName}. Poderia me dar mais informações?`;
-    const phoneNumber = "5543337238607";
-    const whatsappUrl = createWhatsAppLink(phoneNumber, message);
+    const whatsappUrl = createWhatsAppLink("554333723860", message);
     window.open(whatsappUrl, '_blank');
   };
 
@@ -30,7 +28,6 @@ export function ProductCard({ product }: ProductCardProps) {
     setImageError(true);
   };
 
-  // Ensure image URL doesn't change once loaded
   const imageUrl = imageError ? "/placeholder.svg" : product.imageUrl;
 
   return (

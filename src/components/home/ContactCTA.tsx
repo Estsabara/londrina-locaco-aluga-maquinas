@@ -3,11 +3,10 @@ import { Button } from "@/components/ui/button";
 import { createWhatsAppLink } from "@/lib/utils";
 
 export function ContactCTA() {
-  const whatsappNumber = "5543337238607";
   const whatsappMessage = "Olá! Preciso de ajuda para encontrar o equipamento ideal para minha obra.";
 
   const handleWhatsAppContact = () => {
-    const whatsappUrl = createWhatsAppLink(whatsappNumber, whatsappMessage);
+    const whatsappUrl = createWhatsAppLink("554333723860", whatsappMessage);
     window.open(whatsappUrl, '_blank');
   };
 

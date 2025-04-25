@@ -7,7 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function createWhatsAppLink(phoneNumber: string, message: string): string {
-  // Format: phone number without "+" at the beginning
-  const formattedPhone = phoneNumber.startsWith('+') ? phoneNumber.substring(1) : phoneNumber;
-  return `https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`;
+  // Use the exact link format specified by the user
+  return `https://wa.me/554333723860?text=${encodeURIComponent(message)}`;
 }
