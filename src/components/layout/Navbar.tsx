@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Shield, Search } from "lucide-react";
@@ -9,70 +8,41 @@ import { LoginDialog } from "./nav/LoginDialog";
 import { MobileMenu } from "./nav/MobileMenu";
 import { NavigationLinks } from "./nav/NavigationLinks";
 import { CartButton } from "./nav/CartButton";
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const { cartItems } = useCart();
-  
+  const {
+    cartItems
+  } = useCart();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  
   const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  
-  return (
-    <header className="sticky top-0 z-50 bg-black shadow-sm">
+  return <header className="sticky top-0 z-50 bg-black shadow-sm">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4 mb-3">
           <Link to="/" className="flex-shrink-0">
-            <img 
-              src="/lovable-uploads/a318feda-ccf9-4034-8132-160b1fd158c6.png" 
-              alt="Londrina Locações" 
-              className="h-8 md:h-10 max-w-full object-contain"
-            />
+            <img src="/lovable-uploads/a318feda-ccf9-4034-8132-160b1fd158c6.png" alt="Londrina Locações" className="h-8 md:h-10 max-w-full object-contain" />
           </Link>
           
           <div className="flex-grow max-w-md mx-4 hidden md:block">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input 
-                type="search" 
-                placeholder="Buscar equipamentos..." 
-                className="w-full pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60"
-              />
+              
             </div>
           </div>
           
           <div className="flex items-center space-x-4">
-            <Button 
-              variant="outline" 
-              className="flex items-center gap-2 border-2 border-primary hover:bg-primary/10 hover:text-primary text-primary font-medium shadow-sm px-3 py-1"
-              onClick={() => setIsLoginOpen(true)}
-            >
+            <Button variant="outline" className="flex items-center gap-2 border-2 border-primary hover:bg-primary/10 hover:text-primary text-primary font-medium shadow-sm px-3 py-1" onClick={() => setIsLoginOpen(true)}>
               <Shield className="h-4 w-4" />
               <span className="hidden sm:inline text-sm">Admin</span>
             </Button>
             
             <CartButton quantity={cartQuantity} />
             
-            <button
-              onClick={toggleMenu}
-              className="md:hidden text-gray-700 hover:text-primary focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
+            <button onClick={toggleMenu} className="md:hidden text-gray-700 hover:text-primary focus:outline-none">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </button>
           </div>
@@ -82,29 +52,16 @@ const Navbar = () => {
         <div className="md:hidden mb-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input 
-              type="search" 
-              placeholder="Buscar equipamentos..." 
-              className="w-full pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60"
-            />
+            <Input type="search" placeholder="Buscar equipamentos..." className="w-full pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60" />
           </div>
         </div>
         
         <NavigationLinks />
         
-        <MobileMenu 
-          isOpen={isMenuOpen} 
-          onClose={() => setIsMenuOpen(false)}
-          onLoginClick={() => setIsLoginOpen(true)}
-        />
+        <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onLoginClick={() => setIsLoginOpen(true)} />
         
-        <LoginDialog 
-          isOpen={isLoginOpen}
-          onOpenChange={setIsLoginOpen}
-        />
+        <LoginDialog isOpen={isLoginOpen} onOpenChange={setIsLoginOpen} />
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Navbar;
