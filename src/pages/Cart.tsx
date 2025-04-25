@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { CartItem } from "@/components/cart/CartItem";
-import { ShoppingCart, ArrowRight, ArrowLeft } from "lucide-react";
+import { ShoppingCart, ArrowLeft } from "lucide-react";
 import { CartSummary } from "@/components/cart/CartSummary";
 
 export default function Cart() {
@@ -54,22 +54,7 @@ export default function Cart() {
               </div>
               
               <div className="lg:col-span-1">
-                <div className="bg-secondary rounded-lg p-6 sticky top-20">
-                  <CartSummary />
-                  
-                  <div className="mt-6">
-                    <Button 
-                      asChild
-                      className="w-full" 
-                      size="lg"
-                    >
-                      <Link to="/checkout">
-                        Prosseguir para Checkout
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
+                <CartSummary />
               </div>
             </div>
           )}
