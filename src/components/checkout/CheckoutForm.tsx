@@ -2,7 +2,7 @@
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { WhatsApp } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { Loader2 } from "lucide-react";
 
 interface CheckoutFormProps {
@@ -104,7 +104,7 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
           </>
         ) : (
           <>
-            <WhatsApp className="mr-2 h-5 w-5" />
+            <MessageSquare className="mr-2 h-5 w-5" />
             Enviar Pedido pelo WhatsApp
           </>
         )}
