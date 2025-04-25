@@ -38,7 +38,7 @@ export function ProductDetailsContent({
   periodQuantity,
   setPeriodQuantity
 }: ProductDetailsContentProps) {
-  const { name, description, price, imageUrl, category, specs, available, priceWeekly, priceMonthly } = product;
+  const { name, description, price, imageUrl, imageUrl2, category, specs, available } = product;
 
   return (
     <main className="flex-grow container py-8">
@@ -52,7 +52,7 @@ export function ProductDetailsContent({
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <ProductImageGallery imageUrl={imageUrl} name={name} />
+        <ProductImageGallery imageUrl={imageUrl} imageUrl2={imageUrl2} name={name} />
         
         <div className="space-y-6">
           <ProductInfo 
@@ -71,14 +71,10 @@ export function ProductDetailsContent({
           
           <RentalOptions
             available={available}
-            price={price}
-            priceWeekly={priceWeekly}
-            priceMonthly={priceMonthly}
             dateRange={dateRange}
             setDateRange={setDateRange}
             quantity={quantity}
             setQuantity={setQuantity}
-            rentalTotal={rentalTotal}
             onAddToCart={onAddToCart}
             rentalPeriod={rentalPeriod}
             setRentalPeriod={setRentalPeriod}
@@ -95,3 +91,4 @@ export function ProductDetailsContent({
     </main>
   );
 }
+
