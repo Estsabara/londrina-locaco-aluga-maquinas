@@ -57,7 +57,11 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   
   return (
     <div className="bg-white rounded-lg p-4">
-      <Wrench className={`h-12 w-12 text-[#FF7F00] ${className}`} />
+      <Wrench 
+        className={`h-12 w-12 text-[#FF7F00] ${className}`} 
+        color="#FF7F00"  // Explicitly set color
+        strokeWidth={2}   // Ensure consistent stroke width
+      />
     </div>
   );
 }
