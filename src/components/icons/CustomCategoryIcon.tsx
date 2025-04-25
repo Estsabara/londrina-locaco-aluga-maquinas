@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Wrench } from 'lucide-react';
 
 interface CustomCategoryIconProps {
@@ -8,14 +8,12 @@ interface CustomCategoryIconProps {
 }
 
 export function CustomCategoryIcon({ category, className = "" }: CustomCategoryIconProps) {
-  const [imageError, setImageError] = useState(false);
-
   const getIconPath = () => {
     const normalizedCategory = category.toLowerCase().trim();
     
     switch (normalizedCategory) {
       case 'andaimes':
-        return '/lovable-uploads/1c8710b1-8f77-4f15-b33e-45a015ef9707.png';
+        return '/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png';
       case 'acesso e elevação':
         return '/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png';
       case 'compactação':
@@ -40,26 +38,28 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
 
   const iconPath = getIconPath();
   
-  if (!iconPath || imageError) {
-    console.error(`Failed to load or display icon for category: ${category}`);
+  if (iconPath) {
     return (
       <div className="bg-white rounded-lg p-4">
-        <Wrench className={`h-12 w-12 text-[#ff3200] ${className}`} />
+        <img 
+          src={iconPath}
+          alt={`Ícone ${category}`}
+          className={`h-12 w-12 object-contain ${className}`}
+          style={{ filter: 'invert(27%) sepia(85%) saturate(7076%) hue-rotate(5deg) brightness(102%) contrast(109%)' }}
+          onError={(e) => {
+            console.error(`Failed to load icon for category: ${category}`);
+            e.currentTarget.onerror = null;
+            e.currentTarget.style.display = 'none';
+          }}
+        />
       </div>
     );
   }
   
   return (
     <div className="bg-white rounded-lg p-4">
-      <img 
-        src={iconPath}
-        alt={`Ícone ${category}`}
-        className={`h-12 w-12 object-contain ${className}`}
-        onError={() => {
-          console.error(`Failed to load image for category: ${category}`);
-          setImageError(true);
-        }}
-      />
+      <Wrench className={`h-12 w-12 text-[#ff3200] ${className}`} />
     </div>
   );
 }
+
