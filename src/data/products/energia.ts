@@ -6,7 +6,6 @@ export const energiaProducts: Product[] = [
     id: 39,
     name: "Gerador de Energia Branco 5000W",
     description: "Gerador de energia a gasolina com partida elétrica, ideal para obras e eventos.",
-    price: 250,
     imageUrl: "/lovable-uploads/b0f9f145-630c-43d1-8f29-23eb96b6d43a.png",
     category: "Energia",
     available: true,

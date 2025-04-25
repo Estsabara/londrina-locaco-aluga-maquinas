@@ -6,7 +6,6 @@ export const plainasProducts: Product[] = [
     id: 26,
     name: "Plaina Elétrica",
     description: "Plaina elétrica para aplainamento e rebaixo em madeira.",
-    price: 70,
     imageUrl: "/placeholder.svg",
     category: "Corte e Acabamento",
     available: true,

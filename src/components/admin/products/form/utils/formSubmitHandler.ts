@@ -42,7 +42,9 @@ export const handleFormSubmit = async (
       imageurl: imageUrl,
       imageurl2: imageUrl2,
       available: true,
-      specs: {}
+      specs: {},
+      brand: initialData?.brand || '',
+      model: initialData?.model || ''
     };
 
     if (initialData?.id) {
@@ -60,7 +62,7 @@ export const handleFormSubmit = async (
     } else {
       const { error } = await supabase
         .from('products')
-        .insert([productData]);
+        .insert(productData);
 
       if (error) {
         console.error('Insert error:', error);

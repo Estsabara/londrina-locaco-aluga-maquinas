@@ -1,3 +1,4 @@
+
 import { Product } from "@/types";
 
 export const perfuracaoDemolicaoProducts: Product[] = [
@@ -5,7 +6,6 @@ export const perfuracaoDemolicaoProducts: Product[] = [
     id: 13,
     name: "Furadeira de Impacto Makita HP2070",
     description: "Furadeira de impacto profissional para trabalhos pesados em alvenaria e concreto.",
-    price: 85,
     imageUrl: "/lovable-uploads/d312b818-47c8-4dc4-b1df-1eb7a8ce43bc.png",
     category: "Perfuração e Demolição",
     available: true,
