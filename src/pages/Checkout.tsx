@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -8,18 +7,10 @@ import { ArrowLeft, ShoppingCart } from "lucide-react";
 import { CartSummary } from "@/components/cart/CartSummary";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { useCheckoutForm } from "@/hooks/useCheckoutForm";
-import { useCheckoutSubmit } from "@/hooks/useCheckoutSubmit";
 
 export default function Checkout() {
   const { cartItems } = useCart();
-  const { customer, handleChange, validateForm, isLoading, setIsLoading } = useCheckoutForm();
-  const { handleSubmit } = useCheckoutSubmit();
-  
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    await handleSubmit(customer, setIsLoading);
-  };
+  const { customer, handleChange, handleSubmit, isLoading } = useCheckoutForm();
   
   const isEmpty = cartItems.length === 0;
   
@@ -62,7 +53,7 @@ export default function Checkout() {
         <div className="max-w-5xl mx-auto">
           <h1 className="text-3xl font-bold mb-8 flex items-center">
             <ShoppingCart className="mr-3 h-6 w-6" />
-            Checkout
+            Finalizar Pedido
           </h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -70,7 +61,7 @@ export default function Checkout() {
               <div className="bg-card rounded-lg p-6 border">
                 <h2 className="text-xl font-semibold mb-4">Seus Dados</h2>
                 <CheckoutForm
-                  onSubmit={handleFormSubmit}
+                  onSubmit={handleSubmit}
                   onChange={handleChange}
                   customer={customer}
                   isLoading={isLoading}

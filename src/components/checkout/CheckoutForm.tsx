@@ -2,11 +2,11 @@
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { WhatsApp } from "lucide-react";
 import { Loader2 } from "lucide-react";
 
 interface CheckoutFormProps {
-  onSubmit: (e: React.FormEvent) => Promise<void>;
+  onSubmit: (e: React.FormEvent) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   customer: {
     name: string;
@@ -52,7 +52,7 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
       
       <div>
         <label htmlFor="phone" className="block text-sm font-medium mb-1">
-          Telefone
+          Telefone <span className="text-destructive">*</span>
         </label>
         <Input
           id="phone"
@@ -60,6 +60,7 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
           value={customer.phone}
           onChange={onChange}
           placeholder="(00) 00000-0000"
+          required
         />
       </div>
       
@@ -95,7 +96,7 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
         <p>Campos com <span className="text-destructive">*</span> são obrigatórios.</p>
       </div>
       
-      <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+      <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" size="lg" disabled={isLoading}>
         {isLoading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -103,8 +104,8 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
           </>
         ) : (
           <>
-            Continuar para Revisão do Contrato
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <WhatsApp className="mr-2 h-5 w-5" />
+            Enviar Pedido pelo WhatsApp
           </>
         )}
       </Button>

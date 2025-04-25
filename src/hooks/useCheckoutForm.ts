@@ -1,9 +1,11 @@
 
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { Customer } from "@/types";
+import { createWhatsAppLink } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "@/context/CartContext";
+import { formatCurrency } from "@/lib/date-utils";
 
 interface CheckoutFormData {
   name: string;
@@ -17,6 +19,7 @@ export function useCheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { cartItems, getCartTotal, clearCart } = useCart();
   const [customer, setCustomer] = useState<CheckoutFormData>({
     name: '',
     email: '',
@@ -33,7 +36,7 @@ export function useCheckoutForm() {
   };
 
   const validateForm = () => {
-    if (!customer.name || !customer.email || !customer.document_number) {
+    if (!customer.name || !customer.email || !customer.phone || !customer.document_number) {
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha todos os campos obrigatórios.",
@@ -43,12 +46,63 @@ export function useCheckoutForm() {
     }
     return true;
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+    
+    setIsLoading(true);
+    
+    try {
+      // Create WhatsApp message with order details
+      let message = `*Novo Pedido de Locação*\n\n`;
+      message += `*Dados do Cliente:*\n`;
+      message += `Nome: ${customer.name}\n`;
+      message += `Email: ${customer.email}\n`;
+      message += `Telefone: ${customer.phone}\n`;
+      message += `Documento: ${customer.document_number}\n`;
+      if (customer.address) {
+        message += `Endereço: ${customer.address}\n`;
+      }
+      
+      message += `\n*Itens do Pedido:*\n`;
+      cartItems.forEach(item => {
+        message += `\n- ${item.product.name}\n`;
+        message += `  Quantidade: ${item.quantity}\n`;
+        message += `  Período: ${item.startDate.toLocaleDateString()} até ${item.endDate.toLocaleDateString()}\n`;
+        message += `  Tipo de locação: ${item.rentalPeriod === 'daily' ? 'Diária' : 
+          item.rentalPeriod === 'weekly' ? 'Semanal' : 
+          item.rentalPeriod === 'biweekly' ? 'Quinzenal' : 'Mensal'}\n`;
+      });
+      
+      message += `\n*Valor Total: ${formatCurrency(getCartTotal())}*`;
+      
+      // Create WhatsApp link and open it
+      const whatsappUrl = createWhatsAppLink("554333723860", message);
+      window.open(whatsappUrl, '_blank');
+      
+      // Clear cart and redirect to success page
+      clearCart();
+      navigate('/sucesso');
+    } catch (error) {
+      console.error('Erro ao processar checkout:', error);
+      toast({
+        title: "Erro",
+        description: "Ocorreu um erro ao processar seu pedido. Por favor, tente novamente.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
   
   return {
     customer,
     handleChange,
     validateForm,
     isLoading,
-    setIsLoading
+    setIsLoading,
+    handleSubmit
   };
 }
