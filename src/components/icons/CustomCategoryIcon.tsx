@@ -45,7 +45,6 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
           src={iconPath}
           alt={`Ícone ${category}`}
           className={`h-12 w-12 object-contain ${className}`}
-          style={{ filter: 'invert(27%) sepia(85%) saturate(7076%) hue-rotate(5deg) brightness(102%) contrast(109%)' }}
           onError={(e) => {
             console.error(`Failed to load icon for category: ${category}`);
             e.currentTarget.onerror = null;
@@ -58,8 +57,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
   
   return (
     <div className="bg-white rounded-lg p-4">
-      <Wrench className={`h-12 w-12 text-[#ff3200] ${className}`} />
+      <Wrench className={`h-12 w-12 text-[#e66722] ${className}`} />
     </div>
   );
 }
-
