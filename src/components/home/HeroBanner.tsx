@@ -7,37 +7,31 @@ export function HeroBanner() {
     {
       name: "Andaimes",
       slug: "andaimes",
-      icon: "/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png",
       href: "/produtos?categoria=andaimes"
     },
     {
       name: "Acesso e Elevação",
       slug: "acesso-elevacao",
-      icon: "/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png",
       href: "/produtos?categoria=acesso-elevacao"
     },
     {
       name: "Compactação",
       slug: "compactacao",
-      icon: "/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png",
       href: "/produtos?categoria=compactacao"
     },
     {
       name: "Concretagem",
       slug: "concretagem",
-      icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
       href: "/produtos?categoria=concretagem"
     },
     {
       name: "Jardinagem",
       slug: "jardinagem",
-      icon: "/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png",
       href: "/produtos?categoria=jardinagem"
     },
     {
       name: "Ferramentas Elétricas",
       slug: "ferramentas-eletricas",
-      icon: "/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png",
       href: "/produtos?categoria=ferramentas-eletricas"
     }
   ];
