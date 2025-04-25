@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Wrench } from 'lucide-react';
 
 interface CustomCategoryIconProps {
@@ -8,6 +8,8 @@ interface CustomCategoryIconProps {
 }
 
 export function CustomCategoryIcon({ category, className = "" }: CustomCategoryIconProps) {
+  const [imageError, setImageError] = useState(false);
+
   const getIconPath = () => {
     const normalizedCategory = category.toLowerCase().trim();
     
@@ -38,27 +40,26 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
 
   const iconPath = getIconPath();
   
-  if (iconPath) {
+  if (!iconPath || imageError) {
+    console.error(`Failed to load or display icon for category: ${category}`);
     return (
       <div className="bg-white rounded-lg p-4">
-        <img 
-          src={iconPath}
-          alt={`Ícone ${category}`}
-          className={`h-12 w-12 object-contain ${className}`}
-          onError={(e) => {
-            console.error(`Failed to load icon for category: ${category}`);
-            e.currentTarget.onerror = null;
-            e.currentTarget.style.display = 'none';
-          }}
-        />
+        <Wrench className={`h-12 w-12 text-[#ff3200] ${className}`} />
       </div>
     );
   }
   
   return (
     <div className="bg-white rounded-lg p-4">
-      <Wrench className={`h-12 w-12 text-[#ff3200] ${className}`} />
+      <img 
+        src={iconPath}
+        alt={`Ícone ${category}`}
+        className={`h-12 w-12 object-contain ${className}`}
+        onError={() => {
+          console.error(`Failed to load image for category: ${category}`);
+          setImageError(true);
+        }}
+      />
     </div>
   );
 }
-
