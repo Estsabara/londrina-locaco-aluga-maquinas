@@ -1,3 +1,4 @@
+
 export interface Product {
   id: number;
   name: string;
@@ -11,6 +12,8 @@ export interface Product {
   priceWeekly?: number;
   priceMonthly?: number;
   priceBiweekly?: number;
+  brand?: string;
+  model?: string;
 }
 
 export type RentalPeriodType = "daily" | "weekly" | "biweekly" | "monthly";
