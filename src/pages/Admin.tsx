@@ -11,7 +11,6 @@ import { AdminTabs } from "@/components/admin/dashboard/AdminTabs";
 export default function Admin() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("rentals");
   
   useEffect(() => {
     const checkAuth = async () => {
@@ -42,7 +41,7 @@ export default function Admin() {
       <div className="container mx-auto py-6">
         <AdminHeader />
         <WelcomeCard />
-        <AdminTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        <AdminTabs />
       </div>
     </AdminLayout>
   );
