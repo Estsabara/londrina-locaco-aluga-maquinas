@@ -1,10 +1,11 @@
+
 import { Link } from "react-router-dom";
 import { Product } from "@/types";
 import { formatCurrency } from "@/lib/date-utils";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Globe } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
 import { useState } from "react";
 
@@ -72,15 +73,6 @@ export function ProductCard({ product }: ProductCardProps) {
             <MessageCircle className="mr-2 h-4 w-4" />
             Alugar pelo WhatsApp
           </Button>
-          <Link to={`/produto/${product.id}`} className="w-full">
-            <Button 
-              className="w-full bg-primary hover:bg-primary/90 text-white"
-              variant="default"
-            >
-              <Globe className="mr-2 h-4 w-4" />
-              Alugue pelo site
-            </Button>
-          </Link>
         </CardFooter>
       </Card>
     </div>
