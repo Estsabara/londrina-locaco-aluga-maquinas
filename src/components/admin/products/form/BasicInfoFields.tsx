@@ -44,15 +44,29 @@ export function BasicInfoFields({ form }: BasicInfoFieldsProps) {
           </FormItem>
         )}
       />
-
+      
       <FormField
         control={form.control}
-        name="price"
+        name="brand"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Preço (por dia)</FormLabel>
+            <FormLabel>Marca</FormLabel>
             <FormControl>
-              <Input type="number" step="0.01" placeholder="0.00" {...field} />
+              <Input placeholder="Marca do produto" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      
+      <FormField
+        control={form.control}
+        name="model"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Modelo</FormLabel>
+            <FormControl>
+              <Input placeholder="Modelo do produto" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

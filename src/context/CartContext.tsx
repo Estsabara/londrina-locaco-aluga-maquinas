@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { Product, DateRange, CartItem, RentalPeriodType } from '@/types';
 

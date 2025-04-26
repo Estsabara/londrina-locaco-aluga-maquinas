@@ -1,3 +1,4 @@
+
 export interface Product {
   id: number;
   name: string;
@@ -9,6 +10,9 @@ export interface Product {
   specs: any;
   brand?: string;
   model?: string;
+  price?: number; // Make price optional while maintaining database compatibility
+  priceWeekly?: number;
+  priceMonthly?: number;
 }
 
 export type RentalPeriodType = "daily" | "weekly" | "biweekly" | "monthly";
@@ -67,6 +71,4 @@ export interface InventoryProduct extends Product {
   threshold: number;
   lastRestocked: string;
   status: string;
-  brand: string;
-  model: string;
 }

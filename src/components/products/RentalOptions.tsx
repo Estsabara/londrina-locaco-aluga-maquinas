@@ -1,18 +1,15 @@
+
 import React from "react";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Info, ShoppingCart } from "lucide-react";
-import { formatCurrency } from "@/lib/date-utils";
 import { DateRange, RentalPeriodType } from "@/types";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 
 interface RentalOptionsProps {
   available: boolean;
-  price: number;
-  priceWeekly?: number;
-  priceMonthly?: number;
   dateRange: DateRange;
   setDateRange: (range: DateRange) => void;
   quantity: number;
@@ -27,9 +24,6 @@ interface RentalOptionsProps {
 
 export function RentalOptions({
   available,
-  price,
-  priceWeekly,
-  priceMonthly,
   dateRange,
   setDateRange,
   quantity,
@@ -45,60 +39,21 @@ export function RentalOptions({
     setRentalPeriod(value as RentalPeriodType);
   };
   
-  const getPriceDisplay = () => {
+  const getPeriodText = () => {
     switch (rentalPeriod) {
       case "daily":
-        return `${formatCurrency(price)}/dia`;
+        return "Diária";
       case "weekly":
-        {
-          const weeklyPrice = priceWeekly || price * 6;
-          const discountedWeeklyPrice = weeklyPrice * 0.95;
-          return <div className="flex flex-col items-end">
-            <span>{formatCurrency(discountedWeeklyPrice)}/semana</span>
-            <span className="text-green-600 text-sm mt-1">5% OFF</span>
-          </div>;
-        }
+        return "Semanal";
       case "monthly":
-        {
-          const monthlyPrice = priceMonthly || price * 25;
-          const discountedMonthlyPrice = monthlyPrice * 0.90;
-          return <div className="flex flex-col items-end">
-            <span>{formatCurrency(discountedMonthlyPrice)}/mês</span>
-            <span className="text-green-600 text-sm mt-1">10% OFF</span>
-          </div>;
-        }
+        return "Mensal";
       case "biweekly":
-        {
-          const biweeklyPrice = priceWeekly || price * 12;
-          const discountedBiweeklyPrice = biweeklyPrice * 0.90;
-          return <div className="flex flex-col items-end">
-            <span>{formatCurrency(discountedBiweeklyPrice)}/quinzena</span>
-            <span className="text-green-600 text-sm mt-1">10% OFF</span>
-          </div>;
-        }
+        return "Quinzenal";
       default:
-        return `${formatCurrency(price)}/dia`;
+        return "Diária";
     }
   };
 
-  const calculatedPrice = () => {
-    let basePrice = price;
-    
-    switch (rentalPeriod) {
-      case "weekly":
-        basePrice = (priceWeekly || price * 6) * 0.95; // 5% off weekly rate
-        break;
-      case "monthly":
-        basePrice = (priceMonthly || price * 25) * 0.90; // 10% off monthly rate
-        break;
-      case "biweekly":
-        basePrice = (priceWeekly || price * 12) * 0.90; // 10% off biweekly rate
-        break;
-    }
-    
-    return basePrice * periodQuantity * quantity;
-  };
-  
   return <div className="space-y-6">
       <h2 className="font-semibold text-lg">Configurar Locação</h2>
       
@@ -155,27 +110,24 @@ export function RentalOptions({
         />
       </div>
 
-      {/* Price and Total */}
+      {/* Period Summary */}
       <div className="flex justify-between items-center pt-4 border-t">
         <div>
-          <span className="text-sm text-muted-foreground">Valor por período</span>
-          <div className="font-medium">{getPriceDisplay()}</div>
+          <span className="text-sm text-muted-foreground">Tipo de locação</span>
+          <div className="font-medium">{getPeriodText()}</div>
         </div>
         <div className="text-right">
-          <span className="text-sm text-muted-foreground">Valor Total</span>
-          <div className="text-2xl font-bold">
-            {formatCurrency(calculatedPrice())}
-            <div className="text-xs text-muted-foreground">
-              {rentalPeriod === "daily" ? (
-                periodQuantity === 1 ? "1 dia" : `${periodQuantity} dias`
-              ) : rentalPeriod === "weekly" ? (
-                periodQuantity === 1 ? "1 semana" : `${periodQuantity} semanas`
-              ) : rentalPeriod === "biweekly" ? (
-                periodQuantity === 1 ? "1 quinzena" : `${periodQuantity} quinzenas`
-              ) : (
-                periodQuantity === 1 ? "1 mês" : `${periodQuantity} meses`
-              )}
-            </div>
+          <span className="text-sm text-muted-foreground">Período</span>
+          <div className="font-medium">
+            {rentalPeriod === "daily" ? (
+              periodQuantity === 1 ? "1 dia" : `${periodQuantity} dias`
+            ) : rentalPeriod === "weekly" ? (
+              periodQuantity === 1 ? "1 semana" : `${periodQuantity} semanas`
+            ) : rentalPeriod === "biweekly" ? (
+              periodQuantity === 1 ? "1 quinzena" : `${periodQuantity} quinzenas`
+            ) : (
+              periodQuantity === 1 ? "1 mês" : `${periodQuantity} meses`
+            )}
           </div>
         </div>
       </div>

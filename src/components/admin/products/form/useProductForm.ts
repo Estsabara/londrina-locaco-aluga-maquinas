@@ -19,11 +19,9 @@ export function useProductForm(initialData?: any, onSuccess?: () => void) {
     defaultValues: {
       name: initialData?.name || "",
       description: initialData?.description || "",
-      price: initialData?.price?.toString() || "",
-      priceWeekly: initialData?.price_weekly?.toString() || "",
-      priceBiweekly: initialData?.price_biweekly?.toString() || "",
-      priceMonthly: initialData?.price_monthly?.toString() || "",
       category: initialData?.category || "",
+      brand: initialData?.brand || "",
+      model: initialData?.model || "",
     },
   });
 

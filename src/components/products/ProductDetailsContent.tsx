@@ -38,7 +38,7 @@ export function ProductDetailsContent({
   periodQuantity,
   setPeriodQuantity
 }: ProductDetailsContentProps) {
-  const { name, description, price, imageUrl, category, specs, available, priceWeekly, priceMonthly } = product;
+  const { name, description, imageUrl, category, specs, available } = product;
 
   return (
     <main className="flex-grow container py-8">
@@ -57,7 +57,6 @@ export function ProductDetailsContent({
         <div className="space-y-6">
           <ProductInfo 
             name={name}
-            price={price}
             category={category}
             available={available}
             description={description}
@@ -71,9 +70,6 @@ export function ProductDetailsContent({
           
           <RentalOptions
             available={available}
-            price={price}
-            priceWeekly={priceWeekly}
-            priceMonthly={priceMonthly}
             dateRange={dateRange}
             setDateRange={setDateRange}
             quantity={quantity}

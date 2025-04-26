@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/context/CartContext";
 import { Product, DateRange, RentalPeriodType } from "@/types";
-import { calculateTotalPrice } from "@/lib/date-utils";
 
 export function useProductCart(product: Product | null) {
   const { toast } = useToast();
@@ -39,50 +38,8 @@ export function useProductCart(product: Product | null) {
     });
   };
   
-  const getCurrentPrice = () => {
-    if (!product) return 0;
-    
-    switch (rentalPeriod) {
-      case "weekly":
-        // Apply 5% discount for weekly rentals
-        const weeklyPrice = product.priceWeekly || product.price * 6;
-        return weeklyPrice * 0.95; // 5% off
-      case "monthly":
-        // Apply 10% discount for monthly rentals
-        const monthlyPrice = product.priceMonthly || product.price * 25;
-        return monthlyPrice * 0.90; // 10% off
-      case "daily":
-      default:
-        return product.price;
-    }
-  };
-  
-  // Calculate rental total based on period quantity, price, and quantity
-  const calculateRentalTotal = () => {
-    if (!product || !dateRange.from || !dateRange.to) return 0;
-    
-    const basePrice = getCurrentPrice();
-    let total = 0;
-    
-    switch (rentalPeriod) {
-      case "daily":
-        total = basePrice * periodQuantity;
-        break;
-      case "weekly":
-        total = basePrice * periodQuantity;
-        break;
-      case "monthly":
-        total = basePrice * periodQuantity;
-        break;
-      default:
-        total = basePrice * periodQuantity;
-    }
-    
-    return total * quantity;
-  };
-  
-  // Calculate rental total when any of the relevant parameters change
-  const rentalTotal = calculateRentalTotal();
+  // Placeholder for rental total - will be determined via quote
+  const rentalTotal = 0;
   
   return {
     dateRange,

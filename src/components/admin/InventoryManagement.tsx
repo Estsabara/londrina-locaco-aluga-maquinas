@@ -19,7 +19,8 @@ export default function InventoryManagement() {
     lastRestocked: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString(),
     status: Math.random() > 0.7 ? "alugado" : "disponível",
     brand: product.brand || "Sem marca", 
-    model: product.model || "Sem modelo" 
+    model: product.model || "Sem modelo",
+    price: 0 // Default placeholder price for consistency
   }));
   
   const filteredProducts = productsWithInventory.filter(product =>

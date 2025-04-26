@@ -1,7 +1,6 @@
 
 import { Link } from "react-router-dom";
 import { Product } from "@/types";
-import { formatCurrency } from "@/lib/date-utils";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -56,10 +55,6 @@ export function ProductCard({ product }: ProductCardProps) {
         
         <CardFooter className="p-4 pt-0 flex flex-col gap-2">
           <div className="w-full flex items-center justify-between">
-            <div className="font-bold text-lg">
-              {formatCurrency(product.price)}
-              <span className="text-xs font-normal text-muted-foreground">/dia</span>
-            </div>
             {product.available ? (
               <Badge variant="default">Disponível</Badge>
             ) : (

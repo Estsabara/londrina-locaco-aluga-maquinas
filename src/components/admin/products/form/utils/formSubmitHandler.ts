@@ -43,8 +43,9 @@ export const handleFormSubmit = async (
       imageurl2: imageUrl2,
       available: true,
       specs: {},
-      brand: values.brand,
-      model: values.model
+      brand: values.brand || null,
+      model: values.model || null,
+      price: 0 // Default value for database compatibility
     };
 
     if (initialData?.id) {
