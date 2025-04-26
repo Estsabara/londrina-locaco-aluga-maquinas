@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { formatShortDate } from "@/lib/date-utils";
+import { formatShortDate, formatCurrency } from "@/lib/date-utils";
 import { Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { CartItem as CartItemType } from "@/types";
@@ -26,6 +25,18 @@ export function CartItem({ item }: CartItemProps) {
         return "Locação";
     }
   };
+  
+  const getItemPrice = () => {
+    switch (rentalPeriod) {
+      case "weekly":
+        return product.priceWeekly || product.price * 6;
+      case "monthly":
+        return product.priceMonthly || product.price * 25;
+      case "daily":
+      default:
+        return product.price;
+    }
+  };
 
   return (
     <div className="flex flex-col sm:flex-row border-b py-4 gap-4">
@@ -44,6 +55,9 @@ export function CartItem({ item }: CartItemProps) {
           <Link to={`/produto/${product.id}`} className="hover:underline">
             <h3 className="text-lg font-semibold">{product.name}</h3>
           </Link>
+          <span className="text-lg font-bold">
+            {formatCurrency(getItemPrice())}
+          </span>
         </div>
         
         <div className="text-sm text-muted-foreground">

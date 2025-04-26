@@ -35,10 +35,22 @@ export function useProductDetails(id: string | undefined) {
             }
           }
           
+          // Check if weekly and monthly prices exist in database or calculate them
+          const weeklyPrice = (dbProduct as any).priceweekly !== undefined 
+            ? (dbProduct as any).priceweekly 
+            : dbProduct.price * 6;
+          
+          const monthlyPrice = (dbProduct as any).pricemonthly !== undefined 
+            ? (dbProduct as any).pricemonthly 
+            : dbProduct.price * 25;
+          
           const formattedProduct: Product = {
             id: dbProduct.id,
             name: dbProduct.name,
             description: dbProduct.description || '',
+            price: dbProduct.price,
+            priceWeekly: weeklyPrice,
+            priceMonthly: monthlyPrice,
             imageUrl: dbProduct.imageurl || '/placeholder.svg',
             category: dbProduct.category,
             available: dbProduct.available,

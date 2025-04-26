@@ -6,6 +6,7 @@ export const politrizesProducts: Product[] = [
     id: 27,
     name: "Politriz/Lixadeira",
     description: "Politriz/lixadeira para polimento e lixamento de superfícies.",
+    price: 65,
     imageUrl: "/placeholder.svg",
     category: "Corte e Acabamento",
     available: true,

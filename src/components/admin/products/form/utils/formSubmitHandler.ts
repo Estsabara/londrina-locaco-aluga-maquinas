@@ -38,13 +38,15 @@ export const handleFormSubmit = async (
     const productData = {
       name: values.name,
       description: values.description,
+      price: Number(values.price),
+      price_weekly: values.priceWeekly ? Number(values.priceWeekly) : null,
+      price_biweekly: values.priceBiweekly ? Number(values.priceBiweekly) : null,
+      price_monthly: values.priceMonthly ? Number(values.priceMonthly) : null,
       category: values.category,
       imageurl: imageUrl,
       imageurl2: imageUrl2,
       available: true,
-      specs: {},
-      brand: initialData?.brand || '',
-      model: initialData?.model || ''
+      specs: {}
     };
 
     if (initialData?.id) {
@@ -62,7 +64,7 @@ export const handleFormSubmit = async (
     } else {
       const { error } = await supabase
         .from('products')
-        .insert(productData);
+        .insert([productData]);
 
       if (error) {
         console.error('Insert error:', error);

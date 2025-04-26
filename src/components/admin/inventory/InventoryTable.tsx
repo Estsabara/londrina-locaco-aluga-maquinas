@@ -18,6 +18,7 @@ export interface InventoryProduct {
   brand: string;
   model: string;
   imageUrl: string;
+  price: number;
   description: string;
   specs: {
     [key: string]: string;

@@ -3,11 +3,15 @@ export interface Product {
   id: number;
   name: string;
   description: string;
+  price: number;
   imageUrl: string;
   imageUrl2?: string;
   category: string;
   available: boolean;
   specs: any;
+  priceWeekly?: number;
+  priceMonthly?: number;
+  priceBiweekly?: number;
   brand?: string;
   model?: string;
 }
@@ -68,4 +72,6 @@ export interface InventoryProduct extends Product {
   threshold: number;
   lastRestocked: string;
   status: string;
+  brand: string;
+  model: string;
 }

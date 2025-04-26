@@ -13,23 +13,23 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
     
     switch (normalizedCategory) {
       case 'andaimes':
-        return '/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png';
+        return '/lovable-uploads/andaime.png';
       case 'acesso e elevação':
-        return '/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png';
+        return '/lovable-uploads/acesso_elevacao.png';
       case 'compactação':
-        return '/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png';
+        return '/lovable-uploads/compactacao.png';
       case 'concretagem':
-        return '/lovable-uploads/6da3af5c-6e69-48aa-b1ab-ba9ec6b26daf.png';
+        return '/lovable-uploads/concretagem.png';
       case 'jardinagem':
-        return '/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png';
+        return '/lovable-uploads/jardinagem.png';
       case 'ferramentas elétricas':
-        return '/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png';
+        return '/lovable-uploads/ferramentas_eletricas.png';
       case 'limpeza':
-        return '/lovable-uploads/2bd10752-8b9d-4db6-a157-197c47ae596c.png';
+        return '/lovable-uploads/limpeza.png';
       case 'motores':
-        return '/lovable-uploads/8018b07b-9771-47a4-8eb0-36b34f16f546.png';
+        return '/lovable-uploads/motores.png';
       case 'escoramentos':
-        return '/lovable-uploads/aad19f97-574c-4505-87cc-5a3ee838a610.png';
+        return '/lovable-uploads/escoramentos.png';
       default:
         console.log('Category icon not found:', category);
         return null;
@@ -44,8 +44,7 @@ export function CustomCategoryIcon({ category, className = "" }: CustomCategoryI
         <img 
           src={iconPath}
           alt={`Ícone ${category}`}
-          className={`h-12 w-12 object-contain ${className}`}
-          style={{ filter: 'invert(27%) sepia(85%) saturate(7076%) hue-rotate(5deg) brightness(102%) contrast(109%)' }}
+          className={`h-16 w-16 object-contain ${className}`}
           onError={(e) => {
             console.error(`Failed to load icon for category: ${category}`);
             e.currentTarget.onerror = null;

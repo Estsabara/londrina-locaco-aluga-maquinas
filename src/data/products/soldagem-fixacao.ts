@@ -6,6 +6,7 @@ export const soldagemFixacaoProducts: Product[] = [
     id: 31,
     name: "Transformador 3000W",
     description: "Transformador de 3000W para alimentação de equipamentos em obras.",
+    price: 120,
     imageUrl: "/lovable-uploads/7ec0d7ae-989c-4a5f-8cf6-3a61bdc5007f.png",
     category: "Soldagem e Fixação",
     available: true,

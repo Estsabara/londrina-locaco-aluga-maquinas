@@ -44,6 +44,20 @@ export function BasicInfoFields({ form }: BasicInfoFieldsProps) {
           </FormItem>
         )}
       />
+
+      <FormField
+        control={form.control}
+        name="price"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Preço (por dia)</FormLabel>
+            <FormControl>
+              <Input type="number" step="0.01" placeholder="0.00" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
     </div>
   );
 }
