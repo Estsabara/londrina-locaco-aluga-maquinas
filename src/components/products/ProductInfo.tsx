@@ -2,11 +2,9 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle } from "lucide-react";
-import { formatCurrency } from "@/lib/date-utils";
 
 interface ProductInfoProps {
   name: string;
-  price: number;
   category: string;
   available: boolean;
   description: string;
@@ -14,7 +12,6 @@ interface ProductInfoProps {
 
 export function ProductInfo({ 
   name, 
-  price, 
   category, 
   available, 
   description
@@ -34,10 +31,6 @@ export function ProductInfo({
           )}
         </div>
         <h1 className="text-3xl font-bold mt-2">{name}</h1>
-        <div className="flex items-baseline mt-1">
-          <span className="text-2xl font-bold">{formatCurrency(price)}</span>
-          <span className="text-sm text-muted-foreground ml-1">/diária</span>
-        </div>
       </div>
       
       <div>

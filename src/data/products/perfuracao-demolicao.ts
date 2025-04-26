@@ -3,104 +3,176 @@ import { Product } from "@/types";
 export const perfuracaoDemolicaoProducts: Product[] = [
   {
     id: 13,
-    name: "Furadeira de Impacto Makita HP2070",
-    description: "Furadeira de impacto profissional para trabalhos pesados em alvenaria e concreto.",
-    price: 85,
+    name: "Martelete Rompedor 5kg",
+    description: "Martelete rompedor de 5kg para demolição leve e média.",
     imageUrl: "/lovable-uploads/d312b818-47c8-4dc4-b1df-1eb7a8ce43bc.png",
     category: "Perfuração e Demolição",
     available: true,
-    brand: "Makita",
-    model: "HP2070",
+    brand: "Bosch",
+    model: "GSH 5",
     specs: {
-      potência: "1010W",
-      mandril: "13mm",
-      velocidade: "0-2900 rpm",
-      impacto: "0-58000 ipm"
+      potência: "1100W",
+      impacto: "8.3 Joules",
+      peso: "5.6 kg"
     }
   },
   {
     id: 14,
-    name: "Martelete Rompedor Dewalt D25133K",
-    description: "Martelete perfurador com 3 funções: perfuração, perfuração com impacto e rompedor.",
-    price: 110,
-    imageUrl: "/lovable-uploads/d25d9ba8-113a-43af-8605-5e7918e4297a.png",
+    name: "Martelete Rompedor 10kg",
+    description: "Martelete rompedor de 10kg para demolição de concreto e alvenaria.",
+    imageUrl: "/lovable-uploads/59948959-554d-4959-9369-a9044299193a.png",
     category: "Perfuração e Demolição",
     available: true,
-    brand: "Dewalt",
-    model: "D25133K",
+    brand: "Makita",
+    model: "HM0810T",
     specs: {
-      potência: "800W",
-      energia: "2.6J",
-      mandril: "SDS Plus",
-      peso: "2.6 kg"
+      potência: "900W",
+      impacto: "7.6 Joules",
+      peso: "8.9 kg"
     }
   },
   {
     id: 15,
-    name: "Martelete Demolidor Makita HM1203C",
-    description: "Martelete demolidor profissional para trabalhos pesados de demolição.",
-    price: 180,
-    imageUrl: "/lovable-uploads/eb119723-e2fd-4811-9714-c71b99abd0bf.png",
+    name: "Perfuratriz de Concreto",
+    description: "Perfuratriz de concreto para furos em concreto e alvenaria.",
+    imageUrl: "/lovable-uploads/45925949-6989-405f-996b-97a80f64543a.png",
     category: "Perfuração e Demolição",
     available: true,
-    brand: "Makita",
-    model: "HM1203C",
+    brand: "Hilti",
+    model: "DD 150-U",
     specs: {
-      potência: "1510W",
-      energia: "25.5J",
-      impactos: "950-1900 ipm",
-      peso: "9.7 kg"
+      potência: "2200W",
+      diâmetro: "25-162mm",
+      velocidade: "760 rpm",
+      voltagem: "220V"
     }
   },
   {
     id: 16,
-    name: "Demolidor Dewalt D25960K",
-    description: "Martelo demolidor para trabalhos pesados com sistema de controle de vibração.",
-    price: 240,
-    imageUrl: "/lovable-uploads/749771d9-53b4-48eb-b9a2-22e74b4af4ea.png",
+    name: "Perfurador/Rompedor Combinado",
+    description: "Perfurador/rompedor combinado para perfuração e demolição.",
+    imageUrl: "/lovable-uploads/99915999-7653-4951-8c63-9905591a969d.png",
     category: "Perfuração e Demolição",
     available: true,
     brand: "Dewalt",
-    model: "D25960K",
+    model: "D25330",
     specs: {
-      potência: "1600W",
-      energia: "35J",
-      impactos: "1450 ipm",
-      peso: "16 kg"
+      potência: "950W",
+      impacto: "3.5 Joules",
+      velocidade: "1150 rpm",
+      mandril: "SDS Plus"
     }
   },
   {
     id: 17,
+    name: "Rompedor de Asfalto",
+    description: "Rompedor de asfalto para trabalhos em pavimentos asfálticos.",
+    imageUrl: "/lovable-uploads/95979999-2999-4999-b999-999999999999.png",
+    category: "Perfuração e Demolição",
+    available: true,
+    brand: "Wacker Neuson",
+    model: "BH23",
+    specs: {
+      motor: "2 tempos",
+      potência: "0.75 kW",
+      impacto: "23 Joules",
+      peso: "23 kg"
+    }
+  },
+  {
+    id: 44,
+    name: "Martelete Rompedor Bosch",
+    description: "Martelete rompedor profissional para demolição de concreto e alvenaria.",
+    imageUrl: "/lovable-uploads/24999999-9999-4999-b999-999999999999.png",
+    category: "Perfuração e Demolição",
+    available: true,
+    brand: "Bosch",
+    model: "GSH 11 VC",
+    specs: {
+      potência: "1700W",
+      impacto: "13 Joules",
+      peso: "11.4 kg",
+      encaixe: "SDS-max"
+    }
+  },
+  {
+    id: 45,
+    name: "Perfuratriz de Núcleo",
+    description: "Perfuratriz de núcleo para perfurações precisas em concreto e asfalto.",
+    imageUrl: "/lovable-uploads/99999999-9999-4999-b999-999999999999.png",
+    category: "Perfuração e Demolição",
+    available: true,
+    brand: "Hilti",
+    model: "DD 160",
+    specs: {
+      potência: "2200W",
+      diâmetro: "até 200mm",
+      velocidade: "variável",
+      voltagem: "220V"
+    }
+  },
+  {
+    id: 46,
+    name: "Martelete Combinado Rompedor/Perfurador",
+    description: "Martelete combinado para perfuração e rompimento em concreto e alvenaria.",
+    imageUrl: "/lovable-uploads/99999999-9999-4999-b999-999999999999.png",
+    category: "Perfuração e Demolição",
+    available: true,
+    brand: "Makita",
+    model: "HR2470",
+    specs: {
+      potência: "780W",
+      impacto: "2.7 Joules",
+      velocidade: "1100 rpm",
+      encaixe: "SDS Plus"
+    }
+  },
+  {
+    id: 55,
     name: "Martelete Rompedor Dewalt",
-    description: "Martelete rompedor profissional Dewalt para trabalhos pesados de demolição.",
-    price: 190,
-    imageUrl: "/lovable-uploads/34effa82-db68-4789-ba3c-6d1588eead27.png",
+    description: "Martelete rompedor profissional para trabalhos de demolição em concreto.",
+    imageUrl: "/lovable-uploads/99999999-9999-4999-b999-999999999999.png",
     category: "Perfuração e Demolição",
     available: true,
     brand: "Dewalt",
     model: "D25901K",
     specs: {
-      potência: "1500W",
-      energia: "16J",
-      impactos: "3300 ipm",
-      peso: "11 kg"
+      potência: "1550W",
+      impacto: "25 Joules",
+      golpes: "2040 gpm",
+      encaixe: "SDS Max"
     }
   },
   {
-    id: 55,
-    name: "Soprador Térmico Dewalt",
-    description: "Soprador térmico profissional para remoção de tintas e aplicações diversas.",
-    price: 65,
-    imageUrl: "/lovable-uploads/5221676f-14f6-41ef-8489-8ca0e93bfebb.png",
+    id: 56,
+    name: "Perfurador de Impacto Dewalt",
+    description: "Perfurador de impacto para perfurações em alvenaria e concreto.",
+    imageUrl: "/lovable-uploads/99999999-9999-4999-b999-999999999999.png",
     category: "Perfuração e Demolição",
     available: true,
     brand: "Dewalt",
-    model: "D26414",
+    model: "DWD502",
     specs: {
-      potência: "2000W",
-      temperatura: "50-600°C",
-      fluxo: "250-500 L/min",
-      voltagem: "220V"
+      potência: "710W",
+      velocidade: "0-2600 rpm",
+      impacto: "0-44200 ipm",
+      mandril: "1/2 polegada"
+    }
+  },
+  {
+    id: 57,
+    name: "Rompedor de Concreto Elétrico",
+    description: "Rompedor de concreto elétrico para demolições em áreas internas.",
+    imageUrl: "/lovable-uploads/99999999-9999-4999-b999-999999999999.png",
+    category: "Perfuração e Demolição",
+    available: true,
+    brand: "Makita",
+    model: "HK1820",
+    specs: {
+      potência: "550W",
+      impacto: "3.9 Joules",
+      golpes: "3200 gpm",
+      encaixe: "SDS Plus"
     }
   }
 ];

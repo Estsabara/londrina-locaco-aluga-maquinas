@@ -38,15 +38,13 @@ export const handleFormSubmit = async (
     const productData = {
       name: values.name,
       description: values.description,
-      price: Number(values.price),
-      price_weekly: values.priceWeekly ? Number(values.priceWeekly) : null,
-      price_biweekly: values.priceBiweekly ? Number(values.priceBiweekly) : null,
-      price_monthly: values.priceMonthly ? Number(values.priceMonthly) : null,
       category: values.category,
       imageurl: imageUrl,
       imageurl2: imageUrl2,
       available: true,
-      specs: {}
+      specs: {},
+      brand: values.brand,
+      model: values.model
     };
 
     if (initialData?.id) {

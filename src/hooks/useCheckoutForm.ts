@@ -1,11 +1,9 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Customer } from "@/types";
 import { createWhatsAppLink } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
-import { formatCurrency } from "@/lib/date-utils";
 
 interface CheckoutFormData {
   name: string;
@@ -19,7 +17,7 @@ export function useCheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { cartItems, getCartTotal, clearCart } = useCart();
+  const { cartItems, clearCart } = useCart();
   const [customer, setCustomer] = useState<CheckoutFormData>({
     name: '',
     email: '',
@@ -55,7 +53,6 @@ export function useCheckoutForm() {
     setIsLoading(true);
     
     try {
-      // Create WhatsApp message with order details
       let message = `*Novo Pedido de Locação*\n\n`;
       message += `*Dados do Cliente:*\n`;
       message += `Nome: ${customer.name}\n`;
@@ -75,8 +72,6 @@ export function useCheckoutForm() {
           item.rentalPeriod === 'weekly' ? 'Semanal' : 
           item.rentalPeriod === 'biweekly' ? 'Quinzenal' : 'Mensal'}\n`;
       });
-      
-      message += `\n*Valor Total: ${formatCurrency(getCartTotal())}*`;
       
       // Create WhatsApp link and open it
       const whatsappUrl = createWhatsAppLink("554333723860", message);

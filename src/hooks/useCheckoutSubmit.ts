@@ -9,7 +9,7 @@ import { generateContractText } from "@/utils/contract-utils";
 export function useCheckoutSubmit() {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { cartItems, getCartTotal } = useCart();
+  const { cartItems } = useCart();
 
   const handleSubmit = async (customerData: Partial<Customer>, setIsLoading: (loading: boolean) => void) => {
     setIsLoading(true);
@@ -38,14 +38,13 @@ export function useCheckoutSubmit() {
         address: customerData.address!
       };
 
-      const contractText = generateContractText(fullCustomer, cartItems, getCartTotal());
+      const contractText = generateContractText(fullCustomer, cartItems);
 
       const serializableCartItems = cartItems.map(item => ({
         product: {
           id: item.product.id,
           name: item.product.name,
           description: item.product.description,
-          price: item.product.price,
           imageUrl: item.product.imageUrl,
           category: item.product.category,
           available: item.product.available,
@@ -63,8 +62,6 @@ export function useCheckoutSubmit() {
         .insert({
           customer_id: customerResult.id,
           cart_data: serializableCartItems,
-          total_amount: getCartTotal(),
-          contract_text: contractText,
           status: 'pending'
         })
         .select('id')
