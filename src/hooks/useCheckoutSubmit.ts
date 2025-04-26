@@ -38,7 +38,8 @@ export function useCheckoutSubmit() {
         address: customerData.address!
       };
 
-      const contractText = generateContractText(fullCustomer, cartItems);
+      // Generate contract text with 0 as total amount (since we removed prices)
+      const contractText = generateContractText(fullCustomer, cartItems, 0);
 
       const serializableCartItems = cartItems.map(item => ({
         product: {
@@ -62,7 +63,9 @@ export function useCheckoutSubmit() {
         .insert({
           customer_id: customerResult.id,
           cart_data: serializableCartItems,
-          status: 'pending'
+          status: 'pending',
+          contract_text: contractText,
+          total_amount: 0 // Set total amount to 0 since we're not using prices
         })
         .select('id')
         .single();

@@ -2,7 +2,7 @@
 import { Customer, CartItem } from "@/types";
 import { formatCurrency } from "@/lib/date-utils";
 
-export function generateContractText(customer: Customer, cartItems: any[], totalAmount: number): string {
+export function generateContractText(customer: Customer, cartItems: any[], totalAmount: number = 0): string {
   const today = new Date().toLocaleDateString('pt-BR');
   const items = cartItems.map(item => {
     const days = Math.ceil(
