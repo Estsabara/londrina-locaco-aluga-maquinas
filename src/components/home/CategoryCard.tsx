@@ -38,7 +38,7 @@ export function CategoryCard({
             className="mb-4" 
           />
           <h3 className="text-lg font-medium mb-2 text-[#e66722]">{name}</h3>
-          <p className="text-sm text-muted-foreground text-[#ff0000]">{description}</p>
+          <p className="text-sm text-muted-foreground text-gray-600">{description}</p>
         </CardContent>
       </Card>
     </Link>

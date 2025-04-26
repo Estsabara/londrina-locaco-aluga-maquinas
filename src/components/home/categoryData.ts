@@ -13,45 +13,45 @@ interface CategoryItem {
 export const categoryData: CategoryItem[] = [
   { 
     name: "Andaimes",
-    slug: "andaimes",
+    slug: "andaimes-acessorios",
     description: "Andaimes e acessórios",
     icon: Wrench,
-    category: "Andaimes"
+    category: "Andaimes e Acessórios"
   },
   { 
     name: "Acesso e Elevação",
-    slug: "acesso-elevacao",
+    slug: "movimentacao-elevacao",
     description: "Equipamentos para acesso e elevação",
     icon: Wrench,
-    category: "Acesso e Elevação"
+    category: "Movimentação e Elevação"
   },
   { 
     name: "Compactação",
-    slug: "compactacao",
+    slug: "compactacao-solo",
     description: "Equipamentos para compactação",
     icon: Wrench,
-    category: "Compactação"
+    category: "Compactação de Solo"
   },
   { 
     name: "Concretagem",
-    slug: "concretagem",
+    slug: "concretagem-mistura",
     description: "Equipamentos para concretagem",
     icon: Wrench,
-    category: "Concretagem"
+    category: "Concretagem e Mistura"
   },
   { 
     name: "Jardinagem",
-    slug: "jardinagem",
+    slug: "equipamentos-diversos",
     description: "Equipamentos para jardinagem",
     icon: Wrench,
-    category: "Jardinagem"
+    category: "Equipamentos Diversos"
   },
   { 
     name: "Ferramentas Elétricas",
-    slug: "ferramentas-eletricas",
+    slug: "perfuracao-demolicao",
     description: "Ferramentas elétricas profissionais",
     icon: Wrench,
-    category: "Ferramentas Elétricas"
+    category: "Perfuração e Demolição"
   }
 ];
 
@@ -60,46 +60,47 @@ export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 6);
 export const categoryFasesDaObra: CategoryItem[] = [
   { 
     name: "Preparação",
-    slug: "preparacao",
+    slug: "perfuracao-demolicao",
     description: "Equipamentos para preparação do terreno",
     icon: Wrench,
-    category: "Preparação"
+    category: "Perfuração e Demolição"
   },
   { 
     name: "Fundação",
-    slug: "fundacao",
+    slug: "concretagem-mistura",
     description: "Equipamentos para fundação",
     icon: Wrench,
-    category: "Fundação"
+    category: "Concretagem e Mistura"
   },
   { 
     name: "Alvenaria",
-    slug: "alvenaria",
+    slug: "andaimes-acessorios",
     description: "Equipamentos para alvenaria",
     icon: Wrench,
-    category: "Alvenaria"
+    category: "Andaimes e Acessórios"
   }
 ];
+
 export const categoryTipoDeTrabalho: CategoryItem[] = [
   { 
     name: "Perfuração",
-    slug: "perfuracao",
+    slug: "perfuracao-demolicao",
     description: "Equipamentos para perfuração",
     icon: Wrench,
-    category: "Perfuração"
+    category: "Perfuração e Demolição"
   },
   { 
     name: "Demolição",
-    slug: "demolicao",
+    slug: "perfuracao-demolicao",
     description: "Equipamentos para demolição",
     icon: Wrench,
-    category: "Demolição"
+    category: "Perfuração e Demolição"
   },
   { 
-    name: "Pintura",
-    slug: "pintura",
-    description: "Equipamentos para pintura",
+    name: "Corte",
+    slug: "corte-acabamento",
+    description: "Equipamentos para corte",
     icon: Wrench,
-    category: "Pintura"
+    category: "Corte e Acabamento"
   }
 ];

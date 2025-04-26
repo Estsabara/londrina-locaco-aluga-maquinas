@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { categoryData } from "./categoryData";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useNavigate } from "react-router-dom";
 
 interface CategoryCarouselProps {
   onCategorySelect: (category: string) => void;
@@ -17,6 +18,12 @@ interface CategoryCarouselProps {
 
 export function CategoryCarousel({ onCategorySelect }: CategoryCarouselProps) {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (slug: string, name: string) => {
+    onCategorySelect(name);
+    navigate(`/produtos?categoria=${slug}`);
+  };
 
   return (
     <section className="py-4 md:py-8 w-full overflow-hidden">
@@ -42,7 +49,7 @@ export function CategoryCarousel({ onCategorySelect }: CategoryCarouselProps) {
                       slug={card.slug}
                       description={card.description}
                       icon={card.icon}
-                      onClick={() => onCategorySelect(card.name)} 
+                      onClick={() => handleCategoryClick(card.slug, card.name)} 
                     />
                   </div>
                 </CarouselItem>

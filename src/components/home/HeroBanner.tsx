@@ -8,44 +8,44 @@ export function HeroBanner() {
   const categories = [
     {
       name: "Andaimes",
-      slug: "andaimes",
+      slug: "andaimes-acessorios",
       icon: "/lovable-uploads/836b98ad-ba9a-407f-b6bc-8134f878b7d8.png",
-      href: "/produtos?categoria=andaimes"
+      href: "/produtos?categoria=andaimes-acessorios"
     },
     {
       name: "Acesso e Elevação",
-      slug: "acesso-elevacao",
+      slug: "movimentacao-elevacao",
       icon: "/lovable-uploads/f2eea06a-186a-4cb6-b9b0-fdce6ee8cb04.png",
-      href: "/produtos?categoria=acesso-elevacao"
+      href: "/produtos?categoria=movimentacao-elevacao"
     },
     {
       name: "Compactação",
-      slug: "compactacao",
+      slug: "compactacao-solo",
       icon: "/lovable-uploads/2d083810-7019-472a-87ec-66af8d51b11b.png",
-      href: "/produtos?categoria=compactacao"
+      href: "/produtos?categoria=compactacao-solo"
     },
     {
       name: "Concretagem",
-      slug: "concretagem",
+      slug: "concretagem-mistura",
       icon: "/lovable-uploads/2576676f-bc02-4ea2-9285-c9bbee856465.png",
-      href: "/produtos?categoria=concretagem"
+      href: "/produtos?categoria=concretagem-mistura"
     },
     {
       name: "Jardinagem",
-      slug: "jardinagem",
+      slug: "equipamentos-diversos",
       icon: "/lovable-uploads/35520990-a7d1-4438-b992-51fb5dbc3a38.png",
-      href: "/produtos?categoria=jardinagem"
+      href: "/produtos?categoria=equipamentos-diversos"
     },
     {
       name: "Ferramentas Elétricas",
-      slug: "ferramentas-eletricas",
+      slug: "perfuracao-demolicao",
       icon: "/lovable-uploads/72cf8895-3baa-44dd-bfe3-3ff4ba54b5fa.png",
-      href: "/produtos?categoria=ferramentas-eletricas"
+      href: "/produtos?categoria=perfuracao-demolicao"
     }
   ];
 
-  const handleCategoryClick = (category: string) => {
-    navigate(`/produtos?categoria=${category.toLowerCase().replace(/\s+/g, '-')}`);
+  const handleCategoryClick = (slug: string) => {
+    navigate(`/produtos?categoria=${slug}`);
   };
 
   return (
@@ -78,7 +78,7 @@ export function HeroBanner() {
                   category={category.name}
                   className="mb-2 group-hover:opacity-90"
                 />
-                <span className="text-xs md:text-sm text-[#ff0000] font-medium line-clamp-2 text-center group-hover:text-[#ff0000]/90">
+                <span className="text-xs md:text-sm text-[#e66722] font-medium line-clamp-2 text-center group-hover:text-[#e66722]/90">
                   {category.name}
                 </span>
               </div>

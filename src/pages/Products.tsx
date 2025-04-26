@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ProductList } from "@/components/products/ProductList";
@@ -12,6 +13,8 @@ export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [useStaticData, setUseStaticData] = useState(false);
+  const [searchParams] = useSearchParams();
+  const categoryParam = searchParams.get("categoria");
 
   useEffect(() => {
     async function fetchProducts() {
@@ -56,8 +59,8 @@ export default function Products() {
             name: item.name,
             description: item.description || '',
             price: item.price,
-            priceWeekly: (item as any).priceweekly || item.price * 6,
-            priceMonthly: (item as any).pricemonthly || item.price * 25,
+            priceWeekly: item.price_weekly || item.price * 6,
+            priceMonthly: item.price_monthly || item.price * 25,
             imageUrl: item.imageurl || '/placeholder.svg',
             category: item.category,
             available: item.available,
