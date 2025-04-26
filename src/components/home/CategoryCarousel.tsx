@@ -42,7 +42,7 @@ export function CategoryCarousel({ onCategorySelect }: CategoryCarouselProps) {
                       slug={card.slug}
                       description={card.description}
                       icon={card.icon}
-                      onClick={() => onCategorySelect(card.category)} 
+                      onClick={() => onCategorySelect(card.name)} 
                     />
                   </div>
                 </CarouselItem>

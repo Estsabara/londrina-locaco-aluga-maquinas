@@ -85,7 +85,6 @@ export default function Index() {
           </Sidebar>
           
           <main className="flex-grow w-full overflow-hidden">
-            {/* Removido o botão de menu de categorias no mobile */}
             <HeroBanner />
             <FeatureHighlights />
             <CategoryCarousel onCategorySelect={setSelectedCategory} />

@@ -1,3 +1,4 @@
+
 import { LucideIcon } from "lucide-react";
 import { Wrench } from "lucide-react";
 
@@ -55,6 +56,50 @@ export const categoryData: CategoryItem[] = [
 ];
 
 // Creating the category groups that CategoryTabs needs
-export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 5);
-export const categoryFasesDaObra: CategoryItem[] = categoryData.slice(5, 8);
-export const categoryTipoDeTrabalho: CategoryItem[] = categoryData.slice(8);
+export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 6);
+export const categoryFasesDaObra: CategoryItem[] = [
+  { 
+    name: "Preparação",
+    slug: "preparacao",
+    description: "Equipamentos para preparação do terreno",
+    icon: Wrench,
+    category: "Preparação"
+  },
+  { 
+    name: "Fundação",
+    slug: "fundacao",
+    description: "Equipamentos para fundação",
+    icon: Wrench,
+    category: "Fundação"
+  },
+  { 
+    name: "Alvenaria",
+    slug: "alvenaria",
+    description: "Equipamentos para alvenaria",
+    icon: Wrench,
+    category: "Alvenaria"
+  }
+];
+export const categoryTipoDeTrabalho: CategoryItem[] = [
+  { 
+    name: "Perfuração",
+    slug: "perfuracao",
+    description: "Equipamentos para perfuração",
+    icon: Wrench,
+    category: "Perfuração"
+  },
+  { 
+    name: "Demolição",
+    slug: "demolicao",
+    description: "Equipamentos para demolição",
+    icon: Wrench,
+    category: "Demolição"
+  },
+  { 
+    name: "Pintura",
+    slug: "pintura",
+    description: "Equipamentos para pintura",
+    icon: Wrench,
+    category: "Pintura"
+  }
+];

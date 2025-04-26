@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 import { CustomCategoryIcon } from "../icons/CustomCategoryIcon";
 
 export function HeroBanner() {
+  const navigate = useNavigate();
+  
   const categories = [
     {
       name: "Andaimes",
@@ -41,6 +44,10 @@ export function HeroBanner() {
     }
   ];
 
+  const handleCategoryClick = (category: string) => {
+    navigate(`/produtos?categoria=${category.toLowerCase().replace(/\s+/g, '-')}`);
+  };
+
   return (
     <section className="relative bg-black border-b min-h-[350px] md:min-h-[500px] w-full">
       {/* Background Image */}
@@ -62,10 +69,10 @@ export function HeroBanner() {
           {/* Right side - Category Icons */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
             {categories.slice(0, 6).map(category => (
-              <Link 
-                key={category.name} 
-                to={category.href} 
-                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-white hover:bg-white/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group"
+              <div
+                key={category.name}
+                onClick={() => handleCategoryClick(category.slug)}
+                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-white hover:bg-white/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group cursor-pointer"
               >
                 <CustomCategoryIcon 
                   category={category.name}
@@ -74,7 +81,7 @@ export function HeroBanner() {
                 <span className="text-xs md:text-sm text-[#ff0000] font-medium line-clamp-2 text-center group-hover:text-[#ff0000]/90">
                   {category.name}
                 </span>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
