@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Product } from "@/types";
 import { toast } from "sonner";
+import { processImageUrl } from "@/lib/image-utils";
 
 export function useProductDetails(id: string | undefined) {
   const [product, setProduct] = useState<Product | null>(null);
@@ -51,7 +52,7 @@ export function useProductDetails(id: string | undefined) {
             price: dbProduct.price,
             priceWeekly: weeklyPrice,
             priceMonthly: monthlyPrice,
-            imageUrl: dbProduct.imageurl || '/placeholder.svg',
+            imageUrl: processImageUrl(dbProduct.imageurl || '/placeholder.svg'),
             category: dbProduct.category,
             available: dbProduct.available,
             brand: dbProduct.brand || '',
@@ -71,7 +72,12 @@ export function useProductDetails(id: string | undefined) {
           const staticProduct = staticProducts.find(p => p.id.toString() === id);
           
           if (staticProduct) {
-            setProduct(staticProduct);
+            // Ensure static product image URL is processed properly
+            const productWithProcessedImage = {
+              ...staticProduct,
+              imageUrl: processImageUrl(staticProduct.imageUrl)
+            };
+            setProduct(productWithProcessedImage);
           } else {
             console.error('Product not found in static data either:', id);
             return;
@@ -90,7 +96,12 @@ export function useProductDetails(id: string | undefined) {
           const staticProduct = staticProducts.find(p => p.id.toString() === id);
           
           if (staticProduct) {
-            setProduct(staticProduct);
+            // Ensure static product image URL is processed properly
+            const productWithProcessedImage = {
+              ...staticProduct,
+              imageUrl: processImageUrl(staticProduct.imageUrl)
+            };
+            setProduct(productWithProcessedImage);
           } else {
             console.error('Product not found in static data either:', id);
           }

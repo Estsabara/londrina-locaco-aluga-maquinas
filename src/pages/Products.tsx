@@ -8,6 +8,7 @@ import { categories, products as staticProducts } from "@/data/products";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Product } from "@/types";
+import { processImageUrl } from "@/lib/image-utils";
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -61,7 +62,7 @@ export default function Products() {
             price: item.price,
             priceWeekly: item.price_weekly || item.price * 6,
             priceMonthly: item.price_monthly || item.price * 25,
-            imageUrl: item.imageurl || '/placeholder.svg',
+            imageUrl: processImageUrl(item.imageurl || '/placeholder.svg'),
             category: item.category,
             available: item.available,
             brand: item.brand || '',
@@ -84,8 +85,14 @@ export default function Products() {
     fetchProducts();
   }, []);
 
+  // Process all static product images to ensure consistency
+  const processedStaticProducts = staticProducts.map(product => ({
+    ...product,
+    imageUrl: processImageUrl(product.imageUrl)
+  }));
+
   // Display the products based on whether we're using static or DB data
-  const displayProducts = useStaticData ? staticProducts : products;
+  const displayProducts = useStaticData ? processedStaticProducts : products;
 
   return (
     <div className="flex flex-col min-h-screen">

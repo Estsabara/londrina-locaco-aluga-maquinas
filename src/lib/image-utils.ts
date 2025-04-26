@@ -8,6 +8,11 @@
 export function processImageUrl(url: string): string {
   if (!url) return "/placeholder.svg";
   
+  // Check if it's a lovable-uploads path but missing the leading slash
+  if (url.startsWith("lovable-uploads/")) {
+    return `/${url}`;
+  }
+  
   // If it's already a full URL (with http/https), use it directly
   if (url.startsWith("http")) {
     return url;

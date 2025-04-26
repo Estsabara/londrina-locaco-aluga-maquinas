@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { processImageUrl } from "@/lib/image-utils";
 
 interface ProductImageGalleryProps {
   imageUrl: string;
@@ -14,15 +15,15 @@ export function ProductImageGallery({ imageUrl, name }: ProductImageGalleryProps
   // Update stable URL only once when component mounts
   useEffect(() => {
     setStableImageUrl(imageUrl);
-  }, []);
+  }, [imageUrl]); // Update if imageUrl changes
 
   const handleImageError = () => {
     console.log(`Erro ao carregar imagem: ${imageUrl}`);
     setImageError(true);
   };
 
-  // Use either the stable URL or placeholder if there's an error
-  const displayUrl = imageError ? "/placeholder.svg" : stableImageUrl;
+  // Use consistent image processing
+  const displayUrl = imageError ? "/placeholder.svg" : processImageUrl(stableImageUrl);
 
   return (
     <div className="bg-white rounded-lg overflow-hidden h-[300px] md:h-[400px] border border-gray-200">

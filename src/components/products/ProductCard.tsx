@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/utils";
 import { useState } from "react";
+import { processImageUrl } from "@/lib/image-utils";
 
 interface ProductCardProps {
   product: Product;
@@ -28,7 +29,8 @@ export function ProductCard({ product }: ProductCardProps) {
     setImageError(true);
   };
 
-  const imageUrl = imageError ? "/placeholder.svg" : product.imageUrl;
+  // Use consistent image processing
+  const imageUrl = imageError ? "/placeholder.svg" : processImageUrl(product.imageUrl);
 
   return (
     <div className="group">
