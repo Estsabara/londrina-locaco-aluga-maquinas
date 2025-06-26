@@ -7,29 +7,18 @@ import { uploadImage } from "./imageHandler";
 export const handleFormSubmit = async (
   values: ProductFormValues,
   imageFile: File | null,
-  imageFile2: File | null,
   initialData: any,
   onSuccess?: () => void
 ) => {
   try {
     let imageUrl = initialData?.imageurl;
-    let imageUrl2 = initialData?.imageurl2;
 
-    // Upload images if new ones are selected
+    // Upload image if new one is selected
     if (imageFile) {
       try {
         imageUrl = await uploadImage(imageFile);
       } catch (error: any) {
-        toast.error(`Erro no upload da imagem principal: ${error.message}`);
-        throw error;
-      }
-    }
-
-    if (imageFile2) {
-      try {
-        imageUrl2 = await uploadImage(imageFile2);
-      } catch (error: any) {
-        toast.error(`Erro no upload da imagem secundária: ${error.message}`);
+        toast.error(`Erro no upload da imagem: ${error.message}`);
         throw error;
       }
     }
@@ -40,7 +29,6 @@ export const handleFormSubmit = async (
       description: values.description,
       category: values.category,
       imageurl: imageUrl,
-      imageurl2: imageUrl2,
       available: true,
       specs: {},
       brand: values.brand || null,

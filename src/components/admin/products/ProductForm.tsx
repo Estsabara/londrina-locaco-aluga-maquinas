@@ -14,7 +14,7 @@ interface ProductFormProps {
 }
 
 export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
-  const { form, loading, imagePreview, imagePreview2, handleImageChange, onSubmit } = useProductForm(initialData, onSuccess);
+  const { form, loading, imagePreview, handleImageChange, onSubmit } = useProductForm(initialData, onSuccess);
   const [error, setError] = React.useState<string | null>(null);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -40,7 +40,6 @@ export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
         <FormFields form={form} />
         <ImageUpload 
           imagePreview={imagePreview}
-          imagePreview2={imagePreview2}
           onImageChange={handleImageChange}
         />
         <div className="flex justify-end mt-8">
