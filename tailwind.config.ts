@@ -71,7 +71,6 @@ export default {
       fontFamily: {
         'nordic': ['Cinzel', 'serif'],
         'sans': ['Inter', 'sans-serif']
-        }
       },
       borderRadius: {
         lg: 'var(--radius)',
