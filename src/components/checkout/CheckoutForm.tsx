@@ -96,7 +96,6 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
         <p>Campos com <span className="text-destructive">*</span> são obrigatórios.</p>
       </div>
       
-      <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" size="lg" disabled={isLoading}>
       <Button type="submit" className="w-full bg-nordic-deep hover:bg-nordic-pine transition-all" size="lg" disabled={isLoading}>
         {isLoading ? (
           <>
@@ -111,8 +110,3 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
         )}
       </Button>
     </form>
-  );
-}
-
-  )
-}
