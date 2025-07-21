@@ -30,18 +30,18 @@ export default function Cart() {
         <div className="max-w-5xl mx-auto">
           <h1 className="text-3xl font-bold mb-8 flex items-center">
             <ShoppingCart className="mr-3 h-6 w-6" />
-            Carrinho de Locação
+            <span className="nordic-title text-nordic-deep">Arsenal Convocado</span>
           </h1>
           
           {isEmpty ? (
             <div className="text-center py-16 space-y-4">
-              <h2 className="text-2xl font-semibold">Seu carrinho está vazio</h2>
+              <h2 className="text-2xl font-semibold nordic-title text-nordic-deep">Seu arsenal está vazio</h2>
               <p className="text-muted-foreground">
-                Adicione equipamentos ao carrinho para continuar com a locação.
+                Convoque equipamentos para seu arsenal e inicie sua jornada épica.
               </p>
-              <Button asChild className="mt-4">
+              <Button asChild className="mt-4 bg-nordic-deep hover:bg-nordic-pine">
                 <Link to="/produtos">
-                  Ver Equipamentos
+                  Explorar Arsenal
                 </Link>
               </Button>
             </div>

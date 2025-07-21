@@ -53,8 +53,8 @@ export function useCheckoutForm() {
     setIsLoading(true);
     
     try {
-      let message = `*Novo Pedido de Locação*\n\n`;
-      message += `*Dados do Cliente:*\n`;
+      let message = `*Nova Convocação do Arsenal YGG*\n\n`;
+      message += `*Dados do Guerreiro:*\n`;
       message += `Nome: ${customer.name}\n`;
       message += `Email: ${customer.email}\n`;
       message += `Telefone: ${customer.phone}\n`;
@@ -63,7 +63,7 @@ export function useCheckoutForm() {
         message += `Endereço: ${customer.address}\n`;
       }
       
-      message += `\n*Itens do Pedido:*\n`;
+      message += `\n*Equipamentos Convocados:*\n`;
       cartItems.forEach(item => {
         message += `\n- ${item.product.name}\n`;
         message += `  Quantidade: ${item.quantity}\n`;

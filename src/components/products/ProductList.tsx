@@ -89,7 +89,7 @@ export function ProductList({ products, categories }: ProductListProps) {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Buscar equipamentos..."
+            placeholder="Buscar no arsenal ancestral..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 rounded-full"
@@ -101,7 +101,7 @@ export function ProductList({ products, categories }: ProductListProps) {
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
               size="sm"
-              className={`${selectedCategory === category ? 'bg-primary text-primary-foreground' : ''} whitespace-nowrap`}
+              className={`${selectedCategory === category ? 'bg-nordic-deep text-white' : 'border-nordic-gold/50 text-nordic-deep hover:bg-nordic-ice'} whitespace-nowrap transition-all`}
               onClick={() => handleCategorySelect(category)}
             >
               {category}
@@ -112,9 +112,9 @@ export function ProductList({ products, categories }: ProductListProps) {
       
       {filteredProducts.length === 0 ? (
         <div className="text-center py-10">
-          <h3 className="text-lg font-medium">Nenhum equipamento encontrado</h3>
+          <h3 className="text-lg font-medium nordic-title text-nordic-deep">Nenhuma Relíquia Encontrada</h3>
           <p className="text-muted-foreground mt-2">
-            Tente ajustar sua busca ou categorias selecionadas.
+            Tente ajustar sua invocação ou categorias selecionadas no arsenal.
           </p>
         </div>
       ) : (

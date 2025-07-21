@@ -97,15 +97,16 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
       </div>
       
       <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" size="lg" disabled={isLoading}>
+      <Button type="submit" className="w-full bg-nordic-deep hover:bg-nordic-pine transition-all" size="lg" disabled={isLoading}>
         {isLoading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Processando...
+            Forjando Pedido...
           </>
         ) : (
           <>
             <MessageSquare className="mr-2 h-5 w-5" />
-            Enviar Pedido pelo WhatsApp
+            Convocar via Mensageiro
           </>
         )}
       </Button>

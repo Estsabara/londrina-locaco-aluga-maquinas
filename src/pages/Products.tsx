@@ -101,16 +101,16 @@ export default function Products() {
       <main className="flex-grow container py-10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-bold">Nossos Equipamentos</h1>
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-              Oferecemos uma ampla gama de equipamentos para construção civil. 
-              Escolha as melhores máquinas para sua obra com preços competitivos.
+            <h1 className="text-4xl font-bold nordic-title text-nordic-deep">Arsenal Ancestral YGG</h1>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto nordic-text">
+              Oferecemos um vasto arsenal de equipamentos forjados com a resistência dos antigos. 
+              Escolha as melhores ferramentas para sua obra com a força dos deuses nórdicos.
             </p>
           </div>
           
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-nordic-deep"></div>
             </div>
           ) : (
             <ProductList products={displayProducts} categories={categories} />

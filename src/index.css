@@ -2,68 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Importar fontes nórdicas */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
-    /* Cores baseadas na imagem de referência - laranja e preto */
+    /* Paleta nórdica inspirada em Yggdrasil */
     --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --foreground: 210 15% 15%; /* Cinza escuro nórdico */
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 210 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: 210 15% 15%;
 
-    --primary: 16 100% 50%; /* Laranja */
-    --primary-foreground: 0 0% 100%; /* Branco */
+    --primary: 210 45% 25%; /* Azul profundo nórdico */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 91.49%; /* Light gray secondary color */
-    --secondary-foreground: 0 0% 13%; /* Keeping the existing foreground color */
+    --secondary: 200 15% 85%; /* Cinza gelo */
+    --secondary-foreground: 210 15% 15%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 200 10% 92%; /* Cinza gelo claro */
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 16 100% 50%; /* Laranja */
-    --accent-foreground: 0 0% 0%; /* Preto */
+    --accent: 45 35% 45%; /* Dourado antigo */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 16 100% 50%; /* Laranja */
+    --border: 200 15% 85%;
+    --input: 200 15% 85%;
+    --ring: 210 45% 25%; /* Azul profundo */
+
+    /* Cores específicas nórdicas */
+    --nordic-pine: 140 25% 35%; /* Verde pinho */
+    --nordic-ice: 200 15% 85%; /* Cinza gelo */
+    --nordic-gold: 45 35% 45%; /* Dourado antigo */
+    --nordic-deep: 210 45% 25%; /* Azul profundo */
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 0 0% 10%;
+    --background: 210 20% 8%; /* Fundo escuro nórdico */
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 10%;
+    --card: 210 20% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 10%;
+    --popover: 210 20% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 16 100% 50%; /* Laranja */
-    --primary-foreground: 0 0% 100%; /* Branco */
+    --primary: 210 45% 35%; /* Azul profundo mais claro no dark */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 91.49%; /* Light gray secondary color */
-    --secondary-foreground: 0 0% 13%; /* Keeping the existing foreground color */
+    --secondary: 210 15% 20%;
+    --secondary-foreground: 0 0% 85%;
 
-    --muted: 0 0% 15%;
+    --muted: 210 15% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 16 100% 50%; /* Laranja */
-    --accent-foreground: 0 0% 0%; /* Preto */
+    --accent: 45 35% 55%; /* Dourado mais claro no dark */
+    --accent-foreground: 210 20% 8%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 16 100% 50%; /* Laranja */
+    --border: 210 15% 20%;
+    --input: 210 15% 20%;
+    --ring: 210 45% 35%;
   }
 }
 
@@ -74,26 +83,101 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Fontes nórdicas */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+  }
+
+  .nordic-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .nordic-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+
+  /* Classes utilitárias nórdicas */
+  .bg-nordic-pine {
+    background-color: hsl(var(--nordic-pine));
+  }
+
+  .bg-nordic-ice {
+    background-color: hsl(var(--nordic-ice));
+  }
+
+  .bg-nordic-gold {
+    background-color: hsl(var(--nordic-gold));
+  }
+
+  .bg-nordic-deep {
+    background-color: hsl(var(--nordic-deep));
+  }
+
+  .text-nordic-pine {
+    color: hsl(var(--nordic-pine));
+  }
+
+  .text-nordic-ice {
+    color: hsl(var(--nordic-ice));
+  }
+
+  .text-nordic-gold {
+    color: hsl(var(--nordic-gold));
+  }
+
+  .text-nordic-deep {
+    color: hsl(var(--nordic-deep));
+  }
+
+  .border-nordic-gold {
+    border-color: hsl(var(--nordic-gold));
   }
 }
 
-/* Estilos personalizados para categoria cards */
+/* Estilos nórdicos para categoria cards */
 .category-card {
-  @apply flex flex-col items-center justify-center p-4 rounded-xl transition-all;
+  @apply flex flex-col items-center justify-center p-4 rounded-lg transition-all border border-nordic-ice;
+  background: linear-gradient(135deg, hsl(var(--nordic-ice)) 0%, rgba(255,255,255,0.9) 100%);
 }
 
 .category-card:hover {
-  @apply transform scale-105;
+  @apply transform scale-105 shadow-lg;
+  background: linear-gradient(135deg, hsl(var(--nordic-gold)) 0%, hsl(var(--nordic-ice)) 100%);
 }
 
 .category-card-icon {
-  @apply p-4 rounded-full mb-3;
+  @apply p-4 rounded-lg mb-3 bg-nordic-deep text-white;
 }
 
 .category-tab {
-  @apply py-3 px-6 text-center border-b-2 border-transparent hover:text-primary hover:border-primary cursor-pointer;
+  @apply py-3 px-6 text-center border-b-2 border-transparent hover:text-nordic-deep hover:border-nordic-gold cursor-pointer transition-all;
 }
 
 .category-tab.active {
-  @apply text-primary border-primary font-semibold;
+  @apply text-nordic-deep border-nordic-gold font-semibold;
+}
+
+/* Botões estilo nórdico */
+.btn-nordic {
+  @apply bg-nordic-deep text-white border-2 border-nordic-deep hover:bg-transparent hover:text-nordic-deep transition-all duration-300 font-medium rounded-lg;
+}
+
+.btn-nordic-gold {
+  @apply bg-nordic-gold text-white border-2 border-nordic-gold hover:bg-transparent hover:text-nordic-gold transition-all duration-300 font-medium rounded-lg;
+}
+
+/* Gradientes nórdicos */
+.nordic-gradient {
+  background: linear-gradient(135deg, hsl(var(--nordic-deep)) 0%, hsl(var(--nordic-pine)) 100%);
+}
+
+.nordic-ice-gradient {
+  background: linear-gradient(135deg, hsl(var(--nordic-ice)) 0%, rgba(255,255,255,0.9) 100%);
 }

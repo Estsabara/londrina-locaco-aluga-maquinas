@@ -78,22 +78,22 @@ export function ElectricMachines() {
     <section className="py-12 bg-white">
       <div className="container px-4 md:px-6">
         <div className="flex items-center gap-2 mb-8">
-          <Hammer className="w-8 h-8 text-primary" />
-          <h2 className="text-3xl font-bold tracking-tight">
-            Máquinas prontas para aluguel
+          <Hammer className="w-8 h-8 text-nordic-deep" />
+          <h2 className="text-3xl font-bold tracking-tight nordic-title text-nordic-deep">
+            Máquinas Forjadas pelos Deuses
           </h2>
         </div>
 
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-nordic-deep"></div>
           </div>
         ) : error && !useStaticData ? (
-          <div className="text-center py-10 bg-red-50 rounded-lg border border-red-200">
+          <div className="text-center py-10 bg-nordic-ice rounded-lg border border-nordic-gold/30">
             <AlertTriangle className="mx-auto h-10 w-10 text-red-400 mb-3" />
-            <h3 className="text-lg font-medium text-red-800">Erro ao carregar produtos</h3>
+            <h3 className="text-lg font-medium text-nordic-deep nordic-title">Falha na Invocação</h3>
             <p className="text-red-600 mt-2 max-w-md mx-auto">
-              Ocorreu um problema na conexão com o banco de dados. Por favor, tente novamente mais tarde.
+              Os espíritos das máquinas estão temporariamente indisponíveis. Tente invocar novamente.
             </p>
             <p className="text-sm text-red-500 mt-2">Detalhes técnicos: {error}</p>
           </div>

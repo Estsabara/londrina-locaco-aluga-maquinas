@@ -34,22 +34,22 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="group">
-      <Card className="overflow-hidden h-full transition-shadow hover:shadow-md">
+      <Card className="overflow-hidden h-full transition-all hover:shadow-lg border border-nordic-ice hover:border-nordic-gold/50">
         <Link to={`/produto/${product.id}`} className="block">
-          <div className="relative h-48 bg-white border-b">
+          <div className="relative h-48 bg-nordic-ice border-b border-nordic-gold/20">
             <img 
               src={imageUrl} 
               alt={product.name} 
               className="w-full h-full object-contain p-3"
               onError={handleImageError}
             />
-            <Badge className="absolute top-2 right-2">
+            <Badge className="absolute top-2 right-2 bg-nordic-deep text-nordic-gold">
               {product.category}
             </Badge>
           </div>
           <CardContent className="p-4">
-            <h3 className="font-semibold text-lg truncate">{product.name}</h3>
-            <p className="text-muted-foreground text-sm line-clamp-2 mt-1">
+            <h3 className="font-semibold text-lg truncate nordic-title text-nordic-deep">{product.name}</h3>
+            <p className="text-muted-foreground text-sm line-clamp-2 mt-1 nordic-text">
               {product.description}
             </p>
           </CardContent>
@@ -58,17 +58,17 @@ export function ProductCard({ product }: ProductCardProps) {
         <CardFooter className="p-4 pt-0 flex flex-col gap-2">
           <div className="w-full flex items-center justify-between">
             {product.available ? (
-              <Badge variant="default">Disponível</Badge>
+              <Badge variant="default" className="bg-nordic-pine text-white">Disponível</Badge>
             ) : (
               <Badge variant="destructive">Indisponível</Badge>
             )}
           </div>
           <Button 
-            className="w-full bg-green-600 hover:bg-green-700 text-white"
+            className="w-full bg-nordic-deep hover:bg-nordic-pine text-white transition-all"
             onClick={(e) => openWhatsApp(e, product.name)}
           >
             <MessageCircle className="mr-2 h-4 w-4" />
-            Alugar pelo WhatsApp
+            Convocar via Mensageiro
           </Button>
         </CardFooter>
       </Card>

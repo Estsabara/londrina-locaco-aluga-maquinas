@@ -111,12 +111,12 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col gap-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-3xl font-bold tracking-tight">
-              {selectedCategory === "Todos" ? "Equipamentos em Destaque" : `Equipamentos: ${selectedCategory}`}
+            <h2 className="text-3xl font-bold tracking-tight nordic-title text-nordic-deep">
+              {selectedCategory === "Todos" ? "Arsenal Lendário em Destaque" : `Arsenal: ${selectedCategory}`}
             </h2>
             <Button asChild variant="ghost" className="hidden sm:flex">
               <Link to="/produtos" className="group">
-                Ver todos
+                Explorar Arsenal Completo
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -126,7 +126,7 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Buscar equipamentos..."
+              placeholder="Buscar no arsenal..."
               className="pl-10"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -135,14 +135,14 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
 
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-nordic-deep"></div>
             </div>
           ) : error && !useStaticData ? (
-            <div className="text-center py-10 bg-red-50 rounded-lg border border-red-200">
+            <div className="text-center py-10 bg-nordic-ice rounded-lg border border-nordic-gold/30">
               <AlertTriangle className="mx-auto h-10 w-10 text-red-400 mb-3" />
-              <h3 className="text-lg font-medium text-red-800">Erro ao carregar produtos</h3>
+              <h3 className="text-lg font-medium text-nordic-deep nordic-title">Falha na Invocação do Arsenal</h3>
               <p className="text-red-600 mt-2 max-w-md mx-auto">
-                Ocorreu um problema na conexão com o banco de dados. Por favor, tente novamente mais tarde.
+                Os espíritos dos equipamentos estão temporariamente indisponíveis. Tente invocar novamente mais tarde.
               </p>
               <p className="text-sm text-red-500 mt-2">Detalhes técnicos: {error}</p>
             </div>
@@ -153,10 +153,10 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
               ))}
             </div>
           ) : (
-            <div className="text-center py-10 bg-gray-50 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-medium">Nenhum equipamento encontrado</h3>
+            <div className="text-center py-10 bg-nordic-ice rounded-lg border border-nordic-gold/30">
+              <h3 className="text-lg font-medium nordic-title text-nordic-deep">Nenhuma Relíquia Encontrada</h3>
               <p className="text-muted-foreground mt-2">
-                Não encontramos equipamentos com estes critérios de busca.
+                Os equipamentos que buscas não foram encontrados neste reino. Tenta outros termos de invocação.
               </p>
             </div>
           )}
@@ -164,7 +164,7 @@ export function FeaturedProducts({ selectedCategory }: FeaturedProductsProps) {
           <div className="mt-8 text-center sm:hidden">
             <Button asChild>
               <Link to="/produtos">
-                Ver todos os equipamentos
+                Explorar Arsenal Completo
               </Link>
             </Button>
           </div>

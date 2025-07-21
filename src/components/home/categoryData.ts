@@ -59,23 +59,23 @@ export const categoryData: CategoryItem[] = [
 export const categoryMaisAlugados: CategoryItem[] = categoryData.slice(0, 6);
 export const categoryFasesDaObra: CategoryItem[] = [
   { 
-    name: "Preparação",
+    name: "Preparação do Campo",
     slug: "perfuracao-demolicao",
-    description: "Equipamentos para preparação do terreno",
+    description: "Ferramentas para preparar o campo de batalha",
     icon: Wrench,
     category: "Perfuração e Demolição"
   },
   { 
-    name: "Fundação",
+    name: "Forja das Bases",
     slug: "concretagem-mistura",
-    description: "Equipamentos para fundação",
+    description: "Equipamentos para forjar fundações sólidas",
     icon: Wrench,
     category: "Concretagem e Mistura"
   },
   { 
-    name: "Alvenaria",
+    name: "Construção dos Muros",
     slug: "andaimes-acessorios",
-    description: "Equipamentos para alvenaria",
+    description: "Ferramentas para erguer muralhas",
     icon: Wrench,
     category: "Andaimes e Acessórios"
   }
@@ -83,23 +83,23 @@ export const categoryFasesDaObra: CategoryItem[] = [
 
 export const categoryTipoDeTrabalho: CategoryItem[] = [
   { 
-    name: "Perfuração",
+    name: "Perfuração Ancestral",
     slug: "perfuracao-demolicao",
-    description: "Equipamentos para perfuração",
+    description: "Ferramentas para perfurar como os antigos",
     icon: Wrench,
     category: "Perfuração e Demolição"
   },
   { 
-    name: "Demolição",
+    name: "Demolição Épica",
     slug: "perfuracao-demolicao",
-    description: "Equipamentos para demolição",
+    description: "Equipamentos para demolir como Thor",
     icon: Wrench,
     category: "Perfuração e Demolição"
   },
   { 
-    name: "Corte",
+    name: "Corte Preciso",
     slug: "corte-acabamento",
-    description: "Equipamentos para corte",
+    description: "Lâminas afiadas como espadas nórdicas",
     icon: Wrench,
     category: "Corte e Acabamento"
   }

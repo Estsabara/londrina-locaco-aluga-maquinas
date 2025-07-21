@@ -53,13 +53,13 @@ export default function Checkout() {
         <div className="max-w-5xl mx-auto">
           <h1 className="text-3xl font-bold mb-8 flex items-center">
             <ShoppingCart className="mr-3 h-6 w-6" />
-            Finalizar Pedido
+            <span className="nordic-title text-nordic-deep">Finalizar Convocação</span>
           </h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
-              <div className="bg-card rounded-lg p-6 border">
-                <h2 className="text-xl font-semibold mb-4">Seus Dados</h2>
+              <div className="bg-card rounded-lg p-6 border border-nordic-gold/30">
+                <h2 className="text-xl font-semibold mb-4 nordic-title text-nordic-deep">Dados do Guerreiro</h2>
                 <CheckoutForm
                   onSubmit={handleSubmit}
                   onChange={handleChange}

@@ -10,19 +10,19 @@ interface ContactButtonProps {
 
 export function ContactButton({ productName }: ContactButtonProps) {
   const openWhatsApp = () => {
-    const message = `Olá! Estou interessado em alugar o equipamento: ${productName}. Poderia me dar mais informações?`;
+    const message = `Salve, mestres do YGG! Busco informações sobre o equipamento: ${productName}. Podem me auxiliar nesta jornada?`;
     const whatsappUrl = createWhatsAppLink("554333723860", message);
     window.open(whatsappUrl, '_blank');
   };
 
   return (
     <Button 
-      className="w-full bg-green-600 hover:bg-green-700 text-white" 
+      className="w-full bg-nordic-deep hover:bg-nordic-pine text-white transition-all" 
       size="lg"
       onClick={openWhatsApp}
     >
       <MessageCircle className="mr-2 h-5 w-5" />
-      Alugar pelo WhatsApp
+      Convocar via Mensageiro
     </Button>
   );
 }

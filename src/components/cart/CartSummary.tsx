@@ -9,9 +9,9 @@ export function CartSummary() {
   const { cartItems } = useCart();
 
   const handleWhatsAppClick = () => {
-    let message = "*Novo Pedido de Locação*\n\n";
+    let message = "*Nova Convocação do Arsenal YGG*\n\n";
     
-    message += "*Itens do Pedido:*\n";
+    message += "*Equipamentos Solicitados:*\n";
     cartItems.forEach(item => {
       message += `\n- ${item.product.name}\n`;
       message += `  Quantidade: ${item.quantity}\n`;
@@ -23,15 +23,15 @@ export function CartSummary() {
       }\n`;
     });
     
-    message += "\n\nGostaria de prosseguir com a locação destes equipamentos e obter um orçamento.";
+    message += "\n\nDesejo prosseguir com a convocação destes equipamentos ancestrais e obter um orçamento dos mestres YGG.";
 
     const whatsappUrl = createWhatsAppLink("554333723860", message);
     window.open(whatsappUrl, '_blank');
   };
   
   return (
-    <div className="bg-[hsl(0deg_0%_100%_/_23%)] rounded-lg p-6 sticky top-20">
-      <h2 className="text-xl font-semibold mb-4">Resumo da Locação</h2>
+    <div className="bg-nordic-ice rounded-lg p-6 sticky top-20 border border-nordic-gold/30">
+      <h2 className="text-xl font-semibold mb-4 nordic-title text-nordic-deep">Resumo da Convocação</h2>
       
       <div className="space-y-3 mb-4">
         {cartItems.map((item) => {
@@ -41,7 +41,7 @@ export function CartSummary() {
           
           return (
             <div key={`${item.product.id}-${item.startDate.toISOString()}`} className="text-sm">
-              <div className="font-medium">{item.product.name}</div>
+              <div className="font-medium nordic-title text-nordic-deep">{item.product.name}</div>
               <div className="flex justify-between text-muted-foreground">
                 <span>{item.quantity} × {days} {days === 1 ? 'dia' : 'dias'}</span>
               </div>
@@ -53,17 +53,17 @@ export function CartSummary() {
       <Separator className="my-4" />
       
       <div className="mt-4 text-sm text-muted-foreground">
-        <p>Entre em contato para obter orçamento personalizado.</p>
-        <p>Documentação e caução serão solicitados.</p>
+        <p>Convoque os mestres para obter orçamento personalizado.</p>
+        <p>Pergaminhos de identificação e garantias serão solicitados.</p>
       </div>
 
       <Button 
-        className="w-full mt-6 bg-green-600 hover:bg-green-700" 
+        className="w-full mt-6 bg-nordic-deep hover:bg-nordic-pine transition-all" 
         size="lg"
         onClick={handleWhatsAppClick}
       >
         <MessageSquare className="mr-2 h-5 w-5" />
-        Enviar Pedido pelo WhatsApp
+        Convocar via Mensageiro
       </Button>
     </div>
   );

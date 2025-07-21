@@ -29,7 +29,7 @@ export function CategoryCarousel({ onCategorySelect }: CategoryCarouselProps) {
     <section className="py-4 md:py-8 w-full overflow-hidden">
       <div className="container px-2 md:px-6">
         <h2 className="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-center px-2">
-          Equipamentos e ferramentas para locação
+          <span className="nordic-title text-nordic-deep">Arsenal de Ferramentas Ancestrais</span>
         </h2>
         
         <div className="relative w-full max-w-full overflow-hidden px-1 sm:px-2 md:px-4">

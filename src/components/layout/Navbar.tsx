@@ -25,11 +25,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="flex-shrink-0">
-            <img 
-              src="/lovable-uploads/a318feda-ccf9-4034-8132-160b1fd158c6.png" 
-              alt="Londrina Locações" 
-              className="h-8 md:h-10 max-w-full object-contain" 
-            />
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-nordic-deep rounded-lg flex items-center justify-center">
+                <span className="text-nordic-gold font-bold text-lg md:text-xl nordic-title">Y</span>
+              </div>
+              <span className="text-white font-bold text-lg md:text-xl nordic-title hidden sm:block">YGG</span>
+            </div>
           </Link>
           
           <NavigationLinks />

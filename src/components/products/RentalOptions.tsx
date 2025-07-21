@@ -55,40 +55,40 @@ export function RentalOptions({
   };
 
   return <div className="space-y-6">
-      <h2 className="font-semibold text-lg">Configurar Locação</h2>
+      <h2 className="font-semibold text-lg nordic-title text-nordic-deep">Configurar Convocação</h2>
       
       {/* Step 1: Quantity */}
-      <div className="space-y-2 p-4 border rounded-md bg-gray-50">
+      <div className="space-y-2 p-4 border rounded-md bg-nordic-ice border-nordic-gold/30">
         <Label htmlFor="quantity" className="text-sm font-medium flex items-center">
-          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mr-2">1</div>
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-nordic-deep text-nordic-gold text-xs mr-2">1</div>
           Quantidade
         </Label>
         <Input id="quantity" type="number" min={1} value={quantity} onChange={e => setQuantity(parseInt(e.target.value) || 1)} className="max-w-[200px]" />
       </div>
       
       {/* Step 2: Rental Period Type */}
-      <div className="space-y-4 p-4 border rounded-md bg-gray-50">
+      <div className="space-y-4 p-4 border rounded-md bg-nordic-ice border-nordic-gold/30">
         <Label className="text-sm font-medium flex items-center">
-          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mr-2">2</div>
-          Período de Locação
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-nordic-deep text-nordic-gold text-xs mr-2">2</div>
+          Período de Convocação
         </Label>
         <RadioGroup value={rentalPeriod} onValueChange={handlePeriodChange} className="grid grid-cols-1 sm:grid-cols-4 gap-2">
-          <div className="flex items-center space-x-2 border rounded-md p-2">
+          <div className="flex items-center space-x-2 border rounded-md p-2 border-nordic-gold/30 hover:bg-nordic-gold/10">
             <RadioGroupItem value="daily" id="daily" />
             <Label htmlFor="daily" className="cursor-pointer">Diário</Label>
           </div>
           
-          <div className="flex items-center space-x-2 border rounded-md p-2">
+          <div className="flex items-center space-x-2 border rounded-md p-2 border-nordic-gold/30 hover:bg-nordic-gold/10">
             <RadioGroupItem value="weekly" id="weekly" />
             <Label htmlFor="weekly" className="cursor-pointer">Semanal</Label>
           </div>
           
-          <div className="flex items-center space-x-2 border rounded-md p-2">
+          <div className="flex items-center space-x-2 border rounded-md p-2 border-nordic-gold/30 hover:bg-nordic-gold/10">
             <RadioGroupItem value="biweekly" id="biweekly" />
             <Label htmlFor="biweekly" className="cursor-pointer">Quinzenal</Label>
           </div>
           
-          <div className="flex items-center space-x-2 border rounded-md p-2">
+          <div className="flex items-center space-x-2 border rounded-md p-2 border-nordic-gold/30 hover:bg-nordic-gold/10">
             <RadioGroupItem value="monthly" id="monthly" />
             <Label htmlFor="monthly" className="cursor-pointer">Mensal</Label>
           </div>
@@ -96,9 +96,9 @@ export function RentalOptions({
       </div>
       
       {/* Step 3: Pick-up Date */}
-      <div className="space-y-2 p-4 border rounded-md bg-gray-50">
+      <div className="space-y-2 p-4 border rounded-md bg-nordic-ice border-nordic-gold/30">
         <Label className="text-sm font-medium flex items-center">
-          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mr-2">3</div>
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-nordic-deep text-nordic-gold text-xs mr-2">3</div>
           Data de Retirada
         </Label>
         <DateRangePicker 
@@ -132,14 +132,14 @@ export function RentalOptions({
         </div>
       </div>
       
-      <Button onClick={onAddToCart} disabled={!available || !dateRange || !dateRange.from || !dateRange.to} className="w-full" size="lg">
+      <Button onClick={onAddToCart} disabled={!available || !dateRange || !dateRange.from || !dateRange.to} className="w-full bg-nordic-deep hover:bg-nordic-pine" size="lg">
         <ShoppingCart className="mr-2 h-5 w-5" />
-        Adicionar ao Carrinho
+        Convocar para o Arsenal
       </Button>
       
-      <div className="flex items-center p-3 bg-muted rounded-md text-sm">
+      <div className="flex items-center p-3 bg-nordic-ice rounded-md text-sm border border-nordic-gold/30">
         <Info className="h-4 w-4 mr-2 flex-shrink-0" />
-        <p>A retirada e devolução do equipamento deve ser feita em nosso depósito. Solicite orçamento para entrega.</p>
+        <p className="nordic-text">A retirada e devolução do equipamento deve ser feita em nossa fortaleza. Solicite orçamento para expedição.</p>
       </div>
     </div>;
 }

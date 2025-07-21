@@ -17,16 +17,17 @@ export default function Success() {
           </div>
           
           <h1 className="text-3xl font-bold">Pedido Enviado com Sucesso!</h1>
+          <h1 className="text-3xl font-bold nordic-title text-nordic-deep">Convocação Realizada com Sucesso!</h1>
           
           <p className="text-muted-foreground text-lg">
-            Seu pedido foi enviado para nossa equipe via WhatsApp. 
-            Em breve entraremos em contato para confirmar os detalhes da locação.
+            Sua convocação foi enviada para nossos mestres via mensageiro. 
+            Em breve os guerreiros YGG entrarão em contato para confirmar os detalhes da jornada.
           </p>
           
           <div className="pt-8">
-            <Button asChild>
+            <Button asChild className="bg-nordic-deep hover:bg-nordic-pine">
               <Link to="/produtos">
-                Continuar Comprando
+                Explorar Mais do Arsenal
               </Link>
             </Button>
           </div>

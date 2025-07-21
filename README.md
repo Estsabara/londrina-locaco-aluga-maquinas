@@ -1,8 +1,18 @@
-# Welcome to your Lovable project
+# YGG – Sistema de Locações | Projeto Nórdico
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/e32099c1-7c42-492d-b07e-99b0f3902b42
+
+## Sobre o YGG
+
+YGG – Sistema de Locações é uma plataforma inspirada na mitologia nórdica, especificamente na Yggdrasil (a Árvore do Mundo). O sistema combina a robustez e confiabilidade dos antigos com tecnologia moderna para locação de equipamentos de construção civil.
+
+### Identidade Visual Nórdica
+
+- **Cores**: Paleta inspirada em tons nórdicos (cinza gelo, azul profundo, verde pinho, dourado antigo)
+- **Tipografia**: Cinzel (serifada) para títulos e Inter para textos
+- **Estética**: Minimalista, robusta, inspirada na natureza e mitologia nórdica
 
 ## How can I edit this code?
 
@@ -59,6 +69,8 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- Supabase (Database)
+- Identidade Visual Nórdica
 
 ## How can I deploy this project?
 

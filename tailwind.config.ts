@@ -61,6 +61,16 @@ export default {
           'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
+        },
+        // Cores nórdicas personalizadas
+        'nordic-pine': 'hsl(140, 25%, 35%)',
+        'nordic-ice': 'hsl(200, 15%, 85%)',
+        'nordic-gold': 'hsl(45, 35%, 45%)',
+        'nordic-deep': 'hsl(210, 45%, 25%)'
+      },
+      fontFamily: {
+        'nordic': ['Cinzel', 'serif'],
+        'sans': ['Inter', 'sans-serif']
         }
       },
       borderRadius: {

@@ -49,20 +49,21 @@ export function HeroBanner() {
   };
 
   return (
-    <section className="relative bg-black border-b min-h-[350px] md:min-h-[500px] w-full">
+    <section className="relative bg-nordic-deep border-b min-h-[350px] md:min-h-[500px] w-full overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e890aba0-98bc-4ed4-a68b-24f68fe494db.png')] bg-cover bg-center opacity-20" />
+      <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg')] bg-cover bg-center opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-nordic-deep via-nordic-deep/80 to-nordic-pine/60" />
       
       <div className="container mx-auto px-3 py-6 md:py-8 h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center h-full relative z-10">
           {/* Left side - Title */}
           <div className="text-center md:text-left">
-            <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-3 md:mb-4 leading-tight" 
+            <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-3 md:mb-4 leading-tight nordic-title" 
                 style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
-              Alugue Equipamentos para sua Obra
+              Forje sua Obra com Equipamentos Ancestrais
             </h1>
-            <p className="text-gray-300 text-sm md:text-xl">
-              Mais de 70 tipos de equipamentos profissionais disponíveis para locação.
+            <p className="text-gray-200 text-sm md:text-xl nordic-text">
+              Mais de 70 tipos de equipamentos forjados com a resistência dos antigos. Desperte o poder nórdico em sua construção.
             </p>
           </div>
 
@@ -72,13 +73,13 @@ export function HeroBanner() {
               <div
                 key={category.name}
                 onClick={() => handleCategoryClick(category.slug)}
-                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-white hover:bg-white/90 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group cursor-pointer"
+                className="flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-nordic-ice hover:bg-nordic-gold transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 group cursor-pointer border border-nordic-gold/30"
               >
                 <CustomCategoryIcon 
                   category={category.name}
                   className="mb-2 group-hover:opacity-90"
                 />
-                <span className="text-xs md:text-sm text-[#e66722] font-medium line-clamp-2 text-center group-hover:text-[#e66722]/90">
+                <span className="text-xs md:text-sm text-nordic-deep font-medium line-clamp-2 text-center group-hover:text-white transition-colors">
                   {category.name}
                 </span>
               </div>
