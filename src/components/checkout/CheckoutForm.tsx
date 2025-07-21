@@ -113,3 +113,6 @@ export function CheckoutForm({ onSubmit, onChange, customer, isLoading }: Checko
     </form>
   );
 }
+
+  )
+}
